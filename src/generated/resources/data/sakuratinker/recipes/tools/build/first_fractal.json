@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:tool_building",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "extrabotany"
+    }
+  ],
+  "result": "sakuratinker:first_fractal",
+  "result_count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "pattern": "sakuratinker:charm_core",
+  "pattern_item": {
+    "tag": "tconstruct:casts/sand"
+  },
+  "result": "sakuratinker:charm_core_sand_cast"
+}

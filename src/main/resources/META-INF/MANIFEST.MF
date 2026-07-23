@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: sakuratinker_tools
+Specification-Vendor: ssakura49
+Specification-Version: 1
+Implementation-Title: sakuratinker-tools
+Implementation-Version: 1.0
+Implementation-Vendor: ssakura49
+Implementation-Timestamp: 2026-07-11T00:19:34+0800
+MixinConfigs: sakuratinker_tools.mixins.json
+

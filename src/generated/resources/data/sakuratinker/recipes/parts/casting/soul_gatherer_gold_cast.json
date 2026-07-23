@@ -1,0 +1,14 @@
+{
+  "type": "tconstruct:table_casting_material",
+  "cast": {
+    "tag": "sakuratinker:casts/multi_use/soul_gatherer"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety"
+    }
+  ],
+  "item_cost": 8,
+  "result": "sakuratinker:soul_gatherer"
+}

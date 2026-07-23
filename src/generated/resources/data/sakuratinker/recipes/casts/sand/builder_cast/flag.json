@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "pattern": "sakuratinker:flag",
+  "pattern_item": {
+    "tag": "tconstruct:casts/sand"
+  },
+  "result": "sakuratinker:flag_sand_cast"
+}

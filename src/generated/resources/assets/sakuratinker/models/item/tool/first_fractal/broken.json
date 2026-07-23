@@ -1,0 +1,34 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "forge:item/default-tool",
+  "textures": {
+    "head": "sakuratinker:item/tool/first_fractal/head_broken",
+    "core": "sakuratinker:item/tool/first_fractal/core",
+    "binding": "sakuratinker:item/tool/first_fractal/binding",
+    "handle": "sakuratinker:item/tool/first_fractal/handle",
+    "head_broken": "sakuratinker:item/tool/first_fractal/head_broken"
+  },
+  "modifier_roots": [
+    "sakuratinker:item/tool/first_fractal/modifiers/broken/",
+    "sakuratinker:item/tool/first_fractal/modifiers/"
+  ],
+  "parts": [
+    {
+      "name": "head",
+      "index": 0,
+      "broken": "head_broken"
+    },
+    {
+      "name": "core",
+      "index": 1
+    },
+    {
+      "name": "binding",
+      "index": 2
+    },
+    {
+      "name": "handle",
+      "index": 3
+    }
+  ]
+}

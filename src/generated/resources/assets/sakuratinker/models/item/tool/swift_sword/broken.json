@@ -1,0 +1,34 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "forge:item/default-tool",
+  "textures": {
+    "blade": "sakuratinker:item/tool/swift_sword/blade_broken",
+    "guard": "sakuratinker:item/tool/swift_sword/guard",
+    "handle": "sakuratinker:item/tool/swift_sword/handle",
+    "binding": "sakuratinker:item/tool/swift_sword/binding",
+    "blade_broken": "sakuratinker:item/tool/swift_sword/blade_broken"
+  },
+  "modifier_roots": [
+    "sakuratinker:item/tool/swift_sword/modifiers/broken/",
+    "sakuratinker:item/tool/swift_sword/modifiers/"
+  ],
+  "parts": [
+    {
+      "name": "blade",
+      "index": 0,
+      "broken": "blade_broken"
+    },
+    {
+      "name": "guard",
+      "index": 1
+    },
+    {
+      "name": "handle",
+      "index": 2
+    },
+    {
+      "name": "binding",
+      "index": 3
+    }
+  ]
+}

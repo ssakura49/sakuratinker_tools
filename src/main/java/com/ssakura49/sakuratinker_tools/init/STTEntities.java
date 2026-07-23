@@ -1,0 +1,106 @@
+package com.ssakura49.sakuratinker_tools.init;
+
+import com.ssakura49.sakuratinker.SakuraTinker;
+import com.ssakura49.sakuratinker_tools.content.entity.BulletEntity;
+import com.ssakura49.sakuratinker_tools.content.entity.CelestialBladeEntity;
+import com.ssakura49.sakuratinker_tools.content.entity.GhostKnife;
+import com.ssakura49.sakuratinker_tools.content.entity.LaserProjectileEntity;
+import com.ssakura49.sakuratinker_tools.content.entity.ManaRayEntity;
+import com.ssakura49.sakuratinker_tools.content.entity.MiniGrapplingHookEntity;
+import com.ssakura49.sakuratinker_tools.compat.extrabotany.entity.PhantomSwordEntity;
+import com.ssakura49.sakuratinker_tools.content.entity.ShurikenEntity;
+import com.ssakura49.sakuratinker_tools.content.entity.TinkerArrowEntity;
+import com.ssakura49.sakuratinker_tools.content.entity.YoyoEntity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.registries.RegistryObject;
+import slimeknights.mantle.registration.deferred.EntityTypeDeferredRegister;
+
+public class STTEntities {
+   public static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(SakuraTinker.MODID);
+
+   public static final RegistryObject<EntityType<GhostKnife>> GHOST_KNIFE = ENTITIES.register("ghost_knife", ()->
+           EntityType.Builder.<GhostKnife>of(GhostKnife::new, MobCategory.MISC)
+                   .sized(0.5f, 0.5f)
+                   .setCustomClientFactory(GhostKnife::new)
+                   .setTrackingRange(8)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .setUpdateInterval(-1));
+//    public static final RegistryObject<EntityType<CelestialBladeProjectile>> CELESTIAL_BLADE = ENTITIES.register("celestial_blade", () ->
+//            EntityType.Builder.<CelestialBladeProjectile>of(CelestialBladeProjectile::new, MobCategory.MISC)
+//                    .sized(1.0f, 1.0f)
+//                    .clientTrackingRange(64)
+//                    .setShouldReceiveVelocityUpdates(true)
+//                    .updateInterval(-1));
+
+   public static final RegistryObject<EntityType<CelestialBladeEntity>> CELESTIAL_BLADE_ENTITY = ENTITIES.register("celestial_blade_entity", () ->
+           EntityType.Builder.<CelestialBladeEntity>of(CelestialBladeEntity::new, MobCategory.MISC)
+                   .sized(1.0f, 1.0f)
+                   .clientTrackingRange(64)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .updateInterval(-1));
+
+   public static final RegistryObject<EntityType<ShurikenEntity>> SHURIKEN_ENTITY = ENTITIES.register("shuriken", () ->
+           EntityType.Builder.<ShurikenEntity>of(ShurikenEntity::new, MobCategory.MISC)
+                   .sized(0.5f, 0.5f)
+                   .clientTrackingRange(32)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .updateInterval(-1));
+   public static final RegistryObject<EntityType<TinkerArrowEntity>> TINKER_ARROW_ENTITY = ENTITIES.register("tinker_arrow_entity", () ->
+           EntityType.Builder.<TinkerArrowEntity>of(TinkerArrowEntity::new, MobCategory.MISC)
+                   .sized(0.5f, 0.5f)
+                   .setCustomClientFactory(TinkerArrowEntity::new)
+                   .clientTrackingRange(64)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .updateInterval(-1));
+   public static final RegistryObject<EntityType<MiniGrapplingHookEntity>> MINI_GRAPPLING_HOOK = ENTITIES.register("mini_grappling_hook", () ->
+           EntityType.Builder.<MiniGrapplingHookEntity>of(MiniGrapplingHookEntity::new, MobCategory.MISC)
+                   .sized(0.6f, 0.6f)
+                   .setCustomClientFactory(MiniGrapplingHookEntity::new)
+                   .clientTrackingRange(32)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .updateInterval(-1));
+   public static final RegistryObject<EntityType<LaserProjectileEntity>> LASER_PROJECTILE = ENTITIES.register("laser_projectile", () ->
+           EntityType.Builder.<LaserProjectileEntity>of(LaserProjectileEntity::new, MobCategory.MISC)
+                   .sized(0.2f, 0.2f)
+                   .setCustomClientFactory(LaserProjectileEntity::new)
+                   .clientTrackingRange(32)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .updateInterval(-1));
+//   public static final RegistryObject<EntityType<PhantomSwordEntity>> PHANTOM_SWORD = ENTITIES.register("phantom_sword", () ->
+//           EntityType.Builder.<PhantomSwordEntity>of(PhantomSwordEntity::new, MobCategory.MISC)
+//                   .sized(0.2f, 0.2f)
+//                   .setCustomClientFactory(PhantomSwordEntity::new)
+//                   .clientTrackingRange(32)
+//                   .setShouldReceiveVelocityUpdates(true)
+//                   .updateInterval(-1));
+   public static final RegistryObject<EntityType<ManaRayEntity>> MANA_RAY = ENTITIES.register("mana_ray", () ->
+           EntityType.Builder.<ManaRayEntity>of(ManaRayEntity::new, MobCategory.MISC)
+                   .sized(0.2f, 0.2f)
+                   .setCustomClientFactory(ManaRayEntity::new)
+                   .clientTrackingRange(32)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .updateInterval(-1));
+   //    public static final RegistryObject<EntityType<TerraPrismEntity>> TERRA_PRISMA = ENTITIES.register("terra_prisma", () ->
+//            EntityType.Builder.<TerraPrismEntity>of(TerraPrismEntity::new, MobCategory.CREATURE)
+//                    .sized(0.5f, 1.5f)
+//                    .setCustomClientFactory(TerraPrismEntity::new)
+//                    .clientTrackingRange(64)
+//                    .setShouldReceiveVelocityUpdates(true)
+//                    .updateInterval(-1));
+   public static final RegistryObject<EntityType<YoyoEntity>> YOYO = ENTITIES.register("yoyo", () ->
+           EntityType.Builder.<YoyoEntity>of(YoyoEntity::new, MobCategory.MISC)
+                   .sized(0.25f, 0.25f)
+                   .setCustomClientFactory(YoyoEntity::new)
+                   .clientTrackingRange(64)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .updateInterval(-1));
+
+   public static final RegistryObject<EntityType<BulletEntity>> BULLET = ENTITIES.register("bullet", () ->
+           EntityType.Builder.<BulletEntity>of(BulletEntity::new, MobCategory.MISC)
+                   .sized(0.2f, 0.2f)
+                   .setCustomClientFactory(BulletEntity::new)
+                   .clientTrackingRange(64)
+                   .setShouldReceiveVelocityUpdates(true)
+                   .updateInterval(-1));
+}

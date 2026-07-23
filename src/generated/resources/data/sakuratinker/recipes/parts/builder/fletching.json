@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 2,
+  "pattern": "sakuratinker:fletching",
+  "pattern_item": {
+    "tag": "tconstruct:patterns/default"
+  },
+  "result": {
+    "item": "sakuratinker:fletching"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "stats": {
+    "sakuratinker:axle": {
+      "attack_interval": 40.0,
+      "time": 60.0,
+      "weight": 1.5
+    },
+    "sakuratinker:book_mark": {
+      "percent_bonus": 0.02,
+      "spell_slot": 4
+    },
+    "sakuratinker:charm_chain": {
+      "armor": 0.05,
+      "arrow_damage": 0.0,
+      "damage": 0.0,
+      "health": 8,
+      "movement_speed": 0.1,
+      "toughness": 0.0
+    },
+    "sakuratinker:charm_core": {},
+    "sakuratinker:energy_unit": {
+      "durability": 0.1,
+      "max_energy": 5000
+    },
+    "sakuratinker:envelope": {
+      "school_bonus": {
+        "irons_spellbooks:nature": 0.05
+      }
+    },
+    "sakuratinker:flag": {
+      "attack_buff_time": 20,
+      "charge_time": 120,
+      "defence_buff_time": 20,
+      "range": 4
+    },
+    "sakuratinker:laser_medium": {
+      "cooldown": 2.0,
+      "penetration": 1,
+      "range": 5.0
+    },
+    "sakuratinker:manu_script": {
+      "mana_regen": 0.05,
+      "mana_value": 100.0,
+      "spell_damage": 2.0
+    },
+    "sakuratinker:soul_gatherer": {
+      "soul_power": 1.0
+    },
+    "sakuratinker:yoyo_ring": {
+      "max_collected": 1.0
+    }
+  }
+}

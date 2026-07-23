@@ -1,0 +1,31 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "forge:item/default-tool",
+  "textures": {
+    "envelope": "sakuratinker:item/tool/tinker_spell_book/envelope",
+    "book_mark": "sakuratinker:item/tool/tinker_spell_book/book_mark",
+    "manu_script": "sakuratinker:item/tool/tinker_spell_book/manu_script",
+    "gutter": "sakuratinker:item/tool/tinker_spell_book/gutter"
+  },
+  "modifier_roots": [
+    "sakuratinker:item/tool/tinker_spell_book/modifiers/"
+  ],
+  "parts": [
+    {
+      "name": "envelope",
+      "index": 0
+    },
+    {
+      "name": "book_mark",
+      "index": 2
+    },
+    {
+      "name": "manu_script",
+      "index": 1
+    },
+    {
+      "name": "gutter",
+      "index": 3
+    }
+  ]
+}

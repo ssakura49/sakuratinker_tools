@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "type": "tconstruct:material",
+    "item": "sakuratinker:laser_medium"
+  },
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 90,
+    "tag": "forge:molten_gold"
+  },
+  "result": "sakuratinker:laser_medium_cast",
+  "switch_slots": true
+}

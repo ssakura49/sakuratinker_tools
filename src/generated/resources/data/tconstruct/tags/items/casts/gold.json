@@ -1,0 +1,47 @@
+{
+  "values": [
+    "sakuratinker:charm_chain_cast",
+    "sakuratinker:charm_core_cast",
+    "sakuratinker:swift_blade_cast",
+    "sakuratinker:swift_guard_cast",
+    "sakuratinker:barrel_cast",
+    "sakuratinker:energy_unit_cast",
+    "sakuratinker:laser_medium_cast",
+    "sakuratinker:blade_cast",
+    "sakuratinker:arrow_head_cast",
+    "sakuratinker:arrow_shaft_cast",
+    "sakuratinker:great_blade_cast",
+    "sakuratinker:shell_cast",
+    "sakuratinker:flag_cast",
+    "sakuratinker:axle_cast",
+    "sakuratinker:yoyo_ring_cast",
+    "sakuratinker:chord_cast",
+    "sakuratinker:yoyo_body_cast",
+    "sakuratinker:scythe_blade_cast",
+    "sakuratinker:range_core_cast",
+    {
+      "id": "sakuratinker:manu_script_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:envelope_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:book_mark_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:gutter_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:soul_gatherer_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:phantom_core_cast",
+      "required": false
+    }
+  ]
+}

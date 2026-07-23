@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 2,
+  "pattern": "sakuratinker:shell",
+  "pattern_item": [
+    {
+      "tag": "tconstruct:patterns/default"
+    },
+    {
+      "item": "sakuratinker:shell_cast"
+    }
+  ],
+  "result": {
+    "item": "sakuratinker:shell"
+  }
+}

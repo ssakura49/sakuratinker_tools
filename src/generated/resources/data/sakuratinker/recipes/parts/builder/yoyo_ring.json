@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 1,
+  "pattern": "sakuratinker:yoyo_ring",
+  "pattern_item": [
+    {
+      "tag": "tconstruct:patterns/default"
+    },
+    {
+      "item": "sakuratinker:yoyo_ring_cast"
+    }
+  ],
+  "result": {
+    "item": "sakuratinker:yoyo_ring"
+  }
+}

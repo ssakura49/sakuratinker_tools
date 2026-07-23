@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 4,
+  "pattern": "sakuratinker:range_core",
+  "pattern_item": [
+    {
+      "tag": "tconstruct:patterns/default"
+    },
+    {
+      "item": "sakuratinker:range_core_cast"
+    }
+  ],
+  "result": {
+    "item": "sakuratinker:range_core"
+  }
+}

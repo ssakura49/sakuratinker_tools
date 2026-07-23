@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.ssakura49.sakuratinker_tools.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "sakuratinker_tools.refmap.json",
+  "mixins": [
+    "tinker.BulkQuiverModuleMixin",
+    "tinker.TrickQuiverModuleMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

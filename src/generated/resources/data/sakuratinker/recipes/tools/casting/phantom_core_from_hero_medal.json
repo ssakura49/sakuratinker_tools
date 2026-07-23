@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:table_tool_casting",
+  "cast": {
+    "item": "extrabotany:hero_medal"
+  },
+  "cast_purpose": "maybe_material",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "extrabotany"
+    }
+  ],
+  "item_cost": 6,
+  "result": "sakuratinker:first_fractal"
+}

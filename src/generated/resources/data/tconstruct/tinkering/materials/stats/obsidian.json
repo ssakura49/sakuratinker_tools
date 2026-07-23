@@ -1,0 +1,11 @@
+{
+  "stats": {
+    "sakuratinker:manu_script": {
+      "cast_time_reduce": -0.1,
+      "mana_reduce": 2.0,
+      "mana_regen": -0.1,
+      "mana_value": 500.0,
+      "spell_damage": 5.0
+    }
+  }
+}

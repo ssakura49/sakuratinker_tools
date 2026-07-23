@@ -1,0 +1,28 @@
+{
+  "icon": {
+    "item": "sakuratinker:tinker_charm",
+    "nbt": "{Damage:0,tic_broken:0b,tic_display:1b,tic_materials:[\"tconstruct:ui_render#head\",\"tconstruct:ui_render#handle\",\"tconstruct:ui_render#extra\",\"tconstruct:ui_render#large\",\"tconstruct:ui_render#extra_large\"]}"
+  },
+  "input_slots": [
+    {
+      "filter": {
+        "item": "sakuratinker:charm_core"
+      },
+      "icon": "sakuratinker:charm_core",
+      "translation_key": "item.sakuratinker.charm_core",
+      "x": 25,
+      "y": 54
+    },
+    {
+      "filter": {
+        "item": "sakuratinker:charm_chain"
+      },
+      "icon": "sakuratinker:charm_chain",
+      "translation_key": "item.sakuratinker.charm_chain",
+      "x": 45,
+      "y": 34
+    }
+  ],
+  "sortIndex": 20,
+  "translation_key": "item.sakuratinker.tinker_charm"
+}

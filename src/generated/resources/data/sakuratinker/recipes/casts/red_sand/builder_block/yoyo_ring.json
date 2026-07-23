@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "pattern": "sakuratinker:yoyo_ring",
+  "pattern_item": {
+    "tag": "forge:sand/red"
+  },
+  "result": {
+    "count": 4,
+    "item": "sakuratinker:yoyo_ring_red_sand_cast"
+  }
+}

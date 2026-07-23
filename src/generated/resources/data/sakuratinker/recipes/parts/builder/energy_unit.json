@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 4,
+  "pattern": "sakuratinker:energy_unit",
+  "pattern_item": [
+    {
+      "tag": "tconstruct:patterns/default"
+    },
+    {
+      "item": "sakuratinker:energy_unit_cast"
+    }
+  ],
+  "result": {
+    "item": "sakuratinker:energy_unit"
+  }
+}

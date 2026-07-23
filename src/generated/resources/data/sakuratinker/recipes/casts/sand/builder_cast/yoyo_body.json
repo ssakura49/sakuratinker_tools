@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "pattern": "sakuratinker:yoyo_body",
+  "pattern_item": {
+    "tag": "tconstruct:casts/sand"
+  },
+  "result": "sakuratinker:yoyo_body_sand_cast"
+}

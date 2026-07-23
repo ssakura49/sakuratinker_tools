@@ -1,0 +1,16 @@
+{
+  "values": [
+    "sakuratinker:attack_flag",
+    "sakuratinker:blade_convergence",
+    "sakuratinker:defence_flag",
+    "sakuratinker:energy_display",
+    "sakuratinker:heavy",
+    "sakuratinker:revolver_bullet",
+    "sakuratinker:scythe_sweeping",
+    "sakuratinker:swift_sword_technique",
+    {
+      "id": "sakuratinker:arcane_tinkering",
+      "required": false
+    }
+  ]
+}

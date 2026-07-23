@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:molding_table",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety"
+    }
+  ],
+  "material": {
+    "tag": "tconstruct:casts/red_sand"
+  },
+  "pattern": {
+    "type": "tconstruct:material",
+    "item": "sakuratinker:soul_gatherer"
+  },
+  "result": "sakuratinker:soul_gatherer_red_sand_cast"
+}

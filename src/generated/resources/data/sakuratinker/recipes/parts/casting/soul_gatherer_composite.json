@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:table_casting_composite",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety"
+    }
+  ],
+  "item_cost": 8,
+  "result": "sakuratinker:soul_gatherer"
+}

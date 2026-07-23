@@ -1,0 +1,13 @@
+package com.ssakura49.sakuratinker_tools.content.tool;
+
+import com.ssakura49.sakuratinker.SakuraTinker;
+import slimeknights.tconstruct.common.Sounds;
+import slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial;
+
+public class STArmorDefinitions {
+   public static final ModifiableArmorMaterial EMBEDDED;
+
+   static {
+      EMBEDDED = ModifiableArmorMaterial.create(SakuraTinker.getResource("embedded"), Sounds.EQUIP_PLATE.getSound());
+   }
+}

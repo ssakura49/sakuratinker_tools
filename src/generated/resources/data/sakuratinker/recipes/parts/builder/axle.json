@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 2,
+  "pattern": "sakuratinker:axle",
+  "pattern_item": [
+    {
+      "tag": "tconstruct:patterns/default"
+    },
+    {
+      "item": "sakuratinker:axle_cast"
+    }
+  ],
+  "result": {
+    "item": "sakuratinker:axle"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:molding_table",
+  "material": {
+    "tag": "tconstruct:casts/sand"
+  },
+  "pattern": {
+    "type": "tconstruct:material",
+    "item": "sakuratinker:swift_blade"
+  },
+  "result": "sakuratinker:swift_blade_sand_cast"
+}

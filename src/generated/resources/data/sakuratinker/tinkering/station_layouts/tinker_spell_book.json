@@ -1,0 +1,46 @@
+{
+  "icon": {
+    "item": "sakuratinker:tinker_spell_book",
+    "nbt": "{Damage:0,\"irons_spellbooks:spell_container\":{data:[],maxSpells:1,mustEquip:1b,spellWheel:1b},tic_display:1b,tic_materials:[\"tconstruct:ui_render#head\",\"tconstruct:ui_render#handle\",\"tconstruct:ui_render#extra\",\"tconstruct:ui_render#large\",\"tconstruct:ui_render#extra_large\"]}"
+  },
+  "input_slots": [
+    {
+      "filter": {
+        "item": "sakuratinker:manu_script"
+      },
+      "icon": "sakuratinker:manu_script",
+      "translation_key": "item.sakuratinker.manu_script",
+      "x": 30,
+      "y": 50
+    },
+    {
+      "filter": {
+        "item": "sakuratinker:envelope"
+      },
+      "icon": "sakuratinker:envelope",
+      "translation_key": "item.sakuratinker.envelope",
+      "x": 30,
+      "y": 30
+    },
+    {
+      "filter": {
+        "item": "sakuratinker:book_mark"
+      },
+      "icon": "sakuratinker:book_mark",
+      "translation_key": "item.sakuratinker.book_mark",
+      "x": 50,
+      "y": 30
+    },
+    {
+      "filter": {
+        "item": "sakuratinker:gutter"
+      },
+      "icon": "sakuratinker:gutter",
+      "translation_key": "item.sakuratinker.gutter",
+      "x": 50,
+      "y": 50
+    }
+  ],
+  "sortIndex": 20,
+  "translation_key": "item.sakuratinker.tinker_spell_book"
+}
