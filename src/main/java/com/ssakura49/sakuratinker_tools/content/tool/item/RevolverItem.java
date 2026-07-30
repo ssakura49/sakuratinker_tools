@@ -1,6 +1,7 @@
 package com.ssakura49.sakuratinker_tools.content.tool.item;
 
 import com.ssakura49.sakuratinker.SakuraTinker;
+import com.ssakura49.sakuratinker.core.utils.ModifierUtil;
 import com.ssakura49.sakuratinker_tools.client.screen.menu.RevolverMenu;
 import com.ssakura49.sakuratinker_tools.content.entity.BulletEntity;
 import com.ssakura49.sakuratinker_tools.library.interfaces.item.slot.IHasBulletInventory;
@@ -30,7 +31,6 @@ import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
-import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.library.tools.helper.TooltipBuilder;
 import slimeknights.tconstruct.library.tools.item.ModifiableItem;
@@ -133,7 +133,7 @@ public class RevolverItem extends ModifiableItem implements IHasBulletInventory 
       builder.add(ToolStats.ACCURACY);
       builder.addAllFreeSlots();
       for(ModifierEntry entry : tool.getModifierList()) {
-         ((TooltipModifierHook)entry.getHook(ModifierHooks.TOOLTIP)).addTooltip(tool, entry, player, tooltips, key, flag);
+         entry.getHook(ModifierHooks.TOOLTIP).addTooltip(tool, entry, player, tooltips, key, flag);
       }
       return tooltips;
    }

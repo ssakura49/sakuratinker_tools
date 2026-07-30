@@ -55,31 +55,27 @@ public class STTModule {
       event.enqueueWork(() -> {
          ResourceLocation catTexture = ResourceLocation.fromNamespaceAndPath("sakura_library", "textures/gui/sidebar/sidebar.png");
          ResourceLocation baseTabId = ResourceLocation.fromNamespaceAndPath("sakuratinker", "stcr_tab");
-         TabSideBarManager.registerCategory(baseTabId, SideBarCategory.builder().title(Component.translatable("sidebar.sakuratinker.parts")).icon(new Supplier<ItemStack>() {
-            private ItemStack cachedIcon = null;
-
-            public ItemStack get() {
-               if (this.cachedIcon == null || this.cachedIcon.isEmpty()) {
-                  MaterialVariantId material;
-                  if (MaterialRegistry.isFullyLoaded()) {
-                     material = ToolBuildHandler.RANDOM.getMaterial(HeadMaterialStats.ID, RandomSource.create());
-                  } else {
-                     material = ToolBuildHandler.getRenderMaterial(0);
-                  }
-
-                  ItemStack stack = ((ToolPartItem)STTItems.swift_blade.get()).withMaterial(material);
-                  if (!MaterialRegistry.isFullyLoaded()) {
-                     return stack;
-                  }
-
-                  this.cachedIcon = stack;
-               }
-
-               return this.cachedIcon;
-            }
+         TabSideBarManager.registerCategory(baseTabId, SideBarCategory.builder().title(Component.translatable("sidebar.sakuratinker.parts")).icon(new Supplier<>() {
+             private ItemStack cachedIcon = null;
+             public ItemStack get() {
+                 if (this.cachedIcon == null || this.cachedIcon.isEmpty()) {
+                     MaterialVariantId material;
+                     if (MaterialRegistry.isFullyLoaded()) {
+                         material = ToolBuildHandler.RANDOM.getMaterial(HeadMaterialStats.ID, RandomSource.create());
+                     } else {
+                         material = ToolBuildHandler.getRenderMaterial(0);
+                     }
+                     ItemStack stack = ((ToolPartItem) STTItems.swift_blade.get()).withMaterial(material);
+                     if (!MaterialRegistry.isFullyLoaded()) {
+                         return stack;
+                     }
+                     this.cachedIcon = stack;
+                 }
+                 return this.cachedIcon;
+             }
          }).displayItems(STTTabs::fillParts).build());
          TabSideBarManager.registerCategory(baseTabId, SideBarCategory.builder().title(Component.translatable("sidebar.sakuratinker.casts")).icon(() -> new ItemStack(STTItems.swiftBladeCast.get())).displayItems(STTTabs::fillCasts).build());
-         TabSideBarManager.registerCategory(baseTabId, SideBarCategory.builder().title(Component.translatable("sidebar.sakuratinker.tools")).icon(() -> ((ModifiableItem)STTItems.swift_sword.get()).getRenderTool()).displayItems(STTTabs::fillTools).build());
+         TabSideBarManager.registerCategory(baseTabId, SideBarCategory.builder().title(Component.translatable("sidebar.sakuratinker.tools")).icon(() -> STTItems.swift_sword.get().getRenderTool()).displayItems(STTTabs::fillTools).build());
       });
    }
 }

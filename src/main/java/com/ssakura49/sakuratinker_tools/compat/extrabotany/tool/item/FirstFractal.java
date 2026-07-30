@@ -49,8 +49,8 @@ import static com.ssakura49.sakuratinker_tools.compat.extrabotany.tool.definitio
 
 public class FirstFractal extends ModifiableSwordItem {
     private static final String TAG_PARTS = "blade_parts";
-    private static final Supplier<List<CelestialBladePart>> DEFAULT_PARTS = Suppliers.memoize(BladeConvergence::createZenithParts);
-    private static final Supplier<List<CelestialBladePart>> DEFAULT_SLAUGHTER_PARTS = Suppliers.memoize(BladeConvergence::createDefaultParts);
+    private static final Supplier<List<CelestialBladePart>> DEFAULT_PARTS = Suppliers.memoize(FirstFractal::createZenithParts);
+    private static final Supplier<List<CelestialBladePart>> DEFAULT_SLAUGHTER_PARTS = Suppliers.memoize(FirstFractal::createDefaultParts);
     private static final Supplier<Boolean> ENABLE_ALL_RANDOM = STTConfig.COMMON.ENABLE_FIRST_FRACTAL_ALL_RANDOM_MATERIALS;
     public static final Supplier<Boolean> CAN_TRIGGER_MODIFIER = STTConfig.COMMON.FIRST_FRACTAL_CAN_TRIGGER_MODIFIER;
 

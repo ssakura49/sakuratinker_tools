@@ -1,6 +1,8 @@
 package com.ssakura49.sakuratinker_tools.init;
 
 import com.ssakura49.sakura_library.api.client.creativetab.SideBarCategory;
+import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBItem;
+import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
 import com.ssakura49.sakuratinker_tools.util.SafeClass;
 import java.util.Objects;
@@ -48,6 +50,16 @@ public class STTTabs {
             accept(output, getter, cast);
          }
       }
+      if (SafeClass.isGOETYLoaded()) {
+         for (CastItemObject castItemObject: GoetyItem.getListCasts()){
+            accept(output,getter,castItemObject);
+         }
+      }
+      if (SafeClass.isExtraBotanyLoaded()) {
+         for (CastItemObject castItemObject: EBItem.getListCasts()){
+            accept(output,getter,castItemObject);
+         }
+      }
 
    }
 
@@ -62,6 +74,16 @@ public class STTTabs {
       if (SafeClass.isISSLoaded()) {
          for(ItemObject<ToolPartItem> part : ISSItem.getListParts()) {
             acceptPart(outputPart, part);
+         }
+      }
+      if (SafeClass.isGOETYLoaded()){
+         for (ItemObject<ToolPartItem> part:GoetyItem.getListParts()){
+            acceptPart(outputPart,part);
+         }
+      }
+      if (SafeClass.isExtraBotanyLoaded()){
+         for (ItemObject<ToolPartItem> part:EBItem.getListParts()){
+            acceptPart(outputPart,part);
          }
       }
 
@@ -90,6 +112,7 @@ public class STTTabs {
       Objects.requireNonNull(output);
       Consumer<ItemStack> outputTool = output::accept;
 
+      acceptTools(outputTool, STTItems.embeddedArmor);
       for(ItemObject<? extends Item> tool : STTItems.getListTools()) {
          ItemLike var6 = tool.get();
          if (var6 instanceof IModifiable modifiable) {
@@ -104,9 +127,21 @@ public class STTTabs {
                 acceptTool(outputTool, () -> modifiable);
             }
          }
-
-         acceptTools(outputTool, STTItems.embeddedArmor);
       }
-
+      if (SafeClass.isGOETYLoaded()) {
+         for(ItemObject<? extends Item> tool : GoetyItem.getListTools()) {
+            ItemLike var10 = tool.get();
+            if (var10 instanceof IModifiable modifiable) {
+               acceptTool(outputTool, () -> modifiable);
+            }
+         }
+      }if (SafeClass.isExtraBotanyLoaded()) {
+         for(ItemObject<? extends Item> tool : EBItem.getListTools()) {
+            ItemLike var10 = tool.get();
+            if (var10 instanceof IModifiable modifiable) {
+               acceptTool(outputTool, () -> modifiable);
+            }
+         }
+      }
    }
 }

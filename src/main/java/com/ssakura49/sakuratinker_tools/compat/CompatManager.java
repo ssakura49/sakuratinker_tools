@@ -2,6 +2,7 @@ package com.ssakura49.sakuratinker_tools.compat;
 
 import com.ssakura49.sakuratinker_tools.STTConfig;
 import com.ssakura49.sakuratinker_tools.util.SafeClass;
+import lombok.Getter;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 
@@ -17,7 +18,9 @@ public class CompatManager {
               STTConfig.COMPAT.ENABLE_EXTRABOTANY_COMPAT::get)
       ;
 
+      @Getter
       private final String modId;
+      @Getter
       private final String moduleClassName;
       private final Supplier<Boolean> configSupplier;
 
@@ -27,9 +30,7 @@ public class CompatManager {
          this.configSupplier = configSupplier;
       }
 
-      public String getModId() { return modId; }
-      public String getModuleClassName() { return moduleClassName; }
-      public boolean isConfigEnabled() { return configSupplier.get(); }
+       public boolean isConfigEnabled() { return configSupplier.get(); }
    }
 
    public static void initAll(IEventBus modBus) {

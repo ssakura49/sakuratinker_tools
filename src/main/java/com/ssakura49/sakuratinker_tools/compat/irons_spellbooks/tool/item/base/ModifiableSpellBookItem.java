@@ -27,6 +27,8 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
+import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
@@ -71,6 +73,7 @@ public class ModifiableSpellBookItem extends SpellBook implements IModifiableDis
    private final ToolDefinition toolDefinition;
    private ItemStack toolForRendering;
    private final int maxStackSize;
+   @Getter
    protected final int maxSpellSlots;
 
    public ModifiableSpellBookItem(int maxSpellSlots, Item.Properties properties, ToolDefinition toolDefinition) {
@@ -84,11 +87,7 @@ public class ModifiableSpellBookItem extends SpellBook implements IModifiableDis
       this.maxStackSize = maxStackSize;
    }
 
-   public int getMaxSpellSlots() {
-      return this.maxSpellSlots;
-   }
-
-   public boolean isUnique() {
+    public boolean isUnique() {
       return false;
    }
 
@@ -115,7 +114,7 @@ public class ModifiableSpellBookItem extends SpellBook implements IModifiableDis
                if (MinecraftInstanceHelper.getPlayer() != null && Utils.getPlayerSpellbookStack(MinecraftInstanceHelper.getPlayer()) == itemStack && option != null && option.slot.equals(Curios.SPELLBOOK_SLOT) && option.slotIndex == i) {
                   List<MutableComponent> shiftMessage = TooltipsUtils.formatActiveSpellTooltip(itemStack, spellSelectionManager.getSelectedSpellData(), CastSource.SPELLBOOK, (LocalPlayer)player);
                   shiftMessage.remove(0);
-                  TooltipsUtils.addShiftTooltip(lines, Component.literal("> ").append(spellText).withStyle(ChatFormatting.YELLOW), (List)shiftMessage.stream().map((component) -> Component.literal(" ").append(component)).collect(Collectors.toList()));
+                  TooltipsUtils.addShiftTooltip(lines, Component.literal("> ").append(spellText).withStyle(ChatFormatting.YELLOW), shiftMessage.stream().map((component) -> Component.literal(" ").append(component)).collect(Collectors.toList()));
                } else {
                   lines.add(Component.literal(" ").append(spellText.withStyle(Style.EMPTY.withColor(8947966))));
                }
@@ -257,11 +256,11 @@ public class ModifiableSpellBookItem extends SpellBook implements IModifiableDis
       return IndestructibleItemEntity.createFrom(world, original, stack);
    }
 
-   public boolean isRepairable(ItemStack stack) {
+   public boolean isRepairable(@NotNull ItemStack stack) {
       return false;
    }
 
-   public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
+   public boolean isValidRepairItem(@NotNull ItemStack pToRepair, @NotNull ItemStack pRepair) {
       return false;
    }
 
@@ -269,7 +268,7 @@ public class ModifiableSpellBookItem extends SpellBook implements IModifiableDis
       return true;
    }
 
-   public Component getName(ItemStack stack) {
+   public @NotNull Component getName(@NotNull ItemStack stack) {
       return TooltipUtil.getDisplayName(stack, this.getToolDefinition());
    }
 

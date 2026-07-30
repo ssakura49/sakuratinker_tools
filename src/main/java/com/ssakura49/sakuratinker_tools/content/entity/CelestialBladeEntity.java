@@ -223,6 +223,19 @@ public class CelestialBladeEntity extends Entity implements TraceableEntity {
    @Override
    public void tick() {
       super.tick();
+
+      if (owner == null && ownerId != null && level() instanceof ServerLevel serverLevel) {
+         Entity entity = serverLevel.getEntity(ownerId);
+         if (entity != null) {
+            owner = entity;
+         }
+      } else if (level().isClientSide && owner == null && getOwnerId() != -1) {
+         owner = level().getEntity(getOwnerId());
+      }
+      if (owner != null) {
+         setPos(getIdealPos(owner, owner.position()));
+      }
+
       if (!level().isClientSide) {
          if (owner == null && ownerId != null && level() instanceof ServerLevel serverLevel) {
             Entity entity = serverLevel.getEntity(ownerId);

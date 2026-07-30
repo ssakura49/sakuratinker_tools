@@ -19,19 +19,18 @@ public class STTModifierTagProvider extends AbstractModifierTagProvider {
 
    protected void addTags() {
       this.tag(Modifiers.OVERSLIME_FRIEND);
-      this.tag(STTTagKeys.Modifiers.SPECIAL_TOOL)
-              .add(new ResourceLocation[]{
-                      STTModifiers.ATTACK_MODIFIER.getId(),
-                      STTModifiers.BLADE_CONVERGENCE.getId(),
-                      STTModifiers.DEFENCE_MODIFIER.getId(),
-                      STTModifiers.ENERGY_DISPLAY.getId(),
-                      STTModifiers.HEAVY.getId(),
-                      STTModifiers.REVOLVER_BULLET.getId(),
-                      STTModifiers.SCYTHE_SWEEPING.getId(),
-                      STTModifiers.SWIFT_SWORD_TECHNIQUE.getId()}
-              ).addOptional(
-                      ISSModifier.ArcaneTinkering.getId()
-              );
+//      this.tag(STTTagKeys.Modifiers.SPECIAL_TOOL)
+//              .add(STTModifiers.ATTACK_MODIFIER.getId(),
+//                      STTModifiers.BLADE_CONVERGENCE.getId(),
+//                      STTModifiers.DEFENCE_MODIFIER.getId(),
+//                      STTModifiers.ENERGY_DISPLAY.getId(),
+//                      STTModifiers.HEAVY.getId(),
+//                      STTModifiers.REVOLVER_BULLET.getId(),
+//                      STTModifiers.SCYTHE_SWEEPING.getId(),
+//                      STTModifiers.SWIFT_SWORD_TECHNIQUE.getId()
+//              ).addOptional(
+//                      ISSModifier.ArcaneTinkering.getId()
+//              );
    }
 
    public @NotNull String getName() {

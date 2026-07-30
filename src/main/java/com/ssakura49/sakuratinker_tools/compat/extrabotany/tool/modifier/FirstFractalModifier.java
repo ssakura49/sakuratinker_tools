@@ -72,18 +72,16 @@ public class FirstFractalModifier extends BaseModifier {
             List<CelestialBladePart> parts = getZenithParts(itemStack);
             CelestialBladePart selectedPart = parts.get(player.getRandom().nextInt(parts.size()));
             ItemStack displayStack = createRandomizedTinkerStack(selectedPart.item().value());
-            PhantomSwordEntity sword = new PhantomSwordEntity(player.level(), player, targetPos);
-            PhantomSwordEntity sword2 = new PhantomSwordEntity(player.level(), player, targetPos, itemStack);
-            sword.setZenithPart(selectedPart);
-            sword2.setZenithPart(selectedPart);
-            if (CAN_TRIGGER_MODIFIER.get()) {
-                sword.setTool(displayStack);
-                sword2.setTool(displayStack);
-            } else {
-                sword.setTool(toolStack.createStack());
-                sword2.setTool(toolStack.createStack());
-            }
             for (int i = 0; i < phantom_amount; i++) {
+                PhantomSwordEntity sword = new PhantomSwordEntity(player.level(), player, targetPos);
+                sword.setZenithPart(selectedPart);
+                sword.setSpeed(moveSpeed);
+                if (CAN_TRIGGER_MODIFIER.get()) {
+                    sword.setTool(displayStack);
+                } else {
+                    sword.setTool(toolStack.createStack());
+                }
+                sword.setItemStack(displayStack);
                 sword.setOwner(player);
                 sword.setDelay(5 + 5 * i);
 
@@ -97,14 +95,20 @@ public class FirstFractalModifier extends BaseModifier {
                 sword.faceTarget();
                 player.level().addFreshEntity(sword);
             }
-
+            PhantomSwordEntity sword2 = new PhantomSwordEntity(player.level(), player, targetPos, itemStack);
+            sword2.setZenithPart(selectedPart);
+            sword2.setSpeed(moveSpeed);
+            if (CAN_TRIGGER_MODIFIER.get()) {
+                sword2.setTool(displayStack);
+            } else {
+                sword2.setTool(toolStack.createStack());
+            }
             sword2.setOwner(player);
-
+            sword2.setItemStack(displayStack);
             k = 0.12F * Math.PI * Math.random() + 0.28F * Math.PI;
             x = targetPos.getX() + range * Math.sin(k) * Math.cos(j);
             y = targetPos.getY() + range * Math.cos(k);
             z = targetPos.getZ() + range * Math.sin(k) * Math.sin(j);
-
             sword2.setPos(x, y + 1.5, z);
             sword2.faceTarget();
             sword2.setVariety(9);

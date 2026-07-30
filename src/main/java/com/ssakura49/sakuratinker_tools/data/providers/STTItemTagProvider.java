@@ -36,6 +36,12 @@ public class STTItemTagProvider extends ItemTagsProvider {
       var goldCasts = this.tag(TinkerTags.Items.GOLD_CASTS);
       var sandCasts = this.tag(TinkerTags.Items.SAND_CASTS);
       var redSandCasts = this.tag(TinkerTags.Items.RED_SAND_CASTS);
+      var multiUseCasts = this.tag(TinkerTags.Items.MULTI_USE_CASTS);
+      var singleUseCasts = this.tag(TinkerTags.Items.SINGLE_USE_CASTS);
+
+      multiUseCasts.addTag(TinkerTags.Items.GOLD_CASTS);
+      singleUseCasts.addTag(TinkerTags.Items.SAND_CASTS);
+      singleUseCasts.addTag(TinkerTags.Items.RED_SAND_CASTS);
 
       for (CastItemObject cast : STTItems.getListCasts()) {
          goldCasts.add(cast.get());
@@ -418,17 +424,17 @@ public class STTItemTagProvider extends ItemTagsProvider {
       );
       ISSItem.getListTools().forEach(tool->
               this.addToolTags(tool.get(),
-                      modifiable,multipartTool
+                      modifiable,multipartTool,durability
               )
       );
       GoetyItem.getListTools().forEach(tool->
               this.addToolTags(tool.get(),
-                      modifiable,multipartTool
+                      modifiable,multipartTool,durability
               )
       );
       EBItem.getListTools().forEach(tool->
               this.addToolTags(tool.get(),
-                      modifiable,multipartTool
+                      modifiable,multipartTool,durability
               )
       );
 

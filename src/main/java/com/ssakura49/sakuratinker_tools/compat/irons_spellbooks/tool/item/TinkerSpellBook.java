@@ -9,6 +9,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+
+import lombok.Setter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -23,19 +25,14 @@ import slimeknights.tconstruct.library.tools.helper.TooltipBuilder;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.utils.Util;
 
+@Setter
 public class TinkerSpellBook extends ModifiableSpellBookItem {
-   private int maxSpellSlots;
 
-   public TinkerSpellBook(int maxSpellSlots, Item.Properties properties) {
+   public TinkerSpellBook(Item.Properties properties) {
       super(1, properties, ISSToolDefinitions.TINKER_SPELL_BOOK);
-      this.maxSpellSlots = maxSpellSlots;
    }
 
-   public void setMaxSpellSlots(int maxSpellSlots) {
-      this.maxSpellSlots = maxSpellSlots;
-   }
-
-   public @NotNull List<Component> getStatInformation(@NotNull IToolStackView tool, @Nullable Player player, @NotNull List<Component> tooltips, @NotNull TooltipKey key, @NotNull TooltipFlag tooltipFlag) {
+    public @NotNull List<Component> getStatInformation(@NotNull IToolStackView tool, @Nullable Player player, @NotNull List<Component> tooltips, @NotNull TooltipKey key, @NotNull TooltipFlag tooltipFlag) {
       TooltipBuilder builder = new TooltipBuilder(tool, tooltips);
       TooltipUtil.addToolStatTooltip(builder, tool, ISSToolStats.SPELL_DAMAGE);
       TooltipUtil.addToolStatTooltip(builder, tool, ISSToolStats.MANA_VALUE);

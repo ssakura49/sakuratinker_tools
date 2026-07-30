@@ -44,6 +44,7 @@ public class SpellAttackHandler {
                     if (!tool.isBroken()) {
                         boolean dis = disabled.get();
                         if (!dis) {
+                            @SuppressWarnings("removal")
                             ToolAttackContext context = new ToolAttackContext(
                                     player,
                                     player,

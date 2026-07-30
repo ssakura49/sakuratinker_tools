@@ -54,7 +54,7 @@ public record PhantomCoreMaterialStats(float phantom_amount, float range, float 
    public void apply(@NotNull ModifierStatsBuilder builder, float scale) {
       EBToolStats.PHANTOM_AMOUNT.update(builder, this.phantom_amount * scale);
       STToolStats.RANGE.update(builder, this.range * scale);
-      STToolStats.MOVE_SPEED.build(builder, this.move_speed * scale);
+      STToolStats.MOVE_SPEED.update(builder, this.move_speed * scale);
    }
 
    public float phantom_amount() {

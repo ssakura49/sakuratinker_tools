@@ -25,7 +25,6 @@ public class STTMaterialRegistry {
    public static final MaterialStatsId POWER_BANK = new MaterialStatsId(SakuraTinker.getResource("power_bank"));
    public static final MaterialStatsId BATTLE_FLAG = new MaterialStatsId(SakuraTinker.getResource("battle_flag"));
    public static final MaterialStatsId FOX_MASK = new MaterialStatsId(SakuraTinker.getResource("fox_mask"));
-   public static final MaterialStatsId FIRST_FRACTAL = new MaterialStatsId(SakuraTinker.getResource("first_fractal"));
    public static final MaterialStatsId YO_YO = new MaterialStatsId(SakuraTinker.getResource("yo_yo"));
    public static final MaterialStatsId ALCHEMICAL_GLOVES = new MaterialStatsId(SakuraTinker.getResource("alchemical_gloves"));
    public static final MaterialStatsId RANGE = new MaterialStatsId(SakuraTinker.getResource("range"));
@@ -39,7 +38,6 @@ public class STTMaterialRegistry {
       registry.registerStatType(FletchingMaterialStats.TYPE, TINKER_ARROW);
       registry.registerStatType(STTStatlessMaterialStats.SHELL.getType(), POWER_BANK);
       registry.registerStatType(BattleFlagMaterialStats.TYPE, BATTLE_FLAG);
-      registry.registerStatType(PhantomCoreMaterialStats.TYPE, FIRST_FRACTAL);
       registry.registerStatType(YoYoRingMaterialStats.TYPE, YO_YO);
       registry.registerStatType(AxleMaterialStats.TYPE, YO_YO);
       registry.registerStatType(ChordMaterialStats.TYPE, YO_YO);

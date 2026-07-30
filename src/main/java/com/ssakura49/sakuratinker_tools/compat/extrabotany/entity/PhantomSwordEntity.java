@@ -5,6 +5,7 @@ import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectile
 import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileDamage;
 import com.ssakura49.sakuratinker.core.utils.ProjectileUtils;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBEntity;
+import com.ssakura49.sakuratinker_tools.content.entity.CelestialBladeEntity;
 import com.ssakura49.sakuratinker_tools.content.entity.part.CelestialBladePart;
 import com.ssakura49.sakuratinker_tools.init.STTEntities;
 import javax.annotation.Nonnull;
@@ -23,6 +24,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
@@ -36,13 +38,17 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
 import slimeknights.tconstruct.library.tools.nbt.StatsNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 
 import java.util.List;
+import java.util.UUID;
 
-public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAdditionalSpawnData, IProjectileCritical, IProjectileDamage {
+public class PhantomSwordEntity extends ThrowableProjectile implements  IEntityAdditionalSpawnData,IProjectileCritical, IProjectileDamage, TraceableEntity {
+   private static final Logger LOGGER = LogUtils.getLogger();
    public static final int LIVE_TICKS = 30;
    private static final String TAG_VARIETY = "variety";
    private static final String TAG_ROTATION = "rotation";
@@ -51,8 +57,7 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
    private static final String TAG_DELAY = "delay";
    private static final String TAG_FAKE = "fake";
    private static final String TAG_TOOL = "tool";
-   private static final String TAG_PART = "part";
-   private static final String TAG_SPEED = "speed";
+   private static final String TAG_OWNER = "owner";
    private static final EntityDataAccessor<Integer> VARIETY = SynchedEntityData.defineId(PhantomSwordEntity.class, EntityDataSerializers.INT);
    private static final EntityDataAccessor<Integer> DELAY = SynchedEntityData.defineId(PhantomSwordEntity.class, EntityDataSerializers.INT);
    private static final EntityDataAccessor<Float> ROTATION = SynchedEntityData.defineId(PhantomSwordEntity.class, EntityDataSerializers.FLOAT);
@@ -60,16 +65,49 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
    private static final EntityDataAccessor<BlockPos> TARGET_POS = SynchedEntityData.defineId(PhantomSwordEntity.class, EntityDataSerializers.BLOCK_POS);
    private static final EntityDataAccessor<Boolean> FAKE = SynchedEntityData.defineId(PhantomSwordEntity.class, EntityDataSerializers.BOOLEAN);
    private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(PhantomSwordEntity.class, EntityDataSerializers.ITEM_STACK);
-   private static final EntityDataAccessor<CelestialBladePart> ZENITH_PART = SynchedEntityData.defineId(PhantomSwordEntity.class, STTEntityDataSerializers.CELESTIAL_BLADE_PART.get());
-   private static final EntityDataAccessor<Float> SPEED = SynchedEntityData.defineId(PhantomSwordEntity.class, EntityDataSerializers.FLOAT);
+   public ItemStack getItemStack() {
+      return getEntityData().get(DATA_ITEM_STACK);
+   }
+
+   public void setItemStack(ItemStack stack) {
+      entityData.set(DATA_ITEM_STACK,stack);
+   }
+
+   protected static final EntityDataAccessor<CelestialBladePart> ZENITH_PART = SynchedEntityData.defineId(PhantomSwordEntity.class, STTEntityDataSerializers.CELESTIAL_BLADE_PART.get());
+   public void setZenithPart(CelestialBladePart part) {
+      this.getEntityData().set(ZENITH_PART, part);
+   }
+   public CelestialBladePart getZenithPart() {
+      return this.getEntityData().get(ZENITH_PART);
+   }
+
+   private static final EntityDataAccessor<Float> SPEED = SynchedEntityData.defineId(
+           PhantomSwordEntity.class,
+           EntityDataSerializers.FLOAT
+   );
+   public void setSpeed(float speed) {
+      entityData.set(SPEED,speed);
+   }
    public float getSpeed() {
       return entityData.get(SPEED);
    }
-   public void setMoveSpeed(float moveSpeed) {
-      entityData.set(SPEED,moveSpeed);
+
+   protected static final EntityDataAccessor<Integer> OWNER_ID = SynchedEntityData.defineId(PhantomSwordEntity.class, EntityDataSerializers.INT);
+
+   public void setOwnerId(int ownerId) {
+      this.getEntityData().set(OWNER_ID, ownerId);
    }
 
-   private LivingEntity thrower;
+   public int getOwnerId() {
+      return this.getEntityData().get(OWNER_ID);
+   }
+
+   private static final float[][] rgb = { { 0.82F, 0.2F, 0.58F }, { 0F, 0.71F, 0.10F }, { 0.74F, 0.07F, 0.32F },
+           { 0.01F, 0.45F, 0.8F }, { 0.05F, 0.39F, 0.9F }, { 0.38F, 0.34F, 0.42F }, { 0.41F, 0.31F, 0.14F },
+           { 0.92F, 0.92F, 0.21F }, { 0.61F, 0.92F, 0.98F }, { 0.18F, 0.45F, 0.43F } };
+
+   private Entity thrower;
+   private UUID ownerId;
    private ItemStack itemStack;
    private ToolStack toolStack;
    private StatsNBT stats;
@@ -78,7 +116,6 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
 
    public PhantomSwordEntity(EntityType<PhantomSwordEntity> type, Level worldIn) {
       super(type, worldIn);
-      noCulling = true;
       this.itemStack = ItemStack.EMPTY;
       this.toolStack = null;
       this.stats = StatsNBT.EMPTY;
@@ -86,7 +123,6 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
 
    public PhantomSwordEntity(Level worldIn) {
       super(EBEntity.PHANTOM_SWORD.get(), worldIn);
-      noCulling = true;
       this.itemStack = ItemStack.EMPTY;
       this.toolStack = null;
       this.stats = StatsNBT.EMPTY;
@@ -94,7 +130,6 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
 
    public PhantomSwordEntity(Level world, LivingEntity thrower, BlockPos targetpos, ItemStack tool) {
       super(EBEntity.PHANTOM_SWORD.get(), world);
-      noCulling = true;
       this.thrower = thrower;
       this.setOwner(thrower);
       this.setTool(tool);
@@ -104,7 +139,6 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
 
    public PhantomSwordEntity(Level level, LivingEntity thrower, BlockPos targetpos) {
       super(EBEntity.PHANTOM_SWORD.get(), level);
-      noCulling = true;
       this.thrower = thrower;
       this.setOwner(thrower);
       setTargetPos(targetpos);
@@ -113,7 +147,6 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
 
    public PhantomSwordEntity(PlayMessages.SpawnEntity spawnEntity, Level level) {
       super(EBEntity.PHANTOM_SWORD.get(),level);
-      noCulling = true;
    }
 
    public void setTool(ItemStack tool) {
@@ -129,13 +162,22 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
    }
 
 
-   public ToolStack getTool() {
-      if (this.toolStack == null) {
-         ItemStack stack = this.entityData.get(DATA_ITEM_STACK);
-         if (!stack.isEmpty()) {
-            this.toolStack = ToolStack.from(stack);
-         }
+   @Override
+   @Nullable
+   public Entity getOwner() {
+      return thrower;
+   }
+
+   public void setOwner(Entity owner) {
+      this.ownerId = owner.getUUID();
+      this.thrower = owner;
+      if (!level().isClientSide) {
+         setOwnerId(owner.getId());
       }
+   }
+
+
+   public ToolStack getTool() {
       return this.toolStack;
    }
    public void setCritical(boolean critical) {
@@ -150,23 +192,11 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
    public float getDamage() {
       return this.stats.get(ToolStats.ATTACK_DAMAGE) + this.bonusDamage;
    }
-   public void setZenithPart(CelestialBladePart part) {
-      this.getEntityData().set(ZENITH_PART, part);
-   }
 
-   public CelestialBladePart getZenithPart() {
-      return this.getEntityData().get(ZENITH_PART);
-   }
-   public ItemStack getItemStack() {
-      return getEntityData().get(DATA_ITEM_STACK);
-   }
-
-   public void setItemStack(ItemStack stack) {
-      entityData.set(DATA_ITEM_STACK,stack);
-   }
    @Override
    protected void defineSynchedData() {
-      getEntityData().define(ZENITH_PART, new CelestialBladePart(Items.WOODEN_SWORD.builtInRegistryHolder(), 0x594319, 0.125, Mth.HALF_PI * 0.5f, 1.75, 1));
+      entityData.define(ZENITH_PART, new CelestialBladePart(Items.WOODEN_SWORD.builtInRegistryHolder(), 0x594319, 0.125, Mth.HALF_PI * 0.5f, 1.75, 1));
+      entityData.define(OWNER_ID, -1);
       entityData.define(VARIETY, 0);
       entityData.define(DELAY, 0);
       entityData.define(ROTATION, 0F);
@@ -174,7 +204,7 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
       entityData.define(TARGET_POS, BlockPos.ZERO);
       entityData.define(FAKE, false);
       entityData.define(DATA_ITEM_STACK, ItemStack.EMPTY);
-      entityData.define(SPEED, 0f);
+      entityData.define(SPEED,0f);
    }
 
    @Override
@@ -186,7 +216,7 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
       this.faceEntity(this.getTargetPos());
       Vec3 vec = new Vec3(getTargetPos().getX() - getX(), getTargetPos().getY() - getY(), getTargetPos().getZ() - getZ())
               .normalize();
-      this.setDeltaMovement(vec.x * 1.05F, vec.y * 1.05F, vec.z * 1.05F);
+      this.setDeltaMovement(vec.x * getSpeed(), vec.y * getSpeed(), vec.z * getSpeed());
    }
 
    @Override
@@ -209,12 +239,7 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
          return;
       }
 
-      if (!getFake()) {
-         Vec3 targetVec = new Vec3(getTargetPos().getX() - getX(), getTargetPos().getY() - getY(), getTargetPos().getZ() - getZ()).normalize();
-         float speed = getSpeed();
-         this.setDeltaMovement(targetVec.x * speed, targetVec.y * speed, targetVec.z * speed);
-         this.hasImpulse = true;
-      }
+
 
       super.tick();
 
@@ -224,11 +249,11 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
             entity.thrower = this.thrower;
             entity.setTool(this.toolStack.createStack());
             entity.setFake(true);
+            entity.setZenithPart(this.getZenithPart());
             entity.setRotation(this.getRotation());
             entity.setPitch(this.getPitch());
             entity.setPos(getX(), getY(), getZ());
             entity.setVariety(getVariety());
-            entity.setZenithPart(this.getZenithPart());
             level().addFreshEntity(entity);
          }
 
@@ -245,13 +270,13 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
                   continue;
                if(living instanceof Animal)
                   continue;
-               if (living.invulnerableTime <= 5) {
+               if (living.invulnerableTime <= 5&&thrower instanceof LivingEntity attacker) {
                   if (toolStack != null) {
                      ProjectileUtils.attackEntity(
                              this.itemStack.getItem(),
                              this,
                              this.toolStack,
-                             thrower,
+                             attacker,
                              living,
                              false
                      );
@@ -327,7 +352,12 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
    @Override
    public void addAdditionalSaveData(CompoundTag tag) {
       super.addAdditionalSaveData(tag);
-      tag.put(TAG_TOOL, this.itemStack.serializeNBT());
+      if (this.itemStack != null) {
+         tag.put("ToolStack", this.itemStack.serializeNBT());
+      }
+      if (thrower != null) {
+         tag.putUUID(TAG_OWNER, thrower.getUUID());
+      }
       tag.putFloat("BonusDamage", bonusDamage);
       tag.putBoolean("Critical", critical);
       tag.putInt(TAG_VARIETY, getVariety());
@@ -336,13 +366,15 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
       tag.putFloat(TAG_PITCH, getPitch());
       tag.putLong(TAG_TARGETPOS, getTargetPos().asLong());
       tag.putBoolean(TAG_FAKE, getFake());
-      tag.put(TAG_PART, CelestialBladePart.CODEC.encodeStart(NbtOps.INSTANCE, getZenithPart()).getOrThrow(false, LogUtils.getLogger()::warn));
    }
 
    @Override
    public void readAdditionalSaveData(CompoundTag tag) {
       super.readAdditionalSaveData(tag);
-      this.setTool(ItemStack.of(tag.getCompound("Tool")));
+      if (tag.contains("ToolStack")) {
+         this.itemStack = ItemStack.of(tag.getCompound("ToolStack"));
+         this.toolStack = ToolStack.from(this.itemStack);
+      }
       this.bonusDamage = tag.getFloat("BonusDamage");
       this.critical = tag.getBoolean("Critical");
       this.setVariety(tag.getInt(TAG_VARIETY));
@@ -351,33 +383,8 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
       this.setPitch(tag.getFloat(TAG_PITCH));
       this.setTargetPos(BlockPos.of(tag.getLong(TAG_TARGETPOS)));
       this.setFake(tag.getBoolean(TAG_FAKE));
-      if (tag.contains(TAG_PART)) {
-         CelestialBladePart.CODEC.parse(NbtOps.INSTANCE, tag.get(TAG_PART))
-                 .result().ifPresent(this::setZenithPart);
-      }
    }
 
-   @Override
-   public void writeSpawnData(FriendlyByteBuf buffer) {
-      buffer.writeUUID(this.getUUID());
-      buffer.writeItem(this.itemStack);
-      buffer.writeFloat(this.bonusDamage);
-      buffer.writeBoolean(this.critical);
-      buffer.writeBlockPos(this.getTargetPos());
-      buffer.writeInt(this.getVariety());
-      buffer.writeInt(this.getDelay());
-   }
-
-   @Override
-   public void readSpawnData(FriendlyByteBuf buffer) {
-      this.setUUID(buffer.readUUID());
-      this.setTool(buffer.readItem());
-      this.bonusDamage = buffer.readFloat();
-      this.critical = buffer.readBoolean();
-      this.setTargetPos(buffer.readBlockPos());
-      this.setVariety(buffer.readInt());
-      this.setDelay(buffer.readInt());
-   }
 
    public int getVariety() {
       return entityData.get(VARIETY);
@@ -427,14 +434,26 @@ public class PhantomSwordEntity extends ThrowableProjectile implements IEntityAd
       entityData.set(TARGET_POS, pos);
    }
 
-   public Vec3 getIdealPos(Entity owner, Vec3 ownerPos) {
-      return ownerPos.add(0, owner.getBbHeight() * 0.6f, 0);
-   }
-
    @Nonnull
    @Override
    public Packet<ClientGamePacketListener> getAddEntityPacket() {
       return NetworkHooks.getEntitySpawningPacket(this);
    }
+   @Override
+   public void writeSpawnData(FriendlyByteBuf buffer) {
+      buffer.writeItem(this.getItemStack());
+      buffer.writeFloat(this.getRotation());
+      buffer.writeFloat(this.getPitch());
+      buffer.writeBoolean(this.getFake());
+      buffer.writeInt(this.getDelay());
+   }
 
+   @Override
+   public void readSpawnData(FriendlyByteBuf buffer) {
+      this.setItemStack(buffer.readItem());
+      this.setRotation(buffer.readFloat());
+      this.setPitch(buffer.readFloat());
+      this.setFake(buffer.readBoolean());
+      this.setDelay(buffer.readInt());
+   }
 }

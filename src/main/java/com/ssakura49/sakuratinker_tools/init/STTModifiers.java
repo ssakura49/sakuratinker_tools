@@ -11,9 +11,12 @@ import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.ScytheSwee
 import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.SwiftSwordTechniqueModifier;
 import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.battleflag.AttackModifier;
 import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.battleflag.DefenceModifier;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
 @LoadClass
+@Mod.EventBusSubscriber
 public class STTModifiers {
    public static StaticModifier<AttackModifier> ATTACK_MODIFIER = STCrModule.MODIFIERS.register("attack_flag", AttackModifier::new);
    public static StaticModifier<DefenceModifier> DEFENCE_MODIFIER = STCrModule.MODIFIERS.register("defence_flag", DefenceModifier::new);

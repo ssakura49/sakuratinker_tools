@@ -63,7 +63,7 @@ public class ISSItem {
    public static final ItemObject<ToolPartItem> envelope = registerPart("envelope", () -> new ToolPartItem(PartItem, EnvelopeMaterialStats.ID));
    public static final ItemObject<ToolPartItem> book_mark = registerPart("book_mark", () -> new ToolPartItem(PartItem, BookMarkMaterialStats.ID));
    public static final ItemObject<ToolPartItem> gutter = registerPart("gutter", () -> new ToolPartItem(PartItem, ISSStatlessMaterialStats.GUTTER.getIdentifier()));
-   public static final ItemObject<ModifiableSpellBookItem> tinker_spell_book = registerTool("tinker_spell_book", () -> new TinkerSpellBook(1, ToolItem));
+   public static final ItemObject<ModifiableSpellBookItem> tinker_spell_book = registerTool("tinker_spell_book", () -> new TinkerSpellBook(ToolItem));
    public static final CastItemObject manuScriptCast = registerCast("manu_script", CastItem);
    public static final CastItemObject envelopeCast = registerCast("envelope", CastItem);
    public static final CastItemObject bookMarkCast = registerCast("book_mark", CastItem);
