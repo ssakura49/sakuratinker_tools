@@ -2,13 +2,14 @@ package com.ssakura49.sakuratinker_tools.content.tool.item;
 
 import com.google.common.base.Suppliers;
 import com.ssakura49.sakuratinker.core.init.STCrItem;
+import com.ssakura49.sakuratinker.core.init.STCrSound;
 import com.ssakura49.sakuratinker.core.library.tools.stats.STToolStats;
 import com.ssakura49.sakuratinker.core.utils.TooltipUtil;
 import com.ssakura49.sakuratinker_tools.STTConfig;
 import com.ssakura49.sakuratinker_tools.content.entity.CelestialBladeEntity;
 import com.ssakura49.sakuratinker_tools.content.entity.part.CelestialBladePart;
 import com.ssakura49.sakuratinker_tools.init.STTItems;
-import com.ssakura49.sakuratinker_tools.init.STTSounds;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -78,7 +79,7 @@ public class BladeConvergence extends ModifiableItem {
 
 
          level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                 STTSounds.CELESTIAL_BLADE.get(), SoundSource.PLAYERS,
+                 STCrSound.CELESTIAL_BLADE.get(), SoundSource.PLAYERS,
                  1.0F, 0.9F + level.random.nextFloat() * 0.2F);
 
          CelestialBladeEntity entity = new CelestialBladeEntity(

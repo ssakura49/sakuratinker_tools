@@ -1,7 +1,8 @@
 package com.ssakura49.sakuratinker_tools.init;
 
-import com.ssakura49.sakura_library.util.annotation.LoadClass;
 import com.ssakura49.sakuratinker.core.STCrModule;
+import com.ssakura49.sakuratinker.core.library.events.LoadRegistryClassEvent;
+import com.ssakura49.sakuratinker_tools.SakuraTinkerTools;
 import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.BladeConvergenceModifier;
 import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.EnergyDisplayModifier;
 import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.EnergySurge;
@@ -15,9 +16,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
-@LoadClass
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = SakuraTinkerTools.MODID)
 public class STTModifiers {
+   @SubscribeEvent
+   public static void init(LoadRegistryClassEvent event){}
    public static StaticModifier<AttackModifier> ATTACK_MODIFIER = STCrModule.MODIFIERS.register("attack_flag", AttackModifier::new);
    public static StaticModifier<DefenceModifier> DEFENCE_MODIFIER = STCrModule.MODIFIERS.register("defence_flag", DefenceModifier::new);
    public static StaticModifier<EnergySurge> ENERGY_SURGE = STCrModule.MODIFIERS.register("energy_surge", EnergySurge::new);

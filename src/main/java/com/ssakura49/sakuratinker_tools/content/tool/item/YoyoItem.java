@@ -1,18 +1,18 @@
 package com.ssakura49.sakuratinker_tools.content.tool.item;
 
+import com.ssakura49.sakuratinker.core.init.STCrSound;
 import com.ssakura49.sakuratinker.core.library.tools.stats.STToolStats;
 import com.ssakura49.sakuratinker.core.utils.TooltipUtil;
 import com.ssakura49.sakuratinker_tools.content.entity.YoyoEntity;
 import com.ssakura49.sakuratinker_tools.content.entity.base.BlockInteraction;
 import com.ssakura49.sakuratinker_tools.content.entity.base.EntityInteraction;
 import com.ssakura49.sakuratinker_tools.content.entity.base.IYoyo;
-import com.ssakura49.sakuratinker_tools.init.STTSounds;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -20,7 +20,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -30,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.tconstruct.common.TinkerTags;
-import slimeknights.tconstruct.common.TinkerTags.Items;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
@@ -98,7 +96,7 @@ public class YoyoItem extends ModifiableItem implements IYoyo {
             if (yoyoEntity == null) {
                yoyoEntity = new YoyoEntity(level,player,hand);
                level.addFreshEntity(yoyoEntity);
-               level.playSound(null, yoyoEntity.getX(), yoyoEntity.getY(), yoyoEntity.getZ(), STTSounds.THROW.get(), SoundSource.NEUTRAL, 0.5f, 0.4f / (level.random.nextFloat() * 0.4f + 0.8f));
+               level.playSound(null, yoyoEntity.getX(), yoyoEntity.getY(), yoyoEntity.getZ(), STCrSound.THROW.get(), SoundSource.NEUTRAL, 0.5f, 0.4f / (level.random.nextFloat() * 0.4f + 0.8f));
 
                int amount = yoyoEntity.getHitCount();
                ToolDamageUtil.damageAnimated(toolStack, amount, player);

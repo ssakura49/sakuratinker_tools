@@ -1,19 +1,18 @@
 package com.ssakura49.sakuratinker_tools.content.tool.item;
 
-import com.ssakura49.sakuratinker.STConfig.Common;
 import com.ssakura49.sakuratinker.SakuraTinker;
+import com.ssakura49.sakuratinker.core.init.STCrSound;
 import com.ssakura49.sakuratinker.core.library.tools.stats.STToolStats;
 import com.ssakura49.sakuratinker.core.utils.ItemUtil;
 import com.ssakura49.sakuratinker.core.utils.TooltipUtil;
 import com.ssakura49.sakuratinker_tools.STTConfig;
 import com.ssakura49.sakuratinker_tools.content.entity.LaserProjectileEntity;
-import com.ssakura49.sakuratinker_tools.init.STTSounds;
+
 import java.util.List;
 import java.util.function.Supplier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -28,12 +27,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.tconstruct.common.TinkerTags;
-import slimeknights.tconstruct.common.TinkerTags.Items;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.build.ConditionalStatModifierHook;
-import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
-import slimeknights.tconstruct.library.tools.capability.ToolEnergyCapability;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.library.tools.helper.TooltipBuilder;
@@ -112,7 +108,7 @@ public class LaserGun extends ModifiableItem {
       float baseDamage = tool.getStats().get(ToolStats.ATTACK_DAMAGE) + 0.5f;
       laser.setDamage(baseDamage * bonusMultiplier);
       level.addFreshEntity(laser);
-      level.playSound(null, player.getX(), player.getY(), player.getZ(), STTSounds.LASER_SHOOT.get(), SoundSource.PLAYERS, 0.1F, 0.9F + level.random.nextFloat() * 0.2F);
+      level.playSound(null, player.getX(), player.getY(), player.getZ(), STCrSound.LASER_SHOOT.get(), SoundSource.PLAYERS, 0.1F, 0.9F + level.random.nextFloat() * 0.2F);
       ToolDamageUtil.damageAnimated(tool, 1, player, player.getUsedItemHand());
    }
 

@@ -112,7 +112,6 @@ public class STTTabs {
       Objects.requireNonNull(output);
       Consumer<ItemStack> outputTool = output::accept;
 
-      acceptTools(outputTool, STTItems.embeddedArmor);
       for(ItemObject<? extends Item> tool : STTItems.getListTools()) {
          ItemLike var6 = tool.get();
          if (var6 instanceof IModifiable modifiable) {
@@ -143,5 +142,6 @@ public class STTTabs {
             }
          }
       }
+      acceptTools(outputTool, STTItems.embeddedArmor);
    }
 }
