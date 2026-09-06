@@ -54,8 +54,7 @@ public class GhostKnife extends VisualScaledProjectile {
 
    @Override
    protected void defineSynchedData() {
-      super.defineSynchedData();
-      this.entityData.define(DATA_LENGTH, 0f);
+       this.entityData.define(DATA_LENGTH, 0f);
       this.entityData.define(DATA_RENDER, false);
    }
 

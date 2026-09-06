@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SchoolAttributeManager {
-   private static final Map<ResourceLocation, ResourceLocation> POWER_MAP = new ConcurrentHashMap();
+   private static final Map<ResourceLocation, ResourceLocation> POWER_MAP = new ConcurrentHashMap<>();
 
    public static void registerAttributes(Map<String, String> rawMap) {
       POWER_MAP.clear();

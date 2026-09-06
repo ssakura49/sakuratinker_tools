@@ -20,6 +20,8 @@ import com.ssakura49.sakuratinker_tools.library.tools.stats.YoYoRingMaterialStat
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.SchoolType;
 import java.util.Map;
+
+import net.minecraft.resources.ResourceLocation;
 import slimeknights.tconstruct.library.materials.stats.IMaterialStats;
 
 public enum STTEnumTconExtraStats {
@@ -31,7 +33,7 @@ public enum STTEnumTconExtraStats {
            new YoYoRingMaterialStats(1.0F),
            new RangeMaterialStats(5.0F),
            new FletchingMaterialStats(0.2F, 0.2F),
-           new EnvelopeMaterialStats(Map.of((SchoolType) SchoolRegistry.BLOOD.get(), 0.1F))
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:blood"), 0.1F))
    }),
 
    cobalt(new IMaterialStats[]{
@@ -85,7 +87,7 @@ public enum STTEnumTconExtraStats {
            new YoYoRingMaterialStats(1.0F),
            new SoulGathererMaterialStats(1.0F, 0.0F),
            new ManuScriptMaterialStats(0.0F, 0.05F, 0.0F, 2.0F, 100.0F),
-           new EnvelopeMaterialStats(Map.of((SchoolType) SchoolRegistry.NATURE.get(), 0.05F)),
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:nature"), 0.05F)),
            new BookMarkMaterialStats(0.02F, 4)
    }),
 
@@ -128,29 +130,29 @@ public enum STTEnumTconExtraStats {
    }),
 
    blazingBone(new IMaterialStats[]{
-           new EnvelopeMaterialStats(Map.of((SchoolType) SchoolRegistry.FIRE.get(), 0.15F))
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:fire"), 0.15F))
    }),
 
    blazewood(new IMaterialStats[]{
-           new EnvelopeMaterialStats(Map.of((SchoolType) SchoolRegistry.FIRE.get(), 0.1F)),
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:fire"), 0.1F)),
            new ManuScriptMaterialStats(5.0F, 0.05F, 0.0F, 8.0F, 150.0F)
    }),
 
    chorus(new IMaterialStats[]{
-           new EnvelopeMaterialStats(Map.of((SchoolType) SchoolRegistry.ENDER.get(), 0.1F)),
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:ender"), 0.1F)),
            new ManuScriptMaterialStats(8.0F, 0.05F, 0.02F, 10.0F, 280.0F)
    }),
 
    ice(new IMaterialStats[]{
-           new EnvelopeMaterialStats(Map.of((SchoolType) SchoolRegistry.ICE.get(), 0.05F))
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:ice"), 0.05F))
    }),
 
    witherBone(new IMaterialStats[]{
-           new EnvelopeMaterialStats(Map.of((SchoolType) SchoolRegistry.BLOOD.get(), 0.1F))
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:blood"), 0.1F))
    }),
 
    venomBone(new IMaterialStats[]{
-           new EnvelopeMaterialStats(Map.of((SchoolType) SchoolRegistry.NATURE.get(), 0.1F))
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:nature"), 0.1F))
    });
 
    public final IMaterialStats[] stats;

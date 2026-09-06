@@ -161,8 +161,11 @@ public class STTConfig {
          builder.push("Blade Convergence");
          ENABLE_ZENITH_ALL_RANDOM_MATERIALS=builder
                  .comment("Enable All Materials Render").
-                 comment("允许完全随机的材料渲染").define("enableRandom", true);
+                 comment("允许完全随机的材料渲染")
+                 .define("enableRandom", true);
          BLADE_CONVERGENCE_CAN_TRIGGER_MODIFIER=builder
+                 .comment("Materials Can Trigger All  Modifier")
+                 .comment("允许随机的材料能够正常触发词条效果")
                  .define("can trigger modifier,default false", false);
          builder.pop();
 
