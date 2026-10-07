@@ -1,7 +1,8 @@
-// 1.20.1	2026-09-26T22:55:56.8737867	Tags for minecraft:item mod id sakuratinker
+// 1.20.1	2026-10-07T21:22:22.8779942	Tags for minecraft:item mod id sakuratinker
 513931a441021672d4b22e298637db0eef7add20 data/forge/tags/items/tools/scythe.json
 f19203583c8e26a527b8628432dd71adb60338b7 data/sakuratinker/tags/items/modifiable/curio.json
 8c885776b08f4bf519d0a4af1c41702a88f07249 data/sakuratinker/tags/items/modifiable/curio/tinker_charm.json
+3f680438e60eedb3392dcf330383be944effb932 data/sakuratinker/tags/items/modifiable/curio/tinker_spell_book.json
 4fc5a4fda28e0641fb557e35e511a5adfefe00ce data/tconstruct/tags/items/casts/gold.json
 1a2b1c94d93469b106092c313b6b80254f9a94f0 data/tconstruct/tags/items/casts/multi_use.json
 61594ead5076068e4c39e44597c6cce142d517e1 data/tconstruct/tags/items/casts/multi_use/arrow_head.json

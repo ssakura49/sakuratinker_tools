@@ -530,6 +530,7 @@ public class STTItemTagProvider extends ItemTagsProvider {
       curioTag.addOptional(SakuraTinker.getResource("tinker_spell_book"));
 
       this.tag(STTTags.Items.TINKER_CHARM).add(STTItems.tinker_charm.get());
+      this.tag(STTTags.Items.TINKER_SPELL_BOOK).addOptional(SakuraTinker.getResource("tinker_spell_book"));
       this.tag(TinkerTags.Items.MODIFIABLE).addTag(STTTags.Items.CURIO_MODIFIABLE);
 
       this.tag(MODIFIABLE).addTags(STTTags.Items.CURIO_MODIFIABLE);
