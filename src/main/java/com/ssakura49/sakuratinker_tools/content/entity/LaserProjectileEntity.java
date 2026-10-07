@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class LaserProjectileEntity extends Projectile implements IEntityAdditionalSpawnData, IProjectileCritical, IProjectileDamage, IProjectileRange {
-   private static final Supplier<Boolean> LASER_GUN_MODIFIER_EFFECT = STTConfig.COMMON.LASER_GUN_MODIFIER_EFFECT;
+   private static final boolean LASER_GUN_MODIFIER_EFFECT = STTConfig.COMMON.LASER_GUN_MODIFIER_EFFECT.get();
 
    private static final EntityDataAccessor<Vector3f> START_POS = SynchedEntityData.defineId(LaserProjectileEntity.class, EntityDataSerializers.VECTOR3);
    private static final EntityDataAccessor<Vector3f> END_POS = SynchedEntityData.defineId(LaserProjectileEntity.class, EntityDataSerializers.VECTOR3);
@@ -177,7 +177,7 @@ public class LaserProjectileEntity extends Projectile implements IEntityAddition
       );
       for (EntityHitResult hit : hits) {
          if (hit.getEntity() instanceof LivingEntity target) {
-            if (LASER_GUN_MODIFIER_EFFECT.get()) {
+            if (LASER_GUN_MODIFIER_EFFECT) {
                AttackUtil.attackEntity(
                        toolStack,
                        shooter,
@@ -188,6 +188,7 @@ public class LaserProjectileEntity extends Projectile implements IEntityAddition
                        EquipmentSlot.MAINHAND,
                        true,
                        getDamage(),
+                       1,
                        false
                );
             } else {

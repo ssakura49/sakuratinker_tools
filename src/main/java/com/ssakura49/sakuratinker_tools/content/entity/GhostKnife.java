@@ -166,6 +166,7 @@ public class GhostKnife extends VisualScaledProjectile {
                     slot,
                     true,
                     baseDamage,
+                    1,
                     false
             );
             if (success && hitCallback != null) {

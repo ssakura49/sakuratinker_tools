@@ -1,5 +1,6 @@
 package com.ssakura49.sakuratinker_tools.data.providers;
 
+import com.ssakura49.sakuratinker.SakuraTinker;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
@@ -9,11 +10,17 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.data.tinkering.AbstractStationSlotLayoutProvider;
+import slimeknights.tconstruct.library.recipe.partbuilder.Pattern;
+import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
 import slimeknights.tconstruct.library.tools.layout.Patterns;
+import slimeknights.tconstruct.library.tools.layout.StationSlotLayout;
 import slimeknights.tconstruct.tools.TinkerToolParts;
+
+import java.util.function.Supplier;
 
 public class STTStationSlotLayoutProvider extends AbstractStationSlotLayoutProvider implements IConditionBuilder {
    public STTStationSlotLayoutProvider(PackOutput packOutput) {
@@ -77,6 +84,7 @@ public class STTStationSlotLayoutProvider extends AbstractStationSlotLayoutProvi
               .sortIndex(8)
               .addInputItem(TinkerToolParts.bowLimb, 20, 20)
               .addInputItem(TinkerToolParts.bowGrip, 40, 40)
+              .addInputItem(STTItems.revolverChamber,60, 40)
               .addInputItem(TinkerToolParts.toolHandle, 60, 60)
               .build();
       this.defineModifiable(STTItems.scythe)
@@ -87,6 +95,7 @@ public class STTStationSlotLayoutProvider extends AbstractStationSlotLayoutProvi
               .addInputItem(TinkerToolParts.toughHandle, 7, 62)
               .build();
       this.defineModifiable(STTItems.shuriken)
+              .icon(new Pattern(SakuraTinker.MODID,"shuriken"))
               .sortIndex(10)
               .addInputItem(STTItems.blade.get(), 45, 30)
               .addInputItem(STTItems.blade.get(), 25, 50)
@@ -112,11 +121,13 @@ public class STTStationSlotLayoutProvider extends AbstractStationSlotLayoutProvi
               .addInputItem(TinkerToolParts.smallBlade, 40, 30)
               .build();
       this.defineModifiable(STTItems.tinker_charm)
+              .icon(new Pattern(SakuraTinker.MODID, "tinker_charm"))
               .sortIndex(20)
-              .addInputItem(STTItems.charm_core.get(), 25, 54)
-              .addInputItem(STTItems.charm_chain.get(), 45, 34)
+              .addInputItem(STTItems.charm_core.get(), 35, 55)
+              .addInputItem(STTItems.charm_setting.get(), 15, 55)
+              .addInputItem(STTItems.charm_chain.get(), 25, 35)
               .build();
-      this.defineModifiable(ISSItem.tinker_spell_book)
+      this.defineModifiable(ISSItem.tinker_spell_book, modLoaded("irons_spellbooks"))
               .sortIndex(20)
               .addInputItem(ISSItem.manu_script.get(), 30, 50)
               .addInputItem(ISSItem.envelope.get(), 30, 30)
@@ -138,20 +149,27 @@ public class STTStationSlotLayoutProvider extends AbstractStationSlotLayoutProvi
               .addInputItem(STTItems.chord.get(), 40, 40)
               .addInputItem(STTItems.yoyo_ring.get(), 60, 40)
               .build();
-      this.defineModifiable(GoetyItem.tinker_wand)
+      this.defineModifiable(GoetyItem.tinker_wand, modLoaded("goety"))
               .sortIndex(20)
               .addInputItem(GoetyItem.soul_gatherer,52,22)
               .addInputItem(TinkerToolParts.largePlate,32,22)
               .addInputItem(TinkerToolParts.toughHandle,32,42)
               .addInputItem(TinkerToolParts.toughBinding, 12,62)
               .build();
-      this.defineModifiable(EBItem.first_fractal)
+      this.defineModifiable(EBItem.first_fractal, modLoaded("extrabotany"))
               .sortIndex(8)
               .addInputItem(TinkerToolParts.broadBlade,45,25)
               .addInputItem(EBItem.phantom_core,25,25)
               .addInputItem(TinkerToolParts.toughBinding,25,45)
               .addInputItem(TinkerToolParts.toughHandle, 5,65)
               .build();
+   }
+
+   protected StationSlotLayout.Builder defineModifiable(Supplier<? extends IModifiableDisplay> item, ICondition condition) {
+      IModifiableDisplay display = item.get();
+      return define(display.asItem().builtInRegistryHolder().key().location(), condition)
+              .translationKey(display.asItem().getDescriptionId())
+              .icon(display.getRenderTool());
    }
 
    public @NotNull String getName() {

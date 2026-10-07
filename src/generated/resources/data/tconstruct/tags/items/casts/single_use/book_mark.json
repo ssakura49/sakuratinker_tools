@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "sakuratinker:book_mark_sand_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:book_mark_red_sand_cast",
+      "required": false
+    }
+  ]
+}

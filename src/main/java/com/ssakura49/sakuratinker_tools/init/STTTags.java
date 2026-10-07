@@ -24,12 +24,15 @@ public class STTTags {
    }
 
    public static class Items {
-      public static final TagKey<Item> CURIO_MODIFIABLE = local("modifiable/curio");
+      public static final TagKey<Item> CURIO_MODIFIABLE = create("modifiable/curio");
 
+      public static final TagKey<Item> TINKER_CURIO = create("modifiable/curio");
+      public static final TagKey<Item> TINKER_CHARM = create("modifiable/curio/tinker_charm");
+      public static final TagKey<Item> TINKER_SPELL_BOOK = create("modifiable/curio/tinker_spell_book");
       public static void init() {
       }
 
-      private static TagKey<Item> local(String name) {
+      private static TagKey<Item> create(String name) {
          return TagKey.create(Registries.ITEM, SakuraTinker.getResource(name));
       }
    }

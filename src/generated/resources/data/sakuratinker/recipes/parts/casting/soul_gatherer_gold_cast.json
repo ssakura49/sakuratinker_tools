@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:table_casting_material",
   "cast": {
-    "tag": "sakuratinker:casts/multi_use/soul_gatherer"
+    "tag": "tconstruct:casts/multi_use/soul_gatherer"
   },
   "conditions": [
     {

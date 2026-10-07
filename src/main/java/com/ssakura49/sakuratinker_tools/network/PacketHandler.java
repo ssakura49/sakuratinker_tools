@@ -1,6 +1,8 @@
 package com.ssakura49.sakuratinker_tools.network;
 
 import com.ssakura49.sakuratinker_tools.network.s2c.CollectedDropsSync;
+import com.ssakura49.sakuratinker_tools.network.s2c.RecoilPacket;
+import com.ssakura49.sakuratinker_tools.network.s2c.ReloadPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -17,6 +19,9 @@ public class PacketHandler {
 
    public static void init() {
       INSTANCE.messageBuilder(CollectedDropsSync.class, id++, NetworkDirection.PLAY_TO_CLIENT).decoder(CollectedDropsSync::new).encoder(CollectedDropsSync::encode).consumerNetworkThread(CollectedDropsSync::handle).add();
+      INSTANCE.messageBuilder(RecoilPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT).decoder(RecoilPacket::new).encoder(RecoilPacket::encode).consumerNetworkThread(RecoilPacket::handle).add();
+      INSTANCE.messageBuilder(ReloadPacket.class,id++,NetworkDirection.PLAY_TO_CLIENT).decoder(ReloadPacket::new).encoder(ReloadPacket::encode).consumerNetworkThread(ReloadPacket::handle).add();
+
    }
 
    public static <MSG> void sendToServer(MSG msg) {

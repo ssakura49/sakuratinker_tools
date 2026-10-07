@@ -53,8 +53,8 @@ public class BladeConvergence extends ModifiableItem {
    private static final String TAG_PARTS = "blade_parts";
    private static final Supplier<List<CelestialBladePart>> DEFAULT_PARTS = Suppliers.memoize(BladeConvergence::createZenithParts);
    private static final Supplier<List<CelestialBladePart>> DEFAULT_SLAUGHTER_PARTS = Suppliers.memoize(BladeConvergence::createDefaultParts);
-   private static final Supplier<Boolean> ENABLE_ALL_RANDOM = STTConfig.COMMON.ENABLE_ZENITH_ALL_RANDOM_MATERIALS;
-   private static final Supplier<Boolean> CAN_TRIGGER_MODIFIER = STTConfig.COMMON.BLADE_CONVERGENCE_CAN_TRIGGER_MODIFIER;
+   private static final boolean ENABLE_ALL_RANDOM = STTConfig.COMMON.ENABLE_ZENITH_ALL_RANDOM_MATERIALS.get();
+   private static final boolean CAN_TRIGGER_MODIFIER = STTConfig.COMMON.BLADE_CONVERGENCE_CAN_TRIGGER_MODIFIER.get();
 
    public BladeConvergence(Properties properties, ToolDefinition toolDefinition) {
       super(properties, toolDefinition);
@@ -96,7 +96,7 @@ public class BladeConvergence extends ModifiableItem {
 
          ItemStack displayStack = createRandomizedTinkerStack(selectedPart.item().value());
 
-         if (CAN_TRIGGER_MODIFIER.get()) {
+         if (CAN_TRIGGER_MODIFIER) {
             entity.setTool(displayStack);
          } else {
             entity.setTool(stack);
@@ -182,7 +182,7 @@ public class BladeConvergence extends ModifiableItem {
          ToolDefinition definition = modifiable.getToolDefinition();
          //利用MISSING_MATERIALS钩子自动填充随机材质
          //匠魂自带的这个方法会根据工具定义要求的StatType自动寻找首个有效材质
-         MaterialNBT randomMaterials = ENABLE_ALL_RANDOM.get() ? fillTrulyRandom(definition) : definition.getHook(ToolHooks.MISSING_MATERIALS).fillMaterials(definition, RandomSource.create());
+         MaterialNBT randomMaterials = ENABLE_ALL_RANDOM ? fillTrulyRandom(definition) : definition.getHook(ToolHooks.MISSING_MATERIALS).fillMaterials(definition, RandomSource.create());
 
          return ToolStack.createTool(item, definition, randomMaterials).createStack();
       }

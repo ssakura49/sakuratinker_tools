@@ -4,6 +4,7 @@
       "type": "tconstruct:part_stats",
       "parts": [
         "sakuratinker:charm_core",
+        "sakuratinker:charm_setting",
         "sakuratinker:charm_chain"
       ],
       "primary_part": 0
@@ -11,6 +12,10 @@
     {
       "type": "tconstruct:default_materials",
       "materials": [
+        {
+          "type": "tconstruct:random",
+          "tier": 1
+        },
         {
           "type": "tconstruct:random",
           "tier": 1

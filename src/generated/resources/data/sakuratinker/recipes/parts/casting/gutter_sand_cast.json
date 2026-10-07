@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:table_casting_material",
   "cast": {
-    "tag": "sakuratinker:casts/single_use/gutter"
+    "tag": "tconstruct:casts/single_use/gutter"
   },
   "cast_consumed": true,
   "conditions": [

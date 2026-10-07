@@ -5,10 +5,16 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "sakuratinker_tools.refmap.json",
   "mixins": [
+    "iron_spell_book.CastingStateMixin",
+    "iron_spell_book.SpellBarOverlayMixin",
+    "iron_spell_book.SpellScrollInputMixin",
+    "iron_spell_book.SpellWheelSelectionMixin",
     "tinker.BulkQuiverModuleMixin",
     "tinker.TrickQuiverModuleMixin"
   ],
   "client": [
+    "iron_spell_book.InscriptionScreenPaginationMixin",
+    "iron_spell_book.accessor.InscriptionSpellSlotAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -19,4 +19,6 @@ public class STToolDefinitions {
    public static final ToolDefinition SCYTHE = ToolDefinition.create(STTItems.scythe);
    public static final ToolDefinition TINKER_BULLET = ToolDefinition.create(STTItems.tinker_bullet);
    public static final ToolDefinition TINKER_REVOLVER = ToolDefinition.create(STTItems.revolver);
+
+   //public static final ToolDefinition MAGIC_STAFF = ToolDefinition.create(STTItems.MAGIC_STAFF);
 }

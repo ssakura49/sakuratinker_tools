@@ -2,6 +2,8 @@ package com.ssakura49.sakuratinker_tools.content.entity;
 
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.DataResult;
+import com.ssakura49.sakura_library.entity.damagesource.PercentageBypassInvulnerableTimeSource;
+import com.ssakura49.sakura_library.util.helper.PlayerAdvDataHelper;
 import com.ssakura49.sakura_library.util.math.MathUtils;
 import com.ssakura49.sakuratinker.core.utils.AttackUtil;
 import com.ssakura49.sakuratinker_tools.content.entity.part.CelestialBladePart;
@@ -19,6 +21,7 @@ import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -308,18 +311,32 @@ public class CelestialBladeEntity extends Entity implements TraceableEntity {
                        if (!isPvpServerWide) return;
                     }
                  }
-                 target.invulnerableTime = 0;
+                 //target.invulnerableTime = 0;
                  if (toolStack != null && !toolStack.isBroken() && hand != null) {
                     DamageSource source = owner instanceof Player p ?
                             damageSources().playerAttack(p) :
                             damageSources().mobAttack(owner);
 
-                       AttackUtil.attackEntity(toolStack, owner, hand, target, () -> 1.0f, false, slot, false, baseDamage, false);
+                    AttackUtil.attackEntity(toolStack, owner, hand, target, () -> 1.0f, false, slot, false, baseDamage,1, false);
                  } else {
-                    target.hurt(owner instanceof Player p ? damageSources().playerAttack(p) : damageSources().mobAttack(owner), baseDamage);
+                    DamageSource fallbackSource = owner instanceof Player p
+                            ? damageSources().playerAttack(p)
+                            : damageSources().mobAttack(owner);
+                    target.hurt(withAdvancementBypass(owner, fallbackSource), baseDamage);
                  }
-                 //damagedEntities.add(target);
               });
+   }
+
+   private DamageSource withAdvancementBypass(LivingEntity owner, DamageSource base) {
+      if (owner instanceof ServerPlayer player) {
+         int total = PlayerAdvDataHelper.AdvancementCache.getTotal(player);
+         int completed = PlayerAdvDataHelper.get(player);
+         float percent = (float)completed / (float)total;
+         if (percent > 0.0F) {
+            return PercentageBypassInvulnerableTimeSource.any(base.typeHolder(), player, player, percent);
+         }
+      }
+      return base;
    }
 
    public Vec3 getIdealPos(Entity owner, Vec3 ownerPos) {

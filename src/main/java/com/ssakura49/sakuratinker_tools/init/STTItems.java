@@ -1,5 +1,6 @@
 package com.ssakura49.sakuratinker_tools.init;
 
+import com.ssakura49.sakuratinker_tools.content.bullet.BulletRegistry;
 import com.ssakura49.sakuratinker_tools.content.item.BulletItem;
 import com.ssakura49.sakuratinker_tools.content.tool.STArmorDefinitions;
 import com.ssakura49.sakuratinker_tools.content.tool.STToolDefinitions;
@@ -19,26 +20,21 @@ import com.ssakura49.sakuratinker_tools.content.tool.item.VampireKnives;
 import com.ssakura49.sakuratinker_tools.content.tool.item.YoyoItem;
 import com.ssakura49.sakuratinker_tools.library.tools.item.ModifiableArrowItem;
 import com.ssakura49.sakuratinker_tools.library.tools.item.ModifiableBulletItem;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.AxleMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.BattleFlagMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.CharmChainMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.ChordMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.EnergyUnitMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.FletchingMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.FoxMaskMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.LaserMediumMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.RangeMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.STTStatlessMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.YoYoRingMaterialStats;
+import com.ssakura49.sakuratinker_tools.library.tools.item.ModifiableGunItem;
+import com.ssakura49.sakuratinker_tools.library.tools.stats.*;
+import com.ssakura49.sakuratinker_tools.util.SafeClass;
 import com.ssakura49.tinkercuriolib.tools.item.ModifiableCurioItem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
+
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -46,6 +42,7 @@ import slimeknights.mantle.registration.object.EnumObject;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.tconstruct.common.registration.CastItemObject;
 import slimeknights.tconstruct.common.registration.ItemDeferredRegisterExtension;
+import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.item.ModifiableItem;
 import slimeknights.tconstruct.library.tools.item.armor.ModifiableArmorItem;
 import slimeknights.tconstruct.library.tools.item.armor.MultilayerArmorItem;
@@ -94,9 +91,11 @@ public class STTItems {
 
    public static final ItemObject<ToolPartItem> charm_chain = registerPart("charm_chain", () -> new ToolPartItem(PartItem, CharmChainMaterialStats.ID));
    public static final ItemObject<ToolPartItem> charm_core = registerPart("charm_core", () -> new ToolPartItem(PartItem, STTStatlessMaterialStats.CHARM_CORE.getIdentifier()));
+   public static final ItemObject<ToolPartItem> charm_setting = registerPart("charm_setting", () -> new ToolPartItem(PartItem, STTStatlessMaterialStats.CHARM_SETTING.getIdentifier()));
    public static final ItemObject<ModifiableCurioItem> tinker_charm = registerTool("tinker_charm", () -> new TinkerCharm(ToolItem, STToolDefinitions.TINKER_CHARM));
    public static final CastItemObject charmChainCast = registerCast("charm_chain", CastItem);
    public static final CastItemObject charmCoreCast = registerCast("charm_core", CastItem);
+   public static final CastItemObject charmSettingCast = registerCast("charm_setting", CastItem);
 
    public static final ItemObject<ToolPartItem> swift_blade = registerPart("swift_blade", () -> new ToolPartItem(PartItem, HeadMaterialStats.ID));
    public static final ItemObject<ToolPartItem> swift_guard = registerPart("swift_guard", () -> new ToolPartItem(PartItem, HandleMaterialStats.ID));
@@ -160,7 +159,8 @@ public class STTItems {
 
    public static final ItemObject<ModifiableItem> grappling_hook = registerTool("grappling_hook", () -> new GrapplingHookItem(ToolItem, STToolDefinitions.HOOK));
 
-   public static final ItemObject<ModifiableItem> revolver = registerTool("revolver", () -> new RevolverItem(ToolItem, STToolDefinitions.TINKER_REVOLVER));
+   public static final ItemObject<ToolPartItem> revolverChamber = registerPart("revolver_chamber", () -> new ToolPartItem(PartItem, RevolverChamberMaterialStats.ID));
+   public static final ItemObject<ModifiableGunItem> revolver = registerTool("revolver", () -> new RevolverItem(ToolItem, STToolDefinitions.TINKER_REVOLVER));
 
    public static final ItemObject<ModifiableBulletItem> tinker_bullet = registerTool("tinker_bullet", () -> new TinkerBullet(ToolItem, STToolDefinitions.TINKER_BULLET));
    public static final ItemObject<ModifiableItem> shuriken = registerTool("shuriken", () -> new Shuriken(ToolItem, STToolDefinitions.SHURIKEN));
@@ -174,11 +174,39 @@ public class STTItems {
 // public static final ItemObject<ModifiableSwordItem> first_fractal = TINKER_ITEMS.register("first_fractal", () -> new FirstFractal(ToolItem));
 // public static final CastItemObject phantomCoreCast = TINKER_ITEMS.registerCast("phantom_core", CastItem);
 
+   //public static final ItemObject<ModifiableItem> MAGIC_STAFF= registerTool("magic_staff",()->new ModifiableItem(ToolItem,STToolDefinitions.MAGIC_STAFF));
 
    public static final RegistryObject<Item> ghost_knife = ITEMS.register("ghost_knife", () -> new Item(new Item.Properties()));
    public static final RegistryObject<Item> grappling_blade = ITEMS.register("grappling_blade", () -> new Item(new Item.Properties()));
    public static final RegistryObject<Item> zenith_first_fractal = ITEMS.register("zenith_first_fractal", () -> new Item(new Item.Properties()));
    public static final RegistryObject<Item> bulletItem = ITEMS.register("bullet_ammo", () -> new BulletItem(new Item.Properties()));
+   public static final RegistryObject<Item> lightningBulletItem = ITEMS.register("lightning_bullet_ammo", () -> new BulletItem(new Item.Properties(), BulletRegistry.CHAIN_LIGHTNING, 4.0F));
+   public static final RegistryObject<Item> explosiveBulletItem = ITEMS.register("explosive_bullet_ammo", () -> new BulletItem(new Item.Properties(), BulletRegistry.EXPLOSIVE, 6.0F));
+   public static final RegistryObject<Item> piercingBulletItem = ITEMS.register("piercing_bullet_ammo", () -> new BulletItem(new Item.Properties(), BulletRegistry.PIERCING, 5.0F));
+   public static final RegistryObject<Item> ricochetBulletItem = ITEMS.register("ricochet_bullet_ammo", () -> new BulletItem(new Item.Properties(), BulletRegistry.RICOCHET, 5.0F));
+
+
+   public static ItemObject<ModifiableItem> tinker_wand = null;
+   static {
+      if (!ModList.get().isLoaded("goety")) {
+         tinker_wand = new ItemObject<>(RegistryObject.create(
+                 ResourceLocation.fromNamespaceAndPath(MODID, "tinker_wand"), ForgeRegistries.ITEMS));
+      }
+   }
+   public static ItemObject<ModifiableItem> tinker_spell_book = null;
+   static {
+      if (!ModList.get().isLoaded(SafeClass.ISS)) {
+         tinker_spell_book = new ItemObject<>(RegistryObject.create(
+                 ResourceLocation.fromNamespaceAndPath(MODID, "tinker_spell_book"), ForgeRegistries.ITEMS));
+      }
+   }
+   public static ItemObject<ModifiableItem> first_fractal = null;
+   static {
+      if (!ModList.get().isLoaded(SafeClass.ExtraBotany)) {
+         first_fractal = new ItemObject<>(RegistryObject.create(
+                 ResourceLocation.fromNamespaceAndPath(MODID, "first_fractal"), ForgeRegistries.ITEMS));
+      }
+   }
 
    public static void init(IEventBus bus) {
       ITEMS.register(bus);

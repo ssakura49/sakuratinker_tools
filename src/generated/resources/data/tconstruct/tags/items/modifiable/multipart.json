@@ -15,8 +15,17 @@
     "sakuratinker:revolver",
     "sakuratinker:tinker_bullet",
     "sakuratinker:shuriken",
-    "sakuratinker:tinker_spell_book",
-    "sakuratinker:tinker_wand",
-    "sakuratinker:first_fractal"
+    {
+      "id": "sakuratinker:tinker_spell_book",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:tinker_wand",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:first_fractal",
+      "required": false
+    }
   ]
 }

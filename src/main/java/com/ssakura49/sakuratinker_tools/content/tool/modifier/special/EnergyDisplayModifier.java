@@ -1,11 +1,12 @@
 package com.ssakura49.sakuratinker_tools.content.tool.modifier.special;
 
-import com.c2h6s.etstlib.register.EtSTLibHooks;
-import com.c2h6s.etstlib.tool.hooks.CustomBarDisplayModifierHook;
-import com.c2h6s.etstlib.util.MathUtil;
+import com.ssakura49.sakuratinker.core.library.tools.modifier.hooks.STHooks;
+import com.ssakura49.sakuratinker.core.library.tools.modifier.hooks.display.CustomBarDisplayModifierHook;
 import com.ssakura49.sakuratinker.core.library.tools.stats.STToolStats;
 import com.ssakura49.sakuratinker.core.tools.modifiers.base.BaseModifier;
 import java.awt.Color;
+
+import com.ssakura49.sakuratinker.core.utils.math.MathUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FastColor;
@@ -33,7 +34,7 @@ public class EnergyDisplayModifier extends BaseModifier implements ValidateModif
               ModifierHooks.VALIDATE,
               ModifierHooks.TOOLTIP,
               ModifierHooks.REMOVE,
-              EtSTLibHooks.CUSTOM_BAR);
+              STHooks.CUSTOM_BAR);
    }
 
    @Override
@@ -70,35 +71,18 @@ public class EnergyDisplayModifier extends BaseModifier implements ValidateModif
    }
 
    @Override
-   public String barId(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
+   public String getBarId(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
       return "sakuratinker:energy_bar";
    }
 
    @Override
    @OnlyIn(Dist.CLIENT)
-   public boolean showBar(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
+   public boolean shouldShowBar(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
       return tool.getStats().getInt(MAX_STAT) + tool.getStats().getInt(STToolStats.ENERGY_STORAGE) > 0;
    }
 
    @Override
-   @OnlyIn(Dist.CLIENT)
-   public Vec2 getBarXYSize(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
-      int currentEnergy = getEnergy(tool);
-      int maxEnergy = getMaxEnergy(tool);
-      if (maxEnergy > 0) {
-         int width = Math.min(13, 13 * currentEnergy / maxEnergy);
-         return new Vec2(width, 1);
-      }
-      return new Vec2(0, 0);
-   }
-
-   @Override
-   public Vec2 getBarXYPos(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
-      return new Vec2(2, 14 - barsHadBeenShown * 3);
-   }
-
-   @Override
-   public int getBarRGB(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
+   public int getBarColor(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
       float percent = (float) getEnergy(tool) / getMaxEnergy(tool);
       int r = (int) (0x1E + (0x3C - 0x1E) * percent);
       int g = (int) (0x90 + (0xB3 - 0x90) * percent);
@@ -107,12 +91,13 @@ public class EnergyDisplayModifier extends BaseModifier implements ValidateModif
    }
 
    @Override
-   public Vec2 getShadowXYSize(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
-      return barsHadBeenShown > 0 ? new Vec2(13, 1) : new Vec2(13, 2);
+   public float getBarProgress(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
+      int current = getEnergy(tool);
+      int max = getMaxEnergy(tool);
+      if (max <= 0) {
+         return 0.0F;
+      }
+      return (float) current / max;
    }
 
-   @Override
-   public Vec2 getShadowXYOffset(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
-      return new Vec2(0, 0.5f);
-   }
 }

@@ -1,10 +1,13 @@
 package com.ssakura49.sakuratinker_tools.client.screen.menu;
 
 import com.ssakura49.sakuratinker_tools.content.capability.ToolBulletSlotCapability;
+import com.ssakura49.sakuratinker_tools.content.item.BulletItem;
 import com.ssakura49.sakuratinker_tools.content.tool.item.RevolverItem;
 import com.ssakura49.sakuratinker_tools.init.STTMenus;
 import com.ssakura49.sakuratinker_tools.library.tools.item.ModifiableBulletItem;
 import javax.annotation.Nonnull;
+
+import lombok.Getter;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -16,19 +19,19 @@ import net.minecraftforge.items.SlotItemHandler;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 public class RevolverMenu extends AbstractContainerMenu {
+   @Getter
    private final Player player;
    private final ToolStack tool;
-   private final ToolBulletSlotCapability capability;
 
-   public static final int SLOT_SIZE = 6;
+    public static final int SLOT_SIZE = 6;
 
    public RevolverMenu(int id, Inventory playerInv, ItemStack stack) {
       super(STTMenus.REVOLVER.get(), id);
       this.player = playerInv.player;
       this.tool = ToolStack.from(stack);
-      this.capability = stack.getCapability(ForgeCapabilities.ITEM_HANDLER)
-              .map(h -> (ToolBulletSlotCapability) h)
-              .orElseGet(() -> new ToolBulletSlotCapability(() -> this.tool));
+       ToolBulletSlotCapability capability = stack.getCapability(ForgeCapabilities.ITEM_HANDLER)
+               .map(h -> (ToolBulletSlotCapability) h)
+               .orElseGet(() -> new ToolBulletSlotCapability(() -> this.tool));
 
       for (int i = 0; i < SLOT_SIZE; i++) {
          int x = 8 + i * 18;
@@ -36,7 +39,7 @@ public class RevolverMenu extends AbstractContainerMenu {
          this.addSlot(new SlotItemHandler(capability, i, x, y) {
             @Override
             public boolean mayPlace(@Nonnull ItemStack stack) {
-               return stack.getItem() instanceof ModifiableBulletItem;
+               return stack.getItem() instanceof BulletItem;
             }
 
             @Override
@@ -69,7 +72,7 @@ public class RevolverMenu extends AbstractContainerMenu {
    @Override
    public ItemStack quickMoveStack(Player player, int index) {
       Slot slot = this.slots.get(index);
-      if (slot == null || !slot.hasItem()) return ItemStack.EMPTY;
+      if (!slot.hasItem()) return ItemStack.EMPTY;
 
       ItemStack stackInSlot = slot.getItem();
       ItemStack copy = stackInSlot.copy();
@@ -89,10 +92,6 @@ public class RevolverMenu extends AbstractContainerMenu {
    @Override
    public void removed(Player player) {
       super.removed(player);
-      // capability已经写NBT
    }
 
-   public Player getPlayer() {
-      return player;
-   }
 }

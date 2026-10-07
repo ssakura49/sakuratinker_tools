@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:table_casting_material",
   "cast": {
-    "tag": "sakuratinker:casts/single_use/energy_unit"
+    "tag": "tconstruct:casts/single_use/energy_unit"
   },
   "cast_consumed": true,
   "item_cost": 4,

@@ -76,7 +76,7 @@ public class FirstFractalModifier extends BaseModifier {
                 PhantomSwordEntity sword = new PhantomSwordEntity(player.level(), player, targetPos);
                 sword.setZenithPart(selectedPart);
                 sword.setSpeed(moveSpeed);
-                if (CAN_TRIGGER_MODIFIER.get()) {
+                if (CAN_TRIGGER_MODIFIER) {
                     sword.setTool(displayStack);
                 } else {
                     sword.setTool(toolStack.createStack());
@@ -98,7 +98,7 @@ public class FirstFractalModifier extends BaseModifier {
             PhantomSwordEntity sword2 = new PhantomSwordEntity(player.level(), player, targetPos, itemStack);
             sword2.setZenithPart(selectedPart);
             sword2.setSpeed(moveSpeed);
-            if (CAN_TRIGGER_MODIFIER.get()) {
+            if (CAN_TRIGGER_MODIFIER) {
                 sword2.setTool(displayStack);
             } else {
                 sword2.setTool(toolStack.createStack());

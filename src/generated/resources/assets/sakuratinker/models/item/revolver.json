@@ -4,7 +4,8 @@
   "textures": {
     "grip": "sakuratinker:item/tool/revolver/grip",
     "handle": "sakuratinker:item/tool/revolver/handle",
-    "limb": "sakuratinker:item/tool/revolver/limb"
+    "limb": "sakuratinker:item/tool/revolver/limb",
+    "chamber": "sakuratinker:item/tool/revolver/chamber"
   },
   "modifier_roots": [
     "sakuratinker:item/tool/revolver/modifiers/"
@@ -21,6 +22,10 @@
     {
       "name": "limb",
       "index": 2
+    },
+    {
+      "name": "chamber",
+      "index": 3
     }
   ]
 }

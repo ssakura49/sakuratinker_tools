@@ -51,8 +51,8 @@ public class FirstFractal extends ModifiableSwordItem {
     private static final String TAG_PARTS = "blade_parts";
     private static final Supplier<List<CelestialBladePart>> DEFAULT_PARTS = Suppliers.memoize(FirstFractal::createZenithParts);
     private static final Supplier<List<CelestialBladePart>> DEFAULT_SLAUGHTER_PARTS = Suppliers.memoize(FirstFractal::createDefaultParts);
-    private static final Supplier<Boolean> ENABLE_ALL_RANDOM = STTConfig.COMMON.ENABLE_FIRST_FRACTAL_ALL_RANDOM_MATERIALS;
-    public static final Supplier<Boolean> CAN_TRIGGER_MODIFIER = STTConfig.COMMON.FIRST_FRACTAL_CAN_TRIGGER_MODIFIER;
+    private static final boolean ENABLE_ALL_RANDOM = STTConfig.COMMON.ENABLE_FIRST_FRACTAL_ALL_RANDOM_MATERIALS.get();
+    public static final boolean CAN_TRIGGER_MODIFIER = STTConfig.COMMON.FIRST_FRACTAL_CAN_TRIGGER_MODIFIER.get();
 
 
     public FirstFractal(Properties properties) {
@@ -145,7 +145,7 @@ public class FirstFractal extends ModifiableSwordItem {
             ToolDefinition definition = modifiable.getToolDefinition();
             //利用MISSING_MATERIALS钩子自动填充随机材质
             //匠魂自带的这个方法会根据工具定义要求的StatType自动寻找首个有效材质
-            MaterialNBT randomMaterials = ENABLE_ALL_RANDOM.get() ? fillTrulyRandom(definition) : definition.getHook(ToolHooks.MISSING_MATERIALS).fillMaterials(definition, RandomSource.create());
+            MaterialNBT randomMaterials = ENABLE_ALL_RANDOM ? fillTrulyRandom(definition) : definition.getHook(ToolHooks.MISSING_MATERIALS).fillMaterials(definition, RandomSource.create());
 
             return ToolStack.createTool(item, definition, randomMaterials).createStack();
         }

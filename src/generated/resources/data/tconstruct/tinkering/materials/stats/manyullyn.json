@@ -22,6 +22,7 @@
       "toughness": 0.1
     },
     "sakuratinker:charm_core": {},
+    "sakuratinker:charm_setting": {},
     "sakuratinker:chord": {
       "length": 8.0
     },
@@ -48,6 +49,10 @@
     },
     "sakuratinker:range_core": {
       "range": 15.0
+    },
+    "sakuratinker:revolver_chamber": {
+      "recoil": 0.8,
+      "spread": 2.0
     },
     "sakuratinker:yoyo_ring": {
       "max_collected": 1.0

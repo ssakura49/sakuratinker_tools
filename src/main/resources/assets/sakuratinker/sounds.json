@@ -1,0 +1,10 @@
+{
+	"revolver_shoot" : {
+		"sounds" : [
+			{
+				"name": "sakuratinker:revolver_shoot",
+				"volume": 1
+			}
+		]
+	}
+}

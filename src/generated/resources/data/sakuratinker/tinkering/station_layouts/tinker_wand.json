@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "goety"
+    }
+  ],
   "icon": {
     "item": "sakuratinker:tinker_wand",
     "nbt": "{Damage:0,tic_broken:0b,tic_display:1b,tic_materials:[\"tconstruct:ui_render#head\",\"tconstruct:ui_render#handle\",\"tconstruct:ui_render#extra\",\"tconstruct:ui_render#large\",\"tconstruct:ui_render#extra_large\"]}"

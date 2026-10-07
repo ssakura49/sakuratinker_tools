@@ -43,5 +43,6 @@ public record RangeMaterialStats(float range) implements IMaterialStats {
       TYPE = new MaterialStatType<>(ID, new RangeMaterialStats(0.0F), RecordLoadable.create(FloatLoadable.ANY.defaultField("range", 1.0F, true, RangeMaterialStats::range), RangeMaterialStats::new));
       RANGE_PREFIX = IMaterialStats.makeTooltipKey(SakuraTinker.getResource("range"));
       DESCRIPTION = ImmutableList.of(IMaterialStats.makeTooltip(SakuraTinker.getResource("tool.raneg_stats.description")));
+
    }
 }

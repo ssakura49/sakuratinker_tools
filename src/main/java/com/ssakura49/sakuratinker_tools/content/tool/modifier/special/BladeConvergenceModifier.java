@@ -1,5 +1,6 @@
 package com.ssakura49.sakuratinker_tools.content.tool.modifier.special;
 
+import com.ssakura49.sakura_library.entity.damagesource.AdvancedDamageSource;
 import com.ssakura49.sakura_library.entity.damagesource.LegacyDamageSource;
 import com.ssakura49.sakura_library.entity.damagesource.PercentageBypassInvulnerableTimeSource;
 import com.ssakura49.sakura_library.util.helper.PlayerAdvDataHelper;
@@ -23,7 +24,10 @@ public class BladeConvergenceModifier extends BaseModifier {
          int total = AdvancementCache.getTotal(player);
          int completed = PlayerAdvDataHelper.get(player);
          float percent = (float)completed / (float)total;
-         return (LegacyDamageSource)(percent <= 0.0F ? source : PercentageBypassInvulnerableTimeSource.any(source.typeHolder(), attacker, attacker, percent));
+         if (percent <= 0.0F) return source;
+         return new AdvancedDamageSource(source.typeHolder(), attacker, attacker, null)
+                 .setInvulnerableTimeBypassPercentage(percent)
+                 .setBypassInvulnerability();
       } else {
          return source;
       }

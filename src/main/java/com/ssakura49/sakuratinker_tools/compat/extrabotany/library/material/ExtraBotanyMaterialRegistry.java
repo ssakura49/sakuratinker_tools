@@ -6,6 +6,7 @@ import slimeknights.tconstruct.library.materials.IMaterialRegistry;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 
+@Deprecated
 public class ExtraBotanyMaterialRegistry {
     public static final MaterialStatsId FIRST_FRACTAL = new MaterialStatsId(SakuraTinker.getResource("first_fractal"));
 

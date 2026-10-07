@@ -35,7 +35,15 @@ public class STTToolItemModelProvider extends ToolModelProvider {
       this.generateCustomToolJson(STTItems.grappling_hook.asItem(), defTool, false, "grappling_hook", new String[]{"blade", "limb1", "limb2", "handle", "bowstring"}, (String[])null, new int[]{3, 1, 2, 0, 4}, new String[]{" broken"}, new String[]{"blade_broken"}, (double[])null);
       this.generateCustomToolJson(STTItems.laser_gun.asItem(), defTool, false, "laser_gun", new String[]{"barrel", "energy_unit", "laser_medium", "tough_handle"}, (String[])null, new int[]{0, 1, 2, 3}, new String[]{"broken"}, new String[]{"barrel_broken"}, (double[])null);
       this.generateCustomToolJson(STTItems.power_bank.asItem(), defTool, false, "power_bank", new String[]{"shell", "battery_1", "battery_2", "battery_3"}, (String[])null, new int[]{0, 1, 2, 3}, (String[])null, (String[])null, (double[])null);
-      this.generateCustomToolJson(STTItems.revolver.asItem(), defTool, false, "revolver", new String[]{"grip", "handle", "limb"}, (String[])null, new int[]{0, 1, 2}, (String[])null, (String[])null, (double[])null);
+      this.generateCustomToolJson(
+              STTItems.revolver.asItem(),
+              defTool,
+              false,
+              "revolver",
+              new String[]{"grip", "handle", "limb","chamber"},
+              (String[])null,
+              new int[]{0, 1, 2, 3 },
+              (String[])null, (String[])null, (double[])null);
 
       this.generateCustomToolJson(GoetyItem.tinker_wand.asItem(),defTool,false,"tinker_wand",new String[]{"soul_gatherer","large_plate","tough_handle","tough_binding"},(String[])null, new int[]{0, 1, 2, 3},(String[])null,(String[])null,(double[])null);
       this.generateCustomToolJson(
@@ -62,7 +70,17 @@ public class STTToolItemModelProvider extends ToolModelProvider {
          this.generateCustomToolJson((Item)STTItems.embeddedArmor.get(type), defArmor, false, "armor/embedded/" + typeName, armorParts, (String[])null, new int[]{0, 1, 2}, (String[])null, (String[])null, (double[])null);
       }
 
-      this.generateCustomToolJson(STTItems.tinker_charm.asItem(), defTool, false, "tinker_charm", new String[]{"charm_chain", "charm_core"}, new String[]{this.modId + ":item/tool/part/charm_chain/charm_chain", this.modId + ":item/tool/part/charm_core/charm_core"}, new int[]{1, 0}, (String[])null, (String[])null, (double[])null);
+      this.generateCustomToolJson(
+              STTItems.tinker_charm.asItem(),
+              defTool,
+              false,
+              "tinker_charm",
+              new String[]{"charm_chain", "charm_core","charm_setting"},
+              new String[]{
+                      this.modId + ":item/tool/tinker_charm/charm_chain",
+                      this.modId + ":item/tool/tinker_charm/charm_core",
+                      this.modId + ":item/tool/tinker_charm/charm_setting"},
+              new int[]{2, 1, 0}, (String[])null, (String[])null, (double[])null);
    }
 
    public @NotNull String getName() {

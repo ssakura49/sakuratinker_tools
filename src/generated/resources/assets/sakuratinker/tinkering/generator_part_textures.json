@@ -9,6 +9,10 @@
       "stat_type": "sakuratinker:charm_core"
     },
     {
+      "path": "sakuratinker:item/tool/part/charm_setting/charm_setting",
+      "stat_type": "sakuratinker:charm_setting"
+    },
+    {
       "path": "sakuratinker:item/tool/part/swift_blade/swift_blade",
       "stat_type": "tconstruct:head"
     },
@@ -105,6 +109,10 @@
       "stat_type": "sakuratinker:phantom_core"
     },
     {
+      "path": "sakuratinker:item/tool/part/revolver_chamber/revolver_chamber",
+      "stat_type": "sakuratinker:revolver_chamber"
+    },
+    {
       "allow_animated": false,
       "path": "sakuratinker:tinker_armor/embedded/upper_armor",
       "stat_type": "tconstruct:armor_plating"
@@ -142,6 +150,10 @@
     {
       "path": "sakuratinker:item/tool/tinker_charm/charm_chain",
       "stat_type": "sakuratinker:charm_chain"
+    },
+    {
+      "path": "sakuratinker:item/tool/tinker_charm/charm_setting",
+      "stat_type": "sakuratinker:charm_setting"
     },
     {
       "path": "sakuratinker:item/tool/tinker_charm/charm_core",
@@ -426,6 +438,10 @@
     {
       "path": "sakuratinker:item/tool/revolver/limb",
       "stat_type": "tconstruct:limb"
+    },
+    {
+      "path": "sakuratinker:item/tool/revolver/chamber",
+      "stat_type": "sakuratinker:revolver_chamber"
     },
     {
       "path": "sakuratinker:item/tool/revolver/handle",

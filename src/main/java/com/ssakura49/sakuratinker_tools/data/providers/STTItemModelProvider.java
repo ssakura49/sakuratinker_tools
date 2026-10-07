@@ -45,6 +45,13 @@ public class STTItemModelProvider extends ItemModelProvider {
 
       EBItem.getListParts().forEach(this::part);
       EBItem.getListCasts().forEach(this::cast);
+
+
+      generateItemModel(STTItems.bulletItem,"bullet");
+      generateItemModel(STTItems.lightningBulletItem,"bullet");
+      generateItemModel(STTItems.explosiveBulletItem,"bullet");
+      generateItemModel(STTItems.piercingBulletItem,"bullet");
+      generateItemModel(STTItems.ricochetBulletItem,"bullet");
    }
 
    public void generateItemModel(RegistryObject<Item> object, String typePath) {

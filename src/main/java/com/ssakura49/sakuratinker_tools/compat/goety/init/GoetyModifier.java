@@ -1,6 +1,5 @@
 package com.ssakura49.sakuratinker_tools.compat.goety.init;
 
-import com.ssakura49.sakura_library.util.annotation.LoadClass;
 import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;

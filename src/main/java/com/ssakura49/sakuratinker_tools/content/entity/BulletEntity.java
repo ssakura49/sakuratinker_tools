@@ -210,6 +210,7 @@ public class BulletEntity extends Projectile implements IEntityAdditionalSpawnDa
                     EquipmentSlot.MAINHAND,
                     true,
                     getDamage(),
+                    1,
                     false
             );
          }

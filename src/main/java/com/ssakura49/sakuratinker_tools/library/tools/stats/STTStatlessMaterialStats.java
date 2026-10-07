@@ -2,6 +2,8 @@ package com.ssakura49.sakuratinker_tools.library.tools.stats;
 
 import com.ssakura49.sakuratinker.SakuraTinker;
 import java.util.List;
+
+import lombok.Getter;
 import net.minecraft.network.chat.Component;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.materials.stats.IMaterialStats;
@@ -9,8 +11,10 @@ import slimeknights.tconstruct.library.materials.stats.MaterialStatType;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 
+@Getter
 public enum STTStatlessMaterialStats implements IMaterialStats {
    CHARM_CORE("charm_core"),
+   CHARM_SETTING("charm_setting"),
    SHELL("shell"),
    GUTTER("gutter");
 
@@ -22,11 +26,7 @@ public enum STTStatlessMaterialStats implements IMaterialStats {
       this.type = MaterialStatType.singleton(new MaterialStatsId(SakuraTinker.getResource(name)), this);
    }
 
-   public MaterialStatType<STTStatlessMaterialStats> getType() {
-      return this.type;
-   }
-
-   public List<Component> getLocalizedInfo() {
+    public List<Component> getLocalizedInfo() {
       return LOCALIZED;
    }
 
@@ -37,8 +37,4 @@ public enum STTStatlessMaterialStats implements IMaterialStats {
    public void apply(ModifierStatsBuilder builder, float scale) {
    }
 
-   // $FF: synthetic method
-   private static STTStatlessMaterialStats[] $values() {
-      return new STTStatlessMaterialStats[]{CHARM_CORE, SHELL, GUTTER};
-   }
 }

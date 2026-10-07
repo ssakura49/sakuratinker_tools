@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "sakuratinker:envelope_sand_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:envelope_red_sand_cast",
+      "required": false
+    }
+  ]
+}

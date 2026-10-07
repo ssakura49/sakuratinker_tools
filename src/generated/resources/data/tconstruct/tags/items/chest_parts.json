@@ -2,6 +2,7 @@
   "values": [
     "sakuratinker:charm_chain",
     "sakuratinker:charm_core",
+    "sakuratinker:charm_setting",
     "sakuratinker:swift_blade",
     "sakuratinker:swift_guard",
     "sakuratinker:laser_medium",
@@ -20,13 +21,32 @@
     "sakuratinker:chord",
     "sakuratinker:yoyo_body",
     "sakuratinker:scythe_blade",
+    "sakuratinker:revolver_chamber",
     "sakuratinker:range_core",
     "sakuratinker:fox_mask_part",
-    "sakuratinker:manu_script",
-    "sakuratinker:envelope",
-    "sakuratinker:book_mark",
-    "sakuratinker:gutter",
-    "sakuratinker:soul_gatherer",
-    "sakuratinker:phantom_core"
+    {
+      "id": "sakuratinker:manu_script",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:envelope",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:book_mark",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:gutter",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:soul_gatherer",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:phantom_core",
+      "required": false
+    }
   ]
 }

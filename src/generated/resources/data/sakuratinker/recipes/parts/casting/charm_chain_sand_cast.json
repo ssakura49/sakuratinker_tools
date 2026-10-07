@@ -1,9 +1,9 @@
 {
   "type": "tconstruct:table_casting_material",
   "cast": {
-    "tag": "sakuratinker:casts/single_use/charm_chain"
+    "tag": "tconstruct:casts/single_use/charm_chain"
   },
   "cast_consumed": true,
-  "item_cost": 6,
+  "item_cost": 4,
   "result": "sakuratinker:charm_chain"
 }

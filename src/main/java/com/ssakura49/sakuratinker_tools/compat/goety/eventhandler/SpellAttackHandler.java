@@ -25,8 +25,8 @@ public class SpellAttackHandler {
         MinecraftForge.EVENT_BUS.addListener(SpellAttackHandler::onLivingHurt);
     }
 
-    private static final Supplier<Boolean> bonus = STTConfig.COMMON.TINKER_DARK_WAND_ATTACK_BONUS;
-    private static final Supplier<Boolean> disabled = STTConfig.COMMON.TINKER_DARK_WAND_TRIGGER_MODIFIER;
+    private static final boolean bonus = STTConfig.COMMON.TINKER_DARK_WAND_ATTACK_BONUS.get();
+    private static final boolean disabled = STTConfig.COMMON.TINKER_DARK_WAND_TRIGGER_MODIFIER.get();
 
     public static void onLivingHurt(LivingHurtEvent event) {
         DamageSource source = event.getSource();
@@ -37,12 +37,12 @@ public class SpellAttackHandler {
             if (!wandStack.isEmpty() && wandStack.getItem() instanceof ModifiableWandItem) {
                 ToolStack tool = ToolStack.from(wandStack);
                 if (tool.getModifierLevel(GoetyModifier.G_SOUL_INFUSION.get())>0) {
-                    boolean a = bonus.get();
+                    boolean a = bonus;
                     float baseDamage = tool.getStats().get(ToolStats.ATTACK_DAMAGE);
                     float soulPower = tool.getStats().get(GoetyToolStats.SOUL_POWER);
                     float soulIncrease = tool.getStats().get(GoetyToolStats.SOUL_INCREASE);
                     if (!tool.isBroken()) {
-                        boolean dis = disabled.get();
+                        boolean dis = disabled;
                         if (!dis) {
                             @SuppressWarnings("removal")
                             ToolAttackContext context = new ToolAttackContext(

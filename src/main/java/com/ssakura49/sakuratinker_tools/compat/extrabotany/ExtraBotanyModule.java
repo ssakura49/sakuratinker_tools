@@ -20,6 +20,6 @@ public class ExtraBotanyModule implements CompatManager.ICompatModule {
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(ExtraBotanyMaterialRegistry::init);
+        //event.enqueueWork(ExtraBotanyMaterialRegistry::init);
     }
 }

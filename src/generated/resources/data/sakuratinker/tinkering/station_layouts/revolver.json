@@ -24,6 +24,15 @@
     },
     {
       "filter": {
+        "item": "sakuratinker:revolver_chamber"
+      },
+      "icon": "sakuratinker:revolver_chamber",
+      "translation_key": "item.sakuratinker.revolver_chamber",
+      "x": 60,
+      "y": 40
+    },
+    {
+      "filter": {
         "item": "tconstruct:tool_handle"
       },
       "icon": "tconstruct:tool_handle",

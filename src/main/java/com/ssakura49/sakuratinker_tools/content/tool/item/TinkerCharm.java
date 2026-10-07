@@ -33,7 +33,7 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import top.theillusivec4.curios.api.SlotContext;
 
 public class TinkerCharm extends ModifiableCurioItem {
-   private static final Supplier<Boolean> CHARMS_ALLOW_MULTIPLE = STTConfig.COMMON.CHARMS_ALLOW_MULTIPLE;
+   private static final boolean CHARMS_ALLOW_MULTIPLE = STTConfig.COMMON.CHARMS_ALLOW_MULTIPLE.get();
 
    public TinkerCharm(Item.Properties properties, ToolDefinition toolDefinition) {
       super(properties, toolDefinition);
@@ -51,7 +51,7 @@ public class TinkerCharm extends ModifiableCurioItem {
 
    @Override
    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
-      if (CHARMS_ALLOW_MULTIPLE.get()) {
+      if (CHARMS_ALLOW_MULTIPLE) {
          return true;
       }
       return super.canEquip(slotContext,stack);

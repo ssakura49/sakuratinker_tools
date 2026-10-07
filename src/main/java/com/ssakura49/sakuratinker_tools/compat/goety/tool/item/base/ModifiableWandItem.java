@@ -110,6 +110,7 @@ import slimeknights.tconstruct.library.modifiers.modules.build.RarityModule;
 import slimeknights.tconstruct.library.tools.IndestructibleItemEntity;
 import slimeknights.tconstruct.library.tools.capability.ToolCapabilityProvider;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
+import slimeknights.tconstruct.library.tools.definition.module.display.ToolNameHook;
 import slimeknights.tconstruct.library.tools.definition.module.mining.IsEffectiveToolHook;
 import slimeknights.tconstruct.library.tools.definition.module.mining.MiningSpeedToolHook;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
@@ -1310,11 +1311,11 @@ public class ModifiableWandItem extends DarkWand implements IWand, IModifiableDi
       return stack.getCount() == 1 && ModifierUtil.canPerformAction(ToolStack.from(stack), toolAction);
    }
    @Override
-   public Component getName(ItemStack stack) {
-      return TooltipUtil.getDisplayName(stack, this.getToolDefinition());
+   public @NotNull Component getName(@NotNull ItemStack stack) {
+      return ToolNameHook.getName(getToolDefinition(),stack);
    }
    @Override
-   public int getDefaultTooltipHideFlags(ItemStack stack) {
+   public int getDefaultTooltipHideFlags(@NotNull ItemStack stack) {
       return TooltipUtil.getModifierHideFlags(this.getToolDefinition());
    }
 

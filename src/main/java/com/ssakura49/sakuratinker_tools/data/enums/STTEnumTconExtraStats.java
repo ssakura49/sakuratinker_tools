@@ -4,19 +4,8 @@ import com.ssakura49.sakuratinker_tools.compat.goety.tool.stats.SoulGathererMate
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.BookMarkMaterialStats;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.EnvelopeMaterialStats;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.ManuScriptMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.AlchemicalCoreMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.AxleMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.BattleFlagMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.CharmChainMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.ChordMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.EnergyUnitMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.FletchingMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.FoxMaskMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.LaserMediumMaterialStats;
+import com.ssakura49.sakuratinker_tools.library.tools.stats.*;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.tool.stats.PhantomCoreMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.RangeMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.STTStatlessMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.YoYoRingMaterialStats;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.SchoolType;
 import java.util.Map;
@@ -27,17 +16,20 @@ import slimeknights.tconstruct.library.materials.stats.IMaterialStats;
 public enum STTEnumTconExtraStats {
    bone(new IMaterialStats[]{
            STTStatlessMaterialStats.CHARM_CORE,
+           STTStatlessMaterialStats.CHARM_SETTING,
            new CharmChainMaterialStats(0.02F, 8, 0.05F, 0.03F, 0.05F, 0.0F),
            new PhantomCoreMaterialStats(1.0F, 8.0F,1.1f),
            new AxleMaterialStats(100.0F, 30.0F, 3.0F),
            new YoYoRingMaterialStats(1.0F),
            new RangeMaterialStats(5.0F),
            new FletchingMaterialStats(0.2F, 0.2F),
-           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:blood"), 0.1F))
+           new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:blood"), 0.1F)),
+           new RevolverChamberMaterialStats(1,8)
    }),
 
    cobalt(new IMaterialStats[]{
            STTStatlessMaterialStats.CHARM_CORE,
+           STTStatlessMaterialStats.CHARM_SETTING,
            new CharmChainMaterialStats(0.4F, 18, 0.1F, 0.1F, 0.15F, 0.15F),
            new EnergyUnitMaterialStats(50000, 0.3F),
            new LaserMediumMaterialStats(15.0F, 0.6F, 8),
@@ -47,11 +39,13 @@ public enum STTEnumTconExtraStats {
            new YoYoRingMaterialStats(1.0F),
            new ChordMaterialStats(6.0F),
            new RangeMaterialStats(10.0F),
-           new BookMarkMaterialStats(0.1F, 12)
+           new BookMarkMaterialStats(0.1F, 12),
+           new RevolverChamberMaterialStats(2,3)
    }),
 
    copper(new IMaterialStats[]{
            STTStatlessMaterialStats.CHARM_CORE,
+           STTStatlessMaterialStats.CHARM_SETTING,
            new CharmChainMaterialStats(0.0F, 8, 0.05F, 0.0F, 0.05F, 0.05F),
            new EnergyUnitMaterialStats(15000, 0.15F),
            new LaserMediumMaterialStats(8.0F, 1.5F, 2),
@@ -59,11 +53,13 @@ public enum STTEnumTconExtraStats {
            new AxleMaterialStats(80.0F, 30.0F, 3.5F),
            new YoYoRingMaterialStats(1.0F),
            new RangeMaterialStats(5.0F),
-           new FoxMaskMaterialStats(5)
+           new FoxMaskMaterialStats(5),
+           new RevolverChamberMaterialStats(3,8)
    }),
 
    manyullyn(new IMaterialStats[]{
            STTStatlessMaterialStats.CHARM_CORE,
+           STTStatlessMaterialStats.CHARM_SETTING,
            new CharmChainMaterialStats(0.05F, 30, 0.25F, 0.1F, 0.2F, 0.2F),
            new EnergyUnitMaterialStats(80000, 0.6F),
            new LaserMediumMaterialStats(40.0F, 0.4F, 12),
@@ -74,11 +70,13 @@ public enum STTEnumTconExtraStats {
            new AlchemicalCoreMaterialStats(2.0F, 0.4F),
            new RangeMaterialStats(15.0F),
            new ManuScriptMaterialStats(5.0F, 0.3F, 0.2F, 20.0F, 1000.0F),
-           new BookMarkMaterialStats(0.15F, 15)
+           new BookMarkMaterialStats(0.15F, 15),
+           new RevolverChamberMaterialStats(0.8f,2f)
    }),
 
    wood(new IMaterialStats[]{
            STTStatlessMaterialStats.CHARM_CORE,
+           STTStatlessMaterialStats.CHARM_SETTING,
            new CharmChainMaterialStats(0.1F, 8, 0.05F, 0.0F, 0.0F, 0.0F),
            new EnergyUnitMaterialStats(5000, 0.1F),
            new LaserMediumMaterialStats(5.0F, 2.0F, 1),
@@ -88,17 +86,20 @@ public enum STTEnumTconExtraStats {
            new SoulGathererMaterialStats(1.0F, 0.0F),
            new ManuScriptMaterialStats(0.0F, 0.05F, 0.0F, 2.0F, 100.0F),
            new EnvelopeMaterialStats(Map.of(ResourceLocation.parse("irons_spellbooks:nature"), 0.05F)),
-           new BookMarkMaterialStats(0.02F, 4)
+           new BookMarkMaterialStats(0.02F, 4),
+           new RevolverChamberMaterialStats(1,8)
    }),
 
    skyslime_vine(new IMaterialStats[]{
            STTStatlessMaterialStats.CHARM_CORE,
+           STTStatlessMaterialStats.CHARM_SETTING,
            new CharmChainMaterialStats(-0.1F, 8, 0.0F, 0.0F, 0.05F, 0.05F),
            new ChordMaterialStats(8.0F)
    }),
 
    nahualt(new IMaterialStats[]{
            STTStatlessMaterialStats.CHARM_CORE,
+           STTStatlessMaterialStats.CHARM_SETTING,
            new CharmChainMaterialStats(0.05F, 14, 0.05F, 0.05F, 0.1F, 0.1F),
            new PhantomCoreMaterialStats(2.0F, 16.0F,1.25f)
    }),

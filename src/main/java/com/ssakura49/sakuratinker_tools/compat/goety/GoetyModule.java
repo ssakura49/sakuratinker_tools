@@ -19,6 +19,6 @@ public class GoetyModule implements CompatManager.ICompatModule {
    }
 
    public void commonSetup(FMLCommonSetupEvent event) {
-      event.enqueueWork(GoetyMaterialRegistry::init);
+      //event.enqueueWork(GoetyMaterialRegistry::init);
    }
 }

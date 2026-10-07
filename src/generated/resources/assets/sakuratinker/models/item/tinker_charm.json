@@ -2,8 +2,9 @@
   "loader": "tconstruct:tool",
   "parent": "forge:item/default-tool",
   "textures": {
-    "charm_chain": "sakuratinker:item/tool/part/charm_chain/charm_chain",
-    "charm_core": "sakuratinker:item/tool/part/charm_core/charm_core"
+    "charm_chain": "sakuratinker:item/tool/tinker_charm/charm_chain",
+    "charm_core": "sakuratinker:item/tool/tinker_charm/charm_core",
+    "charm_setting": "sakuratinker:item/tool/tinker_charm/charm_setting"
   },
   "modifier_roots": [
     "sakuratinker:item/tool/tinker_charm/modifiers/"
@@ -11,10 +12,14 @@
   "parts": [
     {
       "name": "charm_chain",
-      "index": 1
+      "index": 2
     },
     {
       "name": "charm_core",
+      "index": 1
+    },
+    {
+      "name": "charm_setting",
       "index": 0
     }
   ]

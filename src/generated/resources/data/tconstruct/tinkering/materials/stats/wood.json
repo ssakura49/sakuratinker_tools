@@ -18,6 +18,7 @@
       "toughness": 0.0
     },
     "sakuratinker:charm_core": {},
+    "sakuratinker:charm_setting": {},
     "sakuratinker:energy_unit": {
       "durability": 0.1,
       "max_energy": 5000
@@ -42,6 +43,10 @@
       "mana_regen": 0.05,
       "mana_value": 100.0,
       "spell_damage": 2.0
+    },
+    "sakuratinker:revolver_chamber": {
+      "recoil": 1.0,
+      "spread": 8.0
     },
     "sakuratinker:soul_gatherer": {
       "soul_power": 1.0

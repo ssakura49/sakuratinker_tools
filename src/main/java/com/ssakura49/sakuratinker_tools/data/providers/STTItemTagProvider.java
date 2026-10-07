@@ -3,11 +3,14 @@ package com.ssakura49.sakuratinker_tools.data.providers;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
 
+import com.ssakura49.sakuratinker.SakuraTinker;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
 import com.ssakura49.sakuratinker_tools.init.STTItems;
+import com.ssakura49.sakuratinker_tools.init.STTTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
@@ -36,35 +39,36 @@ public class STTItemTagProvider extends ItemTagsProvider {
       var goldCasts = this.tag(TinkerTags.Items.GOLD_CASTS);
       var sandCasts = this.tag(TinkerTags.Items.SAND_CASTS);
       var redSandCasts = this.tag(TinkerTags.Items.RED_SAND_CASTS);
+
       var multiUseCasts = this.tag(TinkerTags.Items.MULTI_USE_CASTS);
       var singleUseCasts = this.tag(TinkerTags.Items.SINGLE_USE_CASTS);
-
-      multiUseCasts.addTag(TinkerTags.Items.GOLD_CASTS);
-      singleUseCasts.addTag(TinkerTags.Items.SAND_CASTS);
-      singleUseCasts.addTag(TinkerTags.Items.RED_SAND_CASTS);
 
       for (CastItemObject cast : STTItems.getListCasts()) {
          goldCasts.add(cast.get());
          sandCasts.add(cast.getSand());
          redSandCasts.add(cast.getRedSand());
+         addPartCastTags(cast, true, multiUseCasts, singleUseCasts);
       }
 
       for (CastItemObject cast : ISSItem.getListCasts()) {
          goldCasts.addOptional(cast.getId());
          sandCasts.addOptional(cast.getSand().builtInRegistryHolder().key().location());
          redSandCasts.addOptional(cast.getRedSand().builtInRegistryHolder().key().location());
+         addPartCastTags(cast, false, multiUseCasts, singleUseCasts);
       }
 
       for (CastItemObject cast : GoetyItem.getListCasts()) {
          goldCasts.addOptional(cast.getId());
          sandCasts.addOptional(cast.getSand().builtInRegistryHolder().key().location());
          redSandCasts.addOptional(cast.getRedSand().builtInRegistryHolder().key().location());
+         addPartCastTags(cast, false, multiUseCasts, singleUseCasts);
       }
 
       for (CastItemObject cast : EBItem.getListCasts()) {
          goldCasts.addOptional(cast.getId());
          sandCasts.addOptional(cast.getSand().builtInRegistryHolder().key().location());
          redSandCasts.addOptional(cast.getRedSand().builtInRegistryHolder().key().location());
+         addPartCastTags(cast, false, multiUseCasts, singleUseCasts);
       }
 
 
@@ -91,15 +95,15 @@ public class STTItemTagProvider extends ItemTagsProvider {
       var chestParts = TinkerTags.Items.CHEST_PARTS;
       var chestPartsTag = this.tag(chestParts);
       STTItems.getListParts().forEach(part -> chestPartsTag.add(part.get()));
-      ISSItem.getListParts().forEach(part -> chestPartsTag.add(part.get()));
-      GoetyItem.getListParts().forEach(part -> chestPartsTag.add(part.get()));
-      EBItem.getListParts().forEach(part->chestPartsTag.add(part.get()));
+      ISSItem.getListParts().forEach(part -> chestPartsTag.addOptional(part.getId()));
+      GoetyItem.getListParts().forEach(part -> chestPartsTag.addOptional(part.getId()));
+      EBItem.getListParts().forEach(part -> chestPartsTag.addOptional(part.getId()));
 
-      /** 所有材料/部件物品，用于填充 JEI 或书籍中的列表 */
-      STTItems.getListParts().forEach(part -> toolPartsTag.add(part.get()));
-      ISSItem.getListParts().forEach(part -> toolPartsTag.add(part.get()));
-      GoetyItem.getListParts().forEach(part -> toolPartsTag.add(part.get()));
-      EBItem.getListParts().forEach(part -> toolPartsTag.add(part.get()));
+//      /** 所有材料/部件物品，用于填充 JEI 或书籍中的列表 */
+//      STTItems.getListParts().forEach(part -> toolPartsTag.add(part.get()));
+//      ISSItem.getListParts().forEach(part -> toolPartsTag.add(part.get()));
+//      GoetyItem.getListParts().forEach(part -> toolPartsTag.add(part.get()));
+//      EBItem.getListParts().forEach(part -> toolPartsTag.add(part.get()));
 
       /** 猪灵可能会用来与玩家交易的工具部件（包含下界随机材料） */
       var barteredParts = TinkerTags.Items.BARTERED_PARTS;
@@ -418,25 +422,16 @@ public class STTItemTagProvider extends ItemTagsProvider {
       var scythesTag = this.tag(scythes);
 
       STTItems.getListTools().forEach(tool ->
-              this.addToolTags(tool.get(),
-                      modifiable,multipartTool,durability
+              this.addToolTags(tool,
+                      modifiable,multipartTool
               )
       );
-      ISSItem.getListTools().forEach(tool->
-              this.addToolTags(tool.get(),
-                      modifiable,multipartTool,durability
-              )
-      );
-      GoetyItem.getListTools().forEach(tool->
-              this.addToolTags(tool.get(),
-                      modifiable,multipartTool,durability
-              )
-      );
-      EBItem.getListTools().forEach(tool->
-              this.addToolTags(tool.get(),
-                      modifiable,multipartTool,durability
-              )
-      );
+      ISSItem.getListTools().forEach(tool ->
+              this.addOptionalToolTags(tool, modifiable, multipartTool));
+      GoetyItem.getListTools().forEach(tool ->
+              this.addOptionalToolTags(tool, modifiable, multipartTool));
+      EBItem.getListTools().forEach(tool ->
+              this.addOptionalToolTags(tool, modifiable, multipartTool));
 
 
       this.addToolTags(STTItems.swift_sword.get(),
@@ -481,7 +476,10 @@ public class STTItemTagProvider extends ItemTagsProvider {
       );
 
       this.addToolTags(STTItems.tinker_bullet.get(),
-              TinkerTags.Items.AMMO
+              DURABILITY,
+              MELEE,
+              MELEE_PRIMARY,
+              MELEE_WEAPON
       );
       this.addToolTags(STTItems.shuriken.get(),
               TinkerTags.Items.MELEE_PRIMARY,
@@ -524,6 +522,43 @@ public class STTItemTagProvider extends ItemTagsProvider {
             case BOOTS -> this.addToolTags(armorItem, boots);
          }
       });
+
+      var curioTag = this.tag(STTTags.Items.CURIO_MODIFIABLE);
+      curioTag.addTag(STTTags.Items.TINKER_CHARM);
+      curioTag.add(STTItems.tinker_charm.get());
+      curioTag.add(STTItems.power_bank.get());
+      curioTag.addOptional(SakuraTinker.getResource("tinker_spell_book"));
+
+      this.tag(STTTags.Items.TINKER_CHARM).add(STTItems.tinker_charm.get());
+      this.tag(TinkerTags.Items.MODIFIABLE).addTag(STTTags.Items.CURIO_MODIFIABLE);
+
+      this.tag(MODIFIABLE).addTags(STTTags.Items.CURIO_MODIFIABLE);
+   }
+
+   private void addPartCastTags(CastItemObject cast, boolean own,
+                                TagsProvider.TagAppender<Item> multiUseCasts,
+                                TagsProvider.TagAppender<Item> singleUseCasts) {
+      String path = cast.getId().getPath();
+      String name = path.endsWith("_cast")
+              ? path.substring(0, path.length() - "_cast".length()) : path;
+      TagKey<Item> multiKey = TagKey.create(Registries.ITEM,
+              ResourceLocation.fromNamespaceAndPath("tconstruct", "casts/multi_use/" + name));
+      TagKey<Item> singleKey = TagKey.create(Registries.ITEM,
+              ResourceLocation.fromNamespaceAndPath("tconstruct", "casts/single_use/" + name));
+      var multiTag = this.tag(multiKey);
+      var singleTag = this.tag(singleKey);
+      if (own) {
+         multiTag.add(cast.get());
+         singleTag.add(cast.getSand()).add(cast.getRedSand());
+      } else {
+         multiTag.addOptional(cast.getId());
+         singleTag.addOptional(cast.getSand().builtInRegistryHolder().key().location())
+                 .addOptional(cast.getRedSand().builtInRegistryHolder().key().location());
+      }
+      multiUseCasts.addTag(multiKey);
+      singleUseCasts.addTag(singleKey);
+
+
    }
 
    @SafeVarargs
@@ -531,6 +566,14 @@ public class STTItemTagProvider extends ItemTagsProvider {
       Item item = tool.asItem();
       for (TagKey<Item> tag : tags) {
          this.tag(tag).add(item);
+      }
+   }
+
+   @SafeVarargs
+   private final void addOptionalToolTags(ItemLike tool, TagKey<Item>... tags) {
+      ResourceLocation id = tool.asItem().builtInRegistryHolder().key().location();
+      for (TagKey<Item> tag : tags) {
+         this.tag(tag).addOptional(id);
       }
    }
 }

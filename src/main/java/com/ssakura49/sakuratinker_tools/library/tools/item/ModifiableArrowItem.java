@@ -6,6 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+
+import com.ssakura49.sakuratinker.STConfig;
+import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileBuild;
+import com.ssakura49.sakuratinker_tools.content.entity.TinkerArrowEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -18,6 +22,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -65,7 +71,7 @@ import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import slimeknights.tconstruct.library.utils.Util;
 import slimeknights.tconstruct.tools.TinkerToolActions;
 
-public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay {
+public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay, IProjectileBuild {
    private final ToolDefinition toolDefinition;
    private ItemStack toolForRendering;
 
@@ -73,6 +79,28 @@ public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay
       super(properties);
       this.toolDefinition = toolDefinition;
    }
+
+   @Override
+   public @NotNull AbstractArrow createArrow(Level level, ItemStack stack, LivingEntity entity) {
+      TinkerArrowEntity arrow = (TinkerArrowEntity)this.createProjectile(stack, level, entity);
+      this.addInfoToProjectile(arrow, stack, level, entity);
+      arrow.onCreate(stack,entity);
+      return arrow;
+   }
+
+   @Override
+   public Projectile createProjectile(ItemStack tool, Level level, LivingEntity entity) {
+      return new TinkerArrowEntity(level, entity);
+   }
+
+   @Override
+   public void addInfoToProjectile(Projectile projectile, ItemStack tool, Level level, LivingEntity entity) {
+      if (projectile instanceof TinkerArrowEntity tinkerArrow) {
+         tinkerArrow.onCreate(tool,entity);
+      }
+
+   }
+
 
    @Override
    public boolean isNotReplaceableByPickAction(ItemStack stack, Player player, int inventorySlot) {
@@ -331,11 +359,11 @@ public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay
                InteractionResult result = entry.getHook(ModifierHooks.GENERAL_INTERACT)
                        .onToolUse(tool, entry, playerIn, hand, InteractionSource.RIGHT_CLICK);
                if (result.consumesAction()) {
-                  return new InteractionResultHolder(result, stack);
+                  return new InteractionResultHolder<>(result, stack);
                }
             }
          }
-         return new InteractionResultHolder(ToolInventoryCapability.tryOpenContainer(stack, tool, playerIn, Util.getSlotType(hand)), stack);
+         return new InteractionResultHolder<>(ToolInventoryCapability.tryOpenContainer(stack, tool, playerIn, Util.getSlotType(hand)), stack);
       }
    }
 

@@ -9,15 +9,22 @@ import com.ssakura49.sakuratinker_tools.client.renderer.entity.MiniGrapplingHook
 import com.ssakura49.sakuratinker_tools.client.renderer.entity.ShurikenRenderer;
 import com.ssakura49.sakuratinker_tools.client.renderer.entity.TinkerArrowEntityRenderer;
 import com.ssakura49.sakuratinker_tools.client.renderer.entity.YoyoRenderer;
+import com.ssakura49.sakuratinker_tools.client.screen.RevolverScreen;
 import com.ssakura49.sakuratinker_tools.init.STTEntities;
 import java.util.Collection;
 import java.util.Objects;
+
+import com.ssakura49.sakuratinker_tools.init.STTKeys;
+import com.ssakura49.sakuratinker_tools.init.STTMenus;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import slimeknights.tconstruct.gadgets.client.FancyItemFrameRenderer;
 
 @EventBusSubscriber(
@@ -48,5 +55,15 @@ public class ClientModEventHandler {
       event.registerEntityRenderer(STTEntities.BULLET.get(), BulletRenderer::new);
       event.registerEntityRenderer(STTEntities.CELESTIAL_BLADE_ENTITY.get(), CelestialBladeEntityRenderer::new);
       event.registerEntityRenderer(STTEntities.SHURIKEN_ENTITY.get(), ShurikenRenderer::new);
+   }
+
+   @SubscribeEvent
+   public static void clientSetup(FMLClientSetupEvent event) {
+      MenuScreens.register(STTMenus.REVOLVER.get(), RevolverScreen::new);
+   }
+
+   @SubscribeEvent
+   public static void registerKeys(RegisterKeyMappingsEvent event) {
+      STTKeys.registerKeyBindings();
    }
 }

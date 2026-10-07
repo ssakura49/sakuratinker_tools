@@ -5,6 +5,7 @@
       "parts": [
         "tconstruct:bow_limb",
         "tconstruct:bow_grip",
+        "sakuratinker:revolver_chamber",
         "tconstruct:tool_handle"
       ],
       "primary_part": 0
@@ -12,6 +13,10 @@
     {
       "type": "tconstruct:default_materials",
       "materials": [
+        {
+          "type": "tconstruct:random",
+          "tier": 1
+        },
         {
           "type": "tconstruct:random",
           "tier": 1

@@ -13,7 +13,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    // id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'io.freefair.lombok' version '8.6'
 }
 
@@ -173,7 +173,7 @@ dependencies {
     implementation fg.deobf("com.ssakura49.sakura_library:sakura_library:1.20.1-1.0.4")
     implementation fg.deobf("com.ssakura49.tinkercuriolib:tinkercuriolib:1.0.3")
     implementation fg.deobf("com.ssakura49.sakuratinker:sakuratinker_core:1.0.1")
-    implementation fg.deobf("curse.maven:etst-lib-1206379:7732390")
+    //implementation fg.deobf("curse.maven:etst-lib-1206379:7732390")
 
 //    implementation fg.deobf(files('libs/sakura_library-1.20.1-1.0.4.jar'))
 //    implementation fg.deobf(files('libs/tinkercuriolib-1.0.3.jar'))

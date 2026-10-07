@@ -3,14 +3,12 @@ package com.ssakura49.sakuratinker_tools;
 import com.ssakura49.sakura_library.api.client.creativetab.SideBarCategory;
 import com.ssakura49.sakura_library.api.client.creativetab.TabSideBarManager;
 import com.ssakura49.sakuratinker_tools.compat.CompatManager;
-import com.ssakura49.sakuratinker_tools.init.STTEntities;
-import com.ssakura49.sakuratinker_tools.init.STTEntityDataSerializers;
-import com.ssakura49.sakuratinker_tools.init.STTItems;
-import com.ssakura49.sakuratinker_tools.init.STTMaterialRegistry;
-import com.ssakura49.sakuratinker_tools.init.STTMenus;
-import com.ssakura49.sakuratinker_tools.init.STTTabs;
-import com.ssakura49.sakuratinker_tools.init.STTTags;
+import com.ssakura49.sakuratinker_tools.content.capability.ToolBulletSlotCapability;
+import com.ssakura49.sakuratinker_tools.init.*;
+
 import java.util.function.Supplier;
+
+import com.ssakura49.sakuratinker_tools.network.PacketHandler;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -24,6 +22,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
+import slimeknights.tconstruct.library.tools.capability.ToolCapabilityProvider;
 import slimeknights.tconstruct.library.tools.helper.ToolBuildHandler;
 import slimeknights.tconstruct.library.tools.part.ToolPartItem;
 import slimeknights.tconstruct.tools.stats.HeadMaterialStats;
@@ -39,15 +38,19 @@ public class STTModule {
       STTItems.init(bus);
       STTTags.init();
       STTMenus.MENUS.register(bus);
+      STTSound.SOUNDS.register(bus);
       CompatManager.initAll(bus);
-      STTConfig.init();
+      PacketHandler.init();
    }
 
    @SubscribeEvent
    public static void commonSetup(FMLCommonSetupEvent event) {
-      event.enqueueWork(STTMaterialRegistry::init);
-   }
 
+       event.enqueueWork(STTMaterialRegistry::init);
+       event.enqueueWork(()->
+               ToolCapabilityProvider.register(((stack, tool) -> new ToolBulletSlotCapability.Provider(tool)))
+       );
+   }
    @SubscribeEvent
    public static void clientSetup(FMLClientSetupEvent event) {
       event.enqueueWork(() -> {

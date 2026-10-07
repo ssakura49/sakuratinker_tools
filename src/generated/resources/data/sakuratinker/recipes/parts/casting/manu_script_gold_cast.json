@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:table_casting_material",
   "cast": {
-    "tag": "sakuratinker:casts/multi_use/manu_script"
+    "tag": "tconstruct:casts/multi_use/manu_script"
   },
   "conditions": [
     {

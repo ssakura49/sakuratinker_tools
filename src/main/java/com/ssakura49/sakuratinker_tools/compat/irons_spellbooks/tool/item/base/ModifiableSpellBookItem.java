@@ -58,6 +58,7 @@ import slimeknights.tconstruct.library.modifiers.modules.build.RarityModule;
 import slimeknights.tconstruct.library.tools.IndestructibleItemEntity;
 import slimeknights.tconstruct.library.tools.capability.ToolCapabilityProvider;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
+import slimeknights.tconstruct.library.tools.definition.module.display.ToolNameHook;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.tools.helper.ToolBuildHandler;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
@@ -269,7 +270,7 @@ public class ModifiableSpellBookItem extends SpellBook implements IModifiableDis
    }
 
    public @NotNull Component getName(@NotNull ItemStack stack) {
-      return TooltipUtil.getDisplayName(stack, this.getToolDefinition());
+      return ToolNameHook.getName(getToolDefinition(), stack);
    }
 
    public int getDefaultTooltipHideFlags(ItemStack stack) {

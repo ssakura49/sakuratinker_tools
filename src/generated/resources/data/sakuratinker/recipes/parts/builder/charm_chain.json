@@ -1,6 +1,6 @@
 {
   "type": "tconstruct:part_builder",
-  "cost": 6,
+  "cost": 4,
   "pattern": "sakuratinker:charm_chain",
   "pattern_item": [
     {

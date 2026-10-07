@@ -3,13 +3,7 @@ package com.ssakura49.sakuratinker_tools.init;
 import com.ssakura49.sakuratinker.core.STCrModule;
 import com.ssakura49.sakuratinker.core.library.events.LoadRegistryClassEvent;
 import com.ssakura49.sakuratinker_tools.SakuraTinkerTools;
-import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.BladeConvergenceModifier;
-import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.EnergyDisplayModifier;
-import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.EnergySurge;
-import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.HeavyModifier;
-import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.RevolverBulletModifier;
-import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.ScytheSweepingModifier;
-import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.SwiftSwordTechniqueModifier;
+import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.*;
 import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.battleflag.AttackModifier;
 import com.ssakura49.sakuratinker_tools.content.tool.modifier.special.battleflag.DefenceModifier;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,5 +23,5 @@ public class STTModifiers {
    public static StaticModifier<RevolverBulletModifier> REVOLVER_BULLET = STCrModule.MODIFIERS.register("revolver_bullet", RevolverBulletModifier::new);
    public static StaticModifier<ScytheSweepingModifier> SCYTHE_SWEEPING = STCrModule.MODIFIERS.register("scythe_sweeping", ScytheSweepingModifier::new);
    public static StaticModifier<SwiftSwordTechniqueModifier> SWIFT_SWORD_TECHNIQUE = STCrModule.MODIFIERS.register("swift_sword_technique", SwiftSwordTechniqueModifier::new);
-
+   public static StaticModifier<ArrowAmmoModifier> arrowAmmo = STCrModule.MODIFIERS.register("arrow_ammo",ArrowAmmoModifier::new);
 }

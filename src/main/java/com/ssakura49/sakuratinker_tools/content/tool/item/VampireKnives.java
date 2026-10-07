@@ -43,10 +43,10 @@ import slimeknights.tconstruct.library.tools.stat.ToolStats;
 public class VampireKnives extends ModifiableItem {
    private static final float ANGLE_OFFSET_15 = 15.0f;
    private static final float ANGLE_OFFSET_30 = 30.0f;
-   private static final Supplier<Double> LIFE_STEAL_CHANCE = STTConfig.COMMON.LIFE_STEAL_CHANCE;
-   private static final Supplier<Double> LIFE_STEAL_PERCENT = STTConfig.COMMON.LIFE_STEAL_PERCENT;
-   private static final Supplier<Double> MAX_HEALTH_HEAL_AMOUNT = STTConfig.COMMON.MAX_HEALTH_HEAL_AMOUNT;
-   private static final Supplier<Boolean> ENABLE_MAX_HEALTH_HEAL = STTConfig.COMMON.ENABLE_MAX_HEALTH_HEAL;
+   private static final double LIFE_STEAL_CHANCE = STTConfig.COMMON.LIFE_STEAL_CHANCE.get();
+   private static final double LIFE_STEAL_PERCENT = STTConfig.COMMON.LIFE_STEAL_PERCENT.get();
+   private static final double MAX_HEALTH_HEAL_AMOUNT = STTConfig.COMMON.MAX_HEALTH_HEAL_AMOUNT.get();
+   private static final boolean ENABLE_MAX_HEALTH_HEAL = STTConfig.COMMON.ENABLE_MAX_HEALTH_HEAL.get();
    public VampireKnives(Properties properties, ToolDefinition toolDefinition) {
       super(properties, toolDefinition);
    }
@@ -154,12 +154,12 @@ public class VampireKnives extends ModifiableItem {
       } else {
          attacker.level();
       }
-      if (attacker.level().random.nextFloat() < LIFE_STEAL_CHANCE.get()) {
-         float healAmount = (float) (damageDealt * LIFE_STEAL_PERCENT.get());
-         float maxHealthHealAmount = (float) (attacker.getMaxHealth() * MAX_HEALTH_HEAL_AMOUNT.get());
+      if (attacker.level().random.nextFloat() < LIFE_STEAL_CHANCE) {
+         float healAmount = (float) (damageDealt * LIFE_STEAL_PERCENT);
+         float maxHealthHealAmount = (float) (attacker.getMaxHealth() * MAX_HEALTH_HEAL_AMOUNT);
          if (healAmount < 1.0f) healAmount = 1.0f;
 
-         if (ENABLE_MAX_HEALTH_HEAL.get()) {
+         if (ENABLE_MAX_HEALTH_HEAL) {
             attacker.heal(healAmount + maxHealthHealAmount);
          } else {
             attacker.heal(healAmount);

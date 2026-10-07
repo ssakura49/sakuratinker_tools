@@ -629,6 +629,7 @@ public class YoyoEntity extends Entity implements IEntityAdditionalSpawnData, It
                  EquipmentSlot.MAINHAND,// EquipmentSlot sourceSlot
                  false,                 // boolean setDamage
                  getDamage(),       // float damageSet
+                 1,
                  false                  // boolean noToolDamage
          );
          resetAttackCooldown();

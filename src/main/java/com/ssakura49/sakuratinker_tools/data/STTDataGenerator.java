@@ -1,17 +1,7 @@
 package com.ssakura49.sakuratinker_tools.data;
 
-import com.ssakura49.sakuratinker_tools.data.providers.STTItemModelProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTItemTagProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTMaterialModifierProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTMaterialProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTMaterialStatProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTModifierProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTModifierTagProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTPartSpriteProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTRecipeProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTStationSlotLayoutProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTToolDefinitionDataProvider;
-import com.ssakura49.sakuratinker_tools.data.providers.STTToolItemModelProvider;
+import com.ssakura49.sakuratinker_tools.data.providers.*;
+
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -59,5 +49,6 @@ public class STTDataGenerator {
       generator.addProvider(client, new STTItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), helper));
       generator.addProvider(client, new STTToolItemModelProvider(output, helper));
       generator.addProvider(client, new GeneratorPartTextureJsonGenerator(output, "sakuratinker", new STTPartSpriteProvider()));
+      generator.addProvider(server,new STTEntityTagProvider(output,lookupProvider,helper));
    }
 }

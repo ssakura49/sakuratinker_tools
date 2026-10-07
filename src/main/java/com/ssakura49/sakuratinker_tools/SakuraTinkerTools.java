@@ -21,6 +21,7 @@ public class SakuraTinkerTools {
       return ResourceLocation.fromNamespaceAndPath("sakuratinker_tools", string);
    }
 
+   @SuppressWarnings("removal")
    public SakuraTinkerTools() {
       IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
       MinecraftForge.EVENT_BUS.register(this);

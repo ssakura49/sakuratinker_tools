@@ -3,18 +3,24 @@ package com.ssakura49.sakuratinker_tools.content.entity;
 import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileCritical;
 import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileDamage;
 import com.ssakura49.sakuratinker.core.utils.ProjectileUtils;
+import com.ssakura49.sakuratinker_tools.content.entity.part.CelestialBladePart;
 import com.ssakura49.sakuratinker_tools.init.STTEntities;
 import com.ssakura49.sakuratinker_tools.init.STTItems;
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -39,8 +45,11 @@ public class ShurikenEntity extends ThrowableItemProjectile implements IEntityAd
    @Nullable
    private BlockState lastState;
    private int numTicks = 0;
-   private ItemStack renderItem;
 
+   private static final EntityDataAccessor<Float> FLIGHT_YAW =
+           SynchedEntityData.defineId(ShurikenEntity.class, EntityDataSerializers.FLOAT);
+   private static final EntityDataAccessor<Float> FLIGHT_PITCH =
+           SynchedEntityData.defineId(ShurikenEntity.class, EntityDataSerializers.FLOAT);
 
    public ShurikenEntity(EntityType<? extends ShurikenEntity> entityType, Level level) {
       super(entityType, level);
@@ -56,6 +65,16 @@ public class ShurikenEntity extends ThrowableItemProjectile implements IEntityAd
    public ShurikenEntity(Level level, LivingEntity entity) {
       super(STTEntities.SHURIKEN_ENTITY.get(), entity, level);
    }
+
+   @Override
+   protected void defineSynchedData() {
+      super.defineSynchedData();
+      this.entityData.define(FLIGHT_YAW, 0.0F);
+      this.entityData.define(FLIGHT_PITCH, 0.0F);
+   }
+
+   public float getFlightYaw()   { return this.entityData.get(FLIGHT_YAW); }
+   public float getFlightPitch() { return this.entityData.get(FLIGHT_PITCH); }
 
    public void setTool(ItemStack tool) {
       if (tool != null) {
@@ -111,6 +130,20 @@ public class ShurikenEntity extends ThrowableItemProjectile implements IEntityAd
 
    @Override
    public void tick() {
+      if (this.inGround) {
+         this.setDeltaMovement(Vec3.ZERO);
+         this.baseTick();
+         this.inGroundTime++;
+         BlockPos blockPos = this.blockPosition();
+         BlockState blockState = this.level().getBlockState(blockPos);
+         if (this.lastState != blockState && this.shouldFall()) {
+            this.startFalling();
+         }
+         if (!this.level().isClientSide) {
+            this.tickDeSpawn();
+         }
+         return;
+      }
       super.tick();
       BlockPos blockPos = this.blockPosition();
       BlockState blockState = this.level().getBlockState(blockPos);
@@ -126,13 +159,18 @@ public class ShurikenEntity extends ThrowableItemProjectile implements IEntityAd
             }
          }
       }
+      if (!this.isInGround()) {
+         Vec3 delta = this.getDeltaMovement();
+         float horizontalSpeed = Mth.sqrt((float) (delta.x * delta.x + delta.z * delta.z));
+         if (horizontalSpeed > 1.0E-4F) {
+            float yaw  = (float) (Mth.atan2(delta.x, delta.z) * (double) (180F / Math.PI));
+            float pitch = (float) (Mth.atan2(delta.y, (double) horizontalSpeed) * (double) (180F / Math.PI));
+            this.entityData.set(FLIGHT_YAW, yaw);
+            this.entityData.set(FLIGHT_PITCH, pitch);
+         }
+      }
       if (this.inGround) {
-         if (!this.shouldFall()) {
-            this.setDeltaMovement(Vec3.ZERO);
-         }
-         else if (this.lastState!= blockState && this.shouldFall()) {
-            this.startFalling();
-         }
+         this.setDeltaMovement(Vec3.ZERO);
          if (!this.level().isClientSide) {
             this.tickDeSpawn();
          }
@@ -184,6 +222,8 @@ public class ShurikenEntity extends ThrowableItemProjectile implements IEntityAd
    public void writeSpawnData(FriendlyByteBuf buffer) {
       buffer.writeUUID(this.getUUID());
       buffer.writeItem(this.shurikenStack);
+      buffer.writeFloat(this.bonusDamage);
+      buffer.writeBoolean(this.critical);
    }
    @Override
    public void readSpawnData(FriendlyByteBuf additionalData) {

@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#sakuratinker:modifiable/curio/tinker_charm",
+    "sakuratinker:tinker_charm",
+    "sakuratinker:power_bank",
+    {
+      "id": "sakuratinker:tinker_spell_book",
+      "required": false
+    }
+  ]
+}

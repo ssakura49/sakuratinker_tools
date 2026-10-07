@@ -6,6 +6,7 @@ import slimeknights.tconstruct.library.materials.IMaterialRegistry;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 
+@Deprecated
 public class GoetyMaterialRegistry {
     public static final MaterialStatsId TINKER_DARK_WAND = new MaterialStatsId(SakuraTinker.getResource("tinker_dark_wand"));
 

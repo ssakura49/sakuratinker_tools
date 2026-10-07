@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "sakuratinker:gutter_sand_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:gutter_red_sand_cast",
+      "required": false
+    }
+  ]
+}

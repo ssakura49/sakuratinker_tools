@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "irons_spellbooks"
+    }
+  ],
   "icon": {
     "item": "sakuratinker:tinker_spell_book",
     "nbt": "{Damage:0,\"irons_spellbooks:spell_container\":{data:[],maxSpells:1,mustEquip:1b,spellWheel:1b},tic_display:1b,tic_materials:[\"tconstruct:ui_render#head\",\"tconstruct:ui_render#handle\",\"tconstruct:ui_render#extra\",\"tconstruct:ui_render#large\",\"tconstruct:ui_render#extra_large\"]}"

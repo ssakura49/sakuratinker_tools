@@ -1,19 +1,9 @@
 package com.ssakura49.sakuratinker_tools.init;
 
 import com.ssakura49.sakuratinker.SakuraTinker;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.AlchemicalCoreMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.AxleMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.BattleFlagMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.CharmChainMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.ChordMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.EnergyUnitMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.FletchingMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.FoxMaskMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.LaserMediumMaterialStats;
+import com.ssakura49.sakuratinker_tools.compat.goety.tool.stats.SoulGathererMaterialStats;
+import com.ssakura49.sakuratinker_tools.library.tools.stats.*;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.tool.stats.PhantomCoreMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.RangeMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.STTStatlessMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.YoYoRingMaterialStats;
 import slimeknights.tconstruct.library.materials.IMaterialRegistry;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
@@ -28,11 +18,13 @@ public class STTMaterialRegistry {
    public static final MaterialStatsId YO_YO = new MaterialStatsId(SakuraTinker.getResource("yo_yo"));
    public static final MaterialStatsId ALCHEMICAL_GLOVES = new MaterialStatsId(SakuraTinker.getResource("alchemical_gloves"));
    public static final MaterialStatsId RANGE = new MaterialStatsId(SakuraTinker.getResource("range"));
+   public static final MaterialStatsId REVOLVER = new MaterialStatsId(SakuraTinker.getResource("revolver"));
 
    public static void init() {
       IMaterialRegistry registry = MaterialRegistry.getInstance();
       registry.registerStatType(CharmChainMaterialStats.TYPE, CHARM);
       registry.registerStatType(STTStatlessMaterialStats.CHARM_CORE.getType(), CHARM);
+      registry.registerStatType(STTStatlessMaterialStats.CHARM_SETTING.getType(), CHARM);
       registry.registerStatType(LaserMediumMaterialStats.TYPE, LASER_GUN);
       registry.registerStatType(EnergyUnitMaterialStats.TYPE, LASER_GUN);
       registry.registerStatType(FletchingMaterialStats.TYPE, TINKER_ARROW);
@@ -44,5 +36,8 @@ public class STTMaterialRegistry {
       registry.registerStatType(AlchemicalCoreMaterialStats.TYPE, ALCHEMICAL_GLOVES);
       registry.registerStatType(RangeMaterialStats.TYPE, RANGE);
       registry.registerStatType(FoxMaskMaterialStats.TYPE, FOX_MASK);
+      registry.registerStatType(RevolverChamberMaterialStats.TYPE, REVOLVER);
+      registry.registerStatType(PhantomCoreMaterialStats.TYPE, new MaterialStatsId(SakuraTinker.getResource("first_fractal")));
+      registry.registerStatType(SoulGathererMaterialStats.TYPE, new MaterialStatsId(SakuraTinker.getResource("tinker_dark_wand")));
    }
 }

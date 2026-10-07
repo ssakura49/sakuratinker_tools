@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:table_casting_material",
   "cast": {
-    "tag": "sakuratinker:casts/multi_use/swift_guard"
+    "tag": "tconstruct:casts/multi_use/swift_guard"
   },
   "item_cost": 2,
   "result": "sakuratinker:swift_guard"

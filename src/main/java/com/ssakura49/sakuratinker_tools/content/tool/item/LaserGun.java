@@ -46,10 +46,10 @@ public class LaserGun extends ModifiableItem {
    private static final ResourceLocation CONTINUOUS_TICKS_KEY = ResourceLocation.fromNamespaceAndPath(SakuraTinker.MODID,"continuous_ticks");
    private static final float BASE_DAMAGE_MULTIPLIER = 1.0f;
 
-   public static final Supplier<Integer> BASE_ENERGY = STTConfig.COMMON.LASER_GUN_BASE_ENERGY;
-   public static final Supplier<Integer> ENERGY_PER_TICK = STTConfig.COMMON.LASER_GUN_ENERGY_PER_TICK;
-   public static final Supplier<Double> DAMAGE_PER_TICK = STTConfig.COMMON.LASER_GUN_DAMAGE_PER_TICK;
-   public static final Supplier<Integer> BONUS_TICK = STTConfig.COMMON.LASER_GUN_C_MOD_NORMAL_DAMAGE_BONUS;
+   public static final int BASE_ENERGY = STTConfig.COMMON.LASER_GUN_BASE_ENERGY.get();
+   public static final int ENERGY_PER_TICK = STTConfig.COMMON.LASER_GUN_ENERGY_PER_TICK.get();
+   public static final double DAMAGE_PER_TICK = STTConfig.COMMON.LASER_GUN_DAMAGE_PER_TICK.get();
+   public static final int BONUS_TICK = STTConfig.COMMON.LASER_GUN_C_MOD_NORMAL_DAMAGE_BONUS.get();
 
    public LaserGun(Item.Properties properties, ToolDefinition toolDefinition) {
       super(properties, toolDefinition);
@@ -76,11 +76,11 @@ public class LaserGun extends ModifiableItem {
       int mode = data.getInt(MODE_KEY);
       if (mode == 0) {
          int currentEnergy = getEnergy(tool);
-         if (!player.getAbilities().instabuild && currentEnergy < BASE_ENERGY.get()) {
+         if (!player.getAbilities().instabuild && currentEnergy < BASE_ENERGY) {
             return InteractionResultHolder.fail(stack);
          }
          if (!player.getAbilities().instabuild) {
-            setEnergy(tool, currentEnergy - BASE_ENERGY.get());
+            setEnergy(tool, currentEnergy - BASE_ENERGY);
          }
          float cooldown = ConditionalStatModifierHook.getModifiedStat(tool, player, STToolStats.COOLDOWN, (Float)tool.getStats().get(STToolStats.COOLDOWN) * 20.0F);
          fireLaser(level, player, stack, tool, 1.0f);
@@ -121,11 +121,11 @@ public class LaserGun extends ModifiableItem {
       int ticks = data.getInt(CONTINUOUS_TICKS_KEY);
       ticks++;
       data.putInt(CONTINUOUS_TICKS_KEY, ticks);
-      int rampUpTicks = BONUS_TICK.get();
-      float damageMultiplier = (float) (BASE_DAMAGE_MULTIPLIER + (double) ticks / rampUpTicks * DAMAGE_PER_TICK.get());
-      int energyCost = BASE_ENERGY.get() + Math.round(ENERGY_PER_TICK.get() * damageMultiplier);
+      int rampUpTicks = BONUS_TICK;
+      float damageMultiplier = (float) (BASE_DAMAGE_MULTIPLIER + (double) ticks / rampUpTicks * DAMAGE_PER_TICK);
+      int energyCost = BASE_ENERGY + Math.round(ENERGY_PER_TICK * damageMultiplier);
       int currentEnergy = getEnergy(tool);
-      if (!player.getAbilities().instabuild && currentEnergy < BASE_ENERGY.get()) {
+      if (!player.getAbilities().instabuild && currentEnergy < BASE_ENERGY) {
          player.stopUsingItem();
          data.putInt(CONTINUOUS_TICKS_KEY, 0);
          return;

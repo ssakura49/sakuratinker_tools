@@ -1,0 +1,23 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "sakuratinker:item/parts/staff_handle",
+		"particle": "sakuratinker:item/parts/staff_handle"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [2, 12, 2],
+			"faces": {
+				"north": {"uv": [0, 0, 2, 12], "texture": "#0"},
+				"east": {"uv": [2, 0, 4, 12], "texture": "#0"},
+				"south": {"uv": [4, 0, 6, 12], "texture": "#0"},
+				"west": {"uv": [6, 0, 8, 12], "texture": "#0"},
+				"up": {"uv": [10, 2, 8, 0], "texture": "#0"},
+				"down": {"uv": [10, 2, 8, 4], "texture": "#0"}
+			}
+		}
+	],
+	"display": {}
+}

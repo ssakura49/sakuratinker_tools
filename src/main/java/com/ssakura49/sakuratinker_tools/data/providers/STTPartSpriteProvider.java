@@ -6,15 +6,7 @@ import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.BookM
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.EnvelopeMaterialStats;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.ISSStatlessMaterialStats;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.ManuScriptMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.AxleMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.BattleFlagMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.CharmChainMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.ChordMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.EnergyUnitMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.FletchingMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.LaserMediumMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.STTStatlessMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.YoYoRingMaterialStats;
+import com.ssakura49.sakuratinker_tools.library.tools.stats.*;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorItem.Type;
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +32,7 @@ public class STTPartSpriteProvider extends AbstractPartSpriteProvider {
    protected void addAllSpites() {
       this.addSprite("part/charm_chain/charm_chain", CharmChainMaterialStats.ID);
       this.addSprite("part/charm_core/charm_core", STTStatlessMaterialStats.CHARM_CORE.getIdentifier());
+      this.addSprite("part/charm_setting/charm_setting",STTStatlessMaterialStats.CHARM_SETTING.getIdentifier());
       this.addSprite("part/swift_blade/swift_blade", HeadMaterialStats.ID);
       this.addSprite("part/swift_guard/swift_guard", HandleMaterialStats.ID);
       this.addSprite("part/great_blade/great_blade", HeadMaterialStats.ID);
@@ -64,9 +57,11 @@ public class STTPartSpriteProvider extends AbstractPartSpriteProvider {
       this.addSprite("part/scythe_blade/scythe_blade", HeadMaterialStats.ID);
       this.addSprite("part/soul_gatherer/soul_gatherer", SoulGathererMaterialStats.ID);
       this.addSprite("part/phantom_core/phantom_core", PhantomCoreMaterialStats.ID);
+      this.addSprite("part/revolver_chamber/revolver_chamber", RevolverChamberMaterialStats.ID);
 
       this.buildTool("tinker_charm")
               .addPart("charm_chain", CharmChainMaterialStats.ID)
+              .addPart("charm_setting", STTStatlessMaterialStats.CHARM_SETTING.getIdentifier())
               .addPart("charm_core", STTStatlessMaterialStats.CHARM_CORE.getIdentifier());
       this.buildTool("swift_sword")
               .addBreakableHead("blade")
@@ -147,6 +142,7 @@ public class STTPartSpriteProvider extends AbstractPartSpriteProvider {
       this.buildTool("revolver")
               .addPart("grip", GripMaterialStats.ID)
               .addPart("limb", LimbMaterialStats.ID)
+              .addPart("chamber", RevolverChamberMaterialStats.ID)
               .addHandle("handle");
       this.buildTool("first_fractal")
               .addBreakableHead("head")

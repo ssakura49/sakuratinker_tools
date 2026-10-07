@@ -1,0 +1,20 @@
+{
+  "loader": "sakuratinker:modular_tool",
+  "parts": [
+    {
+      "name": "core",
+      "index": 0,
+      "model": "sakuratinker:item/parts/staff_core"
+    },
+    {
+      "name": "binding",
+      "index": 1,
+      "model": "sakuratinker:item/parts/staff_binding"
+    },
+    {
+      "name": "handle",
+      "index": 2,
+      "model": "sakuratinker:item/parts/staff_handle"
+    }
+  ]
+}

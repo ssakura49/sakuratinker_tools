@@ -1,5 +1,30 @@
 {
   "values": [
-    "#tconstruct:casts/gold"
+    "#tconstruct:casts/multi_use/charm_chain",
+    "#tconstruct:casts/multi_use/charm_core",
+    "#tconstruct:casts/multi_use/charm_setting",
+    "#tconstruct:casts/multi_use/swift_blade",
+    "#tconstruct:casts/multi_use/swift_guard",
+    "#tconstruct:casts/multi_use/barrel",
+    "#tconstruct:casts/multi_use/energy_unit",
+    "#tconstruct:casts/multi_use/laser_medium",
+    "#tconstruct:casts/multi_use/blade",
+    "#tconstruct:casts/multi_use/arrow_head",
+    "#tconstruct:casts/multi_use/arrow_shaft",
+    "#tconstruct:casts/multi_use/great_blade",
+    "#tconstruct:casts/multi_use/shell",
+    "#tconstruct:casts/multi_use/flag",
+    "#tconstruct:casts/multi_use/axle",
+    "#tconstruct:casts/multi_use/yoyo_ring",
+    "#tconstruct:casts/multi_use/chord",
+    "#tconstruct:casts/multi_use/yoyo_body",
+    "#tconstruct:casts/multi_use/scythe_blade",
+    "#tconstruct:casts/multi_use/range_core",
+    "#tconstruct:casts/multi_use/manu_script",
+    "#tconstruct:casts/multi_use/envelope",
+    "#tconstruct:casts/multi_use/book_mark",
+    "#tconstruct:casts/multi_use/gutter",
+    "#tconstruct:casts/multi_use/soul_gatherer",
+    "#tconstruct:casts/multi_use/phantom_core"
   ]
 }

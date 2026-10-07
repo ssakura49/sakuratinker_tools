@@ -17,4 +17,5 @@ public class STTModifierIds {
    public static final ModifierId ARCANE_TINKERING = new ModifierId(ISSModifier.ArcaneTinkering.getId());
    public static final ModifierId G_SOUL_GETTER = new ModifierId(GoetyModifier.G_SOUL_INFUSION.getId());
    public static final ModifierId FIRST_FRACTAL = new ModifierId(EBModifier.FIRST_FRACTAL.getId());
+   public static final ModifierId ARROW_AMMO = new ModifierId(STTModifiers.arrowAmmo.getId());
 }
