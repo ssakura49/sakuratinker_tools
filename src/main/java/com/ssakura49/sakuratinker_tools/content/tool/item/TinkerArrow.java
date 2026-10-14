@@ -1,6 +1,5 @@
 package com.ssakura49.sakuratinker_tools.content.tool.item;
 
-import com.ssakura49.sakuratinker.STConfig.Common;
 import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileBuild;
 import com.ssakura49.sakuratinker_tools.content.entity.TinkerArrowEntity;
 import com.ssakura49.sakuratinker_tools.library.tools.item.ModifiableArrowItem;

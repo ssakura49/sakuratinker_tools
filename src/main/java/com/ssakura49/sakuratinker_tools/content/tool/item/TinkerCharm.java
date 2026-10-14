@@ -1,7 +1,6 @@
 package com.ssakura49.sakuratinker_tools.content.tool.item;
 
 import com.google.common.collect.Multimap;
-import com.ssakura49.sakuratinker.STConfig;
 import com.ssakura49.sakuratinker.core.library.tools.stats.STToolStats;
 import com.ssakura49.sakuratinker.core.utils.TooltipUtil;
 import com.ssakura49.sakuratinker_tools.STTConfig;

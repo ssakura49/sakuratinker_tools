@@ -22,12 +22,25 @@ import java.util.List;
 public class STTConfig {
    public static final SakuraTomlConfig COMPAT_INSTANCE;
    public static final Compat COMPAT;
-
+   public static final SakuraTomlConfig COMMON_INSTANCE;
+   public static final Common COMMON;
+   public static final SakuraTomlConfig CLIENT_INSTANCE;
+   public static final Client CLIENT;
    static {
       COMPAT_INSTANCE = new SakuraTomlConfig(SakuraTinker.MODID, "ssakura49/sakuratinker-tools-compat.toml");
-      TomlBuilder builder = new TomlBuilder(COMPAT_INSTANCE);
-      COMPAT = new Compat(builder);
-      builder.build();
+      TomlBuilder compat = new TomlBuilder(COMPAT_INSTANCE);
+      COMPAT = new Compat(compat);
+      compat.build();
+
+      COMMON_INSTANCE = new SakuraTomlConfig(SakuraTinker.MODID, "ssakura49/sakuratinker-tools-common.toml");
+      TomlBuilder common = new TomlBuilder(COMMON_INSTANCE);
+      COMMON = new Common(common);
+      common.build();
+
+      CLIENT_INSTANCE = new SakuraTomlConfig(SakuraTinker.MODID, "ssakura49/sakuratinker-tools-client.toml");
+      TomlBuilder client = new TomlBuilder(CLIENT_INSTANCE);
+      CLIENT = new Client(client);
+      client.build();
    }
 
    public static class Compat {
@@ -56,24 +69,6 @@ public class STTConfig {
 
          builder.popCategory();
       }
-   }
-
-   public static final SakuraTomlConfig COMMON_INSTANCE;
-   public static final Common COMMON;
-   static {
-      COMMON_INSTANCE = new SakuraTomlConfig(SakuraTinker.MODID, "ssakura49/sakuratinker-tools-common.toml");
-      TomlBuilder builder = new TomlBuilder(COMMON_INSTANCE);
-      COMMON = new Common(builder);
-      builder.build();
-   }
-   public static final SakuraTomlConfig CLIENT_INSTANCE;
-   public static final Client CLIENT;
-
-   static {
-      CLIENT_INSTANCE = new SakuraTomlConfig(SakuraTinker.MODID, "ssakura49/sakuratinker-tools-common.toml");
-      TomlBuilder builder = new TomlBuilder(CLIENT_INSTANCE);
-      CLIENT = new Client(builder);
-      builder.build();
    }
 
    public static class Common {

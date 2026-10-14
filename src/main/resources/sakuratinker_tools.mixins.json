@@ -4,6 +4,7 @@
   "package": "com.ssakura49.sakuratinker_tools.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "sakuratinker_tools.refmap.json",
+  "plugin": "com.ssakura49.sakuratinker_tools.util.mixin.SakuraTinkerToolsMixinPlugin",
   "mixins": [
     "iron_spell_book.CastingStateMixin",
     "iron_spell_book.SpellBarOverlayMixin",

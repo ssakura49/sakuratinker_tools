@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import com.ssakura49.sakuratinker.STConfig;
 import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileBuild;
 import com.ssakura49.sakuratinker_tools.content.entity.TinkerArrowEntity;
 import net.minecraft.core.BlockPos;

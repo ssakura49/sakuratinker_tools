@@ -2,7 +2,6 @@ package com.ssakura49.sakuratinker_tools.content.entity;
 
 import com.ssakura49.sakura_library.entity.damagesource.LegacyDamageSource;
 import com.ssakura49.sakura_library.util.entity.EntityUtil;
-import com.ssakura49.sakuratinker.STConfig.Common;
 import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileCritical;
 import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileDamage;
 import com.ssakura49.sakuratinker.core.library.interfaces.projectile.IProjectileRange;
