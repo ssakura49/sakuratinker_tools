@@ -6,6 +6,7 @@ import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.BookM
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.EnvelopeMaterialStats;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.ISSStatlessMaterialStats;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats.ManuScriptMaterialStats;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.tool.stats.ManaCrystalMaterialStats;
 import com.ssakura49.sakuratinker_tools.library.tools.stats.*;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorItem.Type;
@@ -58,6 +59,7 @@ public class STTPartSpriteProvider extends AbstractPartSpriteProvider {
       this.addSprite("part/soul_gatherer/soul_gatherer", SoulGathererMaterialStats.ID);
       this.addSprite("part/phantom_core/phantom_core", PhantomCoreMaterialStats.ID);
       this.addSprite("part/revolver_chamber/revolver_chamber", RevolverChamberMaterialStats.ID);
+      this.addSprite("part/mana_crystal/mana_crystal", ManaCrystalMaterialStats.ID);
 
       this.buildTool("tinker_charm")
               .addPart("charm_chain", CharmChainMaterialStats.ID)
@@ -149,6 +151,11 @@ public class STTPartSpriteProvider extends AbstractPartSpriteProvider {
               .addPart("core", PhantomCoreMaterialStats.ID)
               .addBinding("binding")
               .addHandle("handle");
+
+      this.buildTool("wizardry_wand")
+              .addPart("mana_crystal", ManaCrystalMaterialStats.ID)
+              .addHandle("handle")
+              .addBinding("binding");
 
       this.addTexture("tinker_armor/embedded/upper_armor", TinkerPartSpriteProvider.ARMOR_PLATING).disallowAnimated();
       this.addTexture("tinker_armor/embedded/upper_leggings", TinkerPartSpriteProvider.ARMOR_PLATING).disallowAnimated();

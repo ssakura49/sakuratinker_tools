@@ -341,13 +341,13 @@ public final class SpellBookStackOverlay {
         List<Component> lines = new ArrayList<>();
         lines.add(spell.getDisplayName(player));
         lines.add(Component.literal((selectionIndex + 1) + " / " + spellCount));
-        lines.add(Component.translatable("gui.sakuratinker_tools.level", level, maximumLevel));
-        lines.add(Component.translatable("gui.sakuratinker_tools.rarity", spell.getRarity(level).getDisplayName()));
-        lines.add(Component.translatable("gui.sakuratinker_tools.mana", manaCost));
-        lines.add(Component.translatable("gui.sakuratinker_tools.cooldown", seconds(remainingCooldown), seconds(totalCooldown)));
-        lines.add(Component.translatable("gui.sakuratinker_tools.cast_time", seconds(castTime)));
-        lines.add(Component.translatable("gui.sakuratinker_tools.spell_power", String.format(Locale.ROOT, "%.2f", spellPower)));
-        lines.add(Component.translatable("gui.sakuratinker_tools.recast", recastCount));
+        lines.add(Component.translatable("gui.sakuratinker.level", level, maximumLevel));
+        lines.add(Component.translatable("gui.sakuratinker.rarity", spell.getRarity(level).getDisplayName()));
+        lines.add(Component.translatable("gui.sakuratinker.mana", manaCost));
+        lines.add(Component.translatable("gui.sakuratinker.cooldown", seconds(remainingCooldown), seconds(totalCooldown)));
+        lines.add(Component.translatable("gui.sakuratinker.cast_time", seconds(castTime)));
+        lines.add(Component.translatable("gui.sakuratinker.spell_power", String.format(Locale.ROOT, "%.2f", spellPower)));
+        lines.add(Component.translatable("gui.sakuratinker.recast", recastCount));
         lines.addAll(spell.getUniqueInfo(level, player));
 
         Font font = Minecraft.getInstance().font;

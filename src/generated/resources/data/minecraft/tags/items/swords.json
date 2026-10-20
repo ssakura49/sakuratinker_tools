@@ -1,0 +1,12 @@
+{
+  "values": [
+    "sakuratinker:swift_sword",
+    "sakuratinker:great_sword",
+    "sakuratinker:vampire_knife",
+    "sakuratinker:blade_convergence",
+    {
+      "id": "sakuratinker:first_fractal",
+      "required": false
+    }
+  ]
+}

@@ -2,17 +2,13 @@
   "sidebar.sakuratinker.parts": "部件",
   "sidebar.sakuratinker.casts": "铸模",
   "sidebar.sakuratinker.tools": "工具",
-
   "entity.sakuratinker.ghost_knife": "鬼刀",
   "entity.sakuratinker.celestial_blade": "天界之刃",
   "entity.sakuratinker.shuriken": "手里剑",
   "entity.sakuratinker.tinker_arrow_entity": "箭矢",
-
   "tooltip.sakuratinker.soul_sakura_seal": "魂樱刻印：",
-
   "item.sakuratinker.blade_convergence": "万剑归一",
   "item.sakuratinker.blade_convergence.description": "右键发射回旋剑刃。是一把能力随着你的成长而增强的武器（成就进度）。",
-
   "item.sakuratinker.swift_sword": "迅捷剑",
   "item.sakuratinker.swift_sword.description": "以点破面的武器，锋利程度足矣破开敌人的护甲。",
   "item.sakuratinker.swift_blade": "迅捷剑刃",
@@ -27,7 +23,6 @@
   "item.sakuratinker.swift_guard_cast": "迅捷剑护手铸模",
   "item.sakuratinker.swift_guard_red_sand_cast": "迅捷剑护手红沙铸模",
   "item.sakuratinker.swift_guard_sand_cast": "迅捷剑护手沙子铸模",
-
   "item.sakuratinker.tinker_charm": "护符",
   "item.sakuratinker.tinker_charm.description": "模块化饰品",
   "item.sakuratinker.charm_chain": "护符链",
@@ -48,7 +43,6 @@
   "item.sakuratinker.charm_setting_cast": "镶托铸模",
   "item.sakuratinker.charm_setting_red_sand_cast": "镶托红沙铸模",
   "item.sakuratinker.charm_setting_sand_cast": "镶托沙子铸模",
-
   "item.sakuratinker.shuriken": "手里剑",
   "item.sakuratinker.shuriken.description": "手里剑是一种伤害较低，射程中等，但是射速很快的武器。",
   "item.sakuratinker.blade": "刀刃",
@@ -57,7 +51,6 @@
   "item.sakuratinker.blade_cast": "刀刃铸模",
   "item.sakuratinker.blade_red_sand_cast": "刀刃红沙铸模",
   "item.sakuratinker.blade_sand_cast": "刀刃沙子铸模",
-
   "item.sakuratinker.laser_gun": "战术刺刀激光步枪",
   "item.sakuratinker.laser_gun.description": "战术刺刀激光步枪是一种消耗能量发射激光来攻击目标的近战型武器。",
   "item.sakuratinker.barrel": "枪管",
@@ -78,7 +71,6 @@
   "item.sakuratinker.laser_medium_cast": "激光传导器铸模",
   "item.sakuratinker.laser_medium_red_sand_cast": "激光传导器红沙铸模",
   "item.sakuratinker.laser_medium_sand_cast": "激光传导器沙子铸模",
-
   "item.sakuratinker.tinker_arrow": "工匠箭矢",
   "item.sakuratinker.tinker_arrow.description": "模块化箭矢。",
   "item.sakuratinker.arrow_head": "箭头",
@@ -95,23 +87,19 @@
   "item.sakuratinker.arrow_head_sand_cast": "箭头沙子铸模",
   "item.sakuratinker.arrow_shaft_cast": "箭杆铸模",
   "item.sakuratinker.arrow_shaft_red_sand_cast": "箭杆红沙铸模",
-
   "item.sakuratinker.vampire_knife": "吸血鬼刀",
   "item.sakuratinker.vampire_knife.description": "一种近战型投射武器。可以发射汲取生命的吸血飞刀。",
   "item.sakuratinker.blade_box": "刀匣",
   "stat.sakuratinker.blade_box": "刀匣",
   "pattern.sakuratinker.blade_box": "刀匣",
-
   "item.sakuratinker.grappling_hook": "钩爪",
   "item.sakuratinker.grappling_hook.description": "一种远距离投射武器，可以发射钩爪将目标拉至前方2格处，并在拉动过程中造成伤害。",
-
   "item.sakuratinker.embedded_armor": "内嵌盔甲",
   "item.sakuratinker.embedded_armor.description": "内嵌盔甲是一种专精于防御但能力槽非常有限的盔甲。",
   "item.sakuratinker.embedded_helmet": "内嵌头盔",
   "item.sakuratinker.embedded_chestplate": "内嵌胸甲",
   "item.sakuratinker.embedded_leggings": "内嵌护腿",
   "item.sakuratinker.embedded_boots": "内嵌靴子",
-
   "item.sakuratinker.great_sword": "宽刃剑",
   "item.sakuratinker.great_sword.description": "一把沉重的武器，能对敌人造成沉重的打击。",
   "item.sakuratinker.great_blade": "宽剑刃",
@@ -120,7 +108,6 @@
   "item.sakuratinker.great_blade_cast": "宽剑刃铸模",
   "item.sakuratinker.great_blade_red_sand_cast": "宽剑刃红沙铸模",
   "item.sakuratinker.great_blade_sand_cast": "宽剑刃沙子铸模",
-
   "item.sakuratinker.power_bank": "充电宝",
   "item.sakuratinker.power_bank.description": "能够为你的可充电工具提供电量，有多种充电模式。",
   "item.sakuratinker.shell": "外壳",
@@ -129,7 +116,6 @@
   "item.sakuratinker.shell_cast": "外壳铸模",
   "item.sakuratinker.shell_red_sand_cast": "外壳红沙铸模",
   "item.sakuratinker.shell_sand_cast": "外壳沙子铸模",
-
   "item.sakuratinker.battle_flag": "战旗",
   "item.sakuratinker.battle_flag.description": "辅助性武器，可以为敌方赋予减益，为友方赋予增益。",
   "item.sakuratinker.flag": "旗帜",
@@ -138,7 +124,6 @@
   "item.sakuratinker.flag_cast": "旗帜铸模",
   "item.sakuratinker.flag_red_sand_cast": "旗帜红沙铸模",
   "item.sakuratinker.flag_sand_cast": "旗帜沙子铸模",
-
   "item.sakuratinker.first_fractal": "最初分型",
   "item.sakuratinker.first_fractal.description": "一把近战型武器，挥动后可在指针指向的方块或目标处生成幻影剑。",
   "item.sakuratinker.phantom_core": "幻影核心",
@@ -147,7 +132,6 @@
   "item.sakuratinker.phantom_core_cast": "幻影核心铸模",
   "item.sakuratinker.phantom_core_red_sand_cast": "幻影核心红沙铸模",
   "item.sakuratinker.phantom_core_sand_cast": "幻影核心沙子铸模",
-
   "item.sakuratinker.yoyo": "悠悠球",
   "item.sakuratinker.yoyo.description": "右键投掷出可持续旋转的悠悠球。",
   "item.sakuratinker.axle": "轴",
@@ -174,7 +158,6 @@
   "item.sakuratinker.yoyo_ring_cast": "指环铸模",
   "item.sakuratinker.yoyo_ring_red_sand_cast": "指环红沙铸模",
   "item.sakuratinker.yoyo_ring_sand_cast": "指环沙子铸模",
-
   "item.sakuratinker.scythe": "战镰",
   "item.sakuratinker.scythe.description": "能有效针对群体目标的大型武器。",
   "item.sakuratinker.scythe_blade": "镰刃",
@@ -183,7 +166,6 @@
   "item.sakuratinker.scythe_blade_cast": "镰刃铸模",
   "item.sakuratinker.scythe_blade_red_sand_cast": "镰刃红沙铸模",
   "item.sakuratinker.scythe_blade_sand_cast": "镰刃沙子铸模",
-
   "item.sakuratinker.tinker_wand": "工匠黑暗魔杖",
   "item.sakuratinker.tinker_wand.description": "注入了灵魂能力，可以放入聚晶释放法术。",
   "item.sakuratinker.soul_gatherer": "灵魂聚能器",
@@ -192,7 +174,6 @@
   "item.sakuratinker.soul_gatherer_cast": "灵魂聚能器铸模",
   "item.sakuratinker.soul_gatherer_red_sand_cast": "灵魂聚能器红沙铸模",
   "item.sakuratinker.soul_gatherer_sand_cast": "灵魂聚能器沙子铸模",
-
   "item.sakuratinker.tinker_bullet": "工匠子弹",
   "item.sakuratinker.tinker_bullet.description": "工匠子弹是一种可改造的多部件子弹。据说远古文明可能留有这个子弹的残骸。",
   "item.sakuratinker.revolver": "工匠左轮",
@@ -203,7 +184,6 @@
   "item.sakuratinker.revolver_chamber_cast": "弹仓铸模",
   "item.sakuratinker.revolver_chamber_red_sand_cast": "弹仓红沙铸模",
   "item.sakuratinker.revolver_chamber_sand_cast": "弹仓沙子铸模",
-
   "item.sakuratinker.alchemical_gloves": "炼金手套【WIP】",
   "item.sakuratinker.alchemical_gloves.description": "炼金手套是一种投掷流体的武器，可以按切换键切换流体投掷模式，切换到单流体模式时可以填充对应流体。左键挥舞投掷流体。",
   "item.sakuratinker.alchemical_core": "炼金核心",
@@ -212,14 +192,12 @@
   "item.sakuratinker.alchemical_core_cast": "炼金核心铸模",
   "item.sakuratinker.alchemical_core_red_sand_cast": "炼金核心红沙铸模",
   "item.sakuratinker.alchemical_core_sand_cast": "炼金核心沙子铸模",
-
   "item.sakuratinker.range_core": "远程核心",
   "stat.sakuratinker.range_core": "远程核心",
   "pattern.sakuratinker.range_core": "远程核心",
   "item.sakuratinker.range_core_cast": "远程核心铸模",
   "item.sakuratinker.range_core_red_sand_cast": "远程核心红沙铸模",
   "item.sakuratinker.range_core_sand_cast": "远程核心沙子铸模",
-
   "tool_stat.sakuratinker.movement_speed": "移动速度：",
   "tool_stat.sakuratinker.movement_speed.description": "能够提高多少点移动速度。",
   "tool_stat.sakuratinker.armor": "护甲：",
@@ -272,10 +250,8 @@
   "tool_stat.sakuratinker.recoil.description": "枪械射击造成的后座力强度。",
   "tool_stat.sakuratinker.spread": "散布：",
   "tool_stat.sakuratinker.spread.description": "子弹散布，该属性越高则子弹散布越高。",
-
   "tooltip.sakuratinker.modifier.stored_energy": "能量存储: %d / %d",
   "tooltip.sakuratinker.energy": "能量: %d / %d",
-
   "modifier.sakuratinker.heavy": "沉重",
   "modifier.sakuratinker.heavy.flavor": "沉...沉吗？",
   "modifier.sakuratinker.heavy.description": "附加缓慢效果，攻击附加10%护甲值的伤害。",
@@ -301,7 +277,6 @@
   "modifier.sakuratinker.first_fractal": "最初分型",
   "modifier.sakuratinker.first_fractal.flavor": " ",
   "modifier.sakuratinker.first_fractal.description": " ",
-
   "sakuratinker.message.off": "模式切换: 关闭",
   "sakuratinker.message.hands": "模式切换：主副手充电",
   "sakuratinker.message.inventory": "模式切换：物品栏充电",
@@ -312,38 +287,30 @@
   "sakuratinker.tooltip.inventory": "模式：物品栏充电",
   "sakuratinker.tooltip.curios": "模式：饰品栏充电",
   "sakuratinker.tooltip.all": "模式：全局充电",
-
   "sakuratinker.message.mode.attack": "切换到进攻模式",
   "sakuratinker.message.mode.defence": "切换到增益模式",
   "sakuratinker.tooltip.attack": "模式：进攻",
   "sakuratinker.tooltip.defence": "模式：增益",
-
   "curios.identifier.fox_mask": "面具",
   "curios.modifiers.fox_mask": "属性：",
   "curios.identifier.tinker_charm": "工匠护符",
-
   "key.sakuratinker.summon": "召唤",
   "key.sakuratinker.clean_summona": "召唤",
   "key.sakuratinker.treasure_toggle_loot": "切换战利品表",
   "key.sakuratinker.blood_burn": "燃血",
   "key.sakuratinker.selected_slot": "切换槽位",
-
   "modifier.sakuratinker.scythe_sweeping": "范围横扫",
   "modifier.sakuratinker.scythe_sweeping.flavor": "邪魔退散！",
   "modifier.sakuratinker.scythe_sweeping.description": "每次攻击都能对90度，5格范围内的敌人造成一次伤害。",
-
   "modifier.sakuratinker.g_soul_infusion": "灵魂侵染",
   "modifier.sakuratinker.g_soul_infusion.flavor": "灵魂注入",
   "modifier.sakuratinker.g_soul_infusion.description": "让工具浸透灵魂能量，并获得释放法术的能力。",
-
   "modifier.sakuratinker.alchemical": "炼金师",
   "modifier.sakuratinker.alchemical.flavor": " ",
   "modifier.sakuratinker.alchemical.description": " ",
-
   "modifier.sakuratinker.spell_concentration": "法术专注",
   "modifier.sakuratinker.spell_concentration.flavor": "集中注意",
   "modifier.sakuratinker.spell_concentration.description": "施法不会被打断",
-
   "item.sakuratinker.tinker_spell_book": "工匠秘典",
   "item.sakuratinker.tinker_spell_book.description": "模块化的法术书。",
   "item.sakuratinker.envelope": "封皮",
@@ -370,7 +337,6 @@
   "item.sakuratinker.gutter_cast": "装订线铸模",
   "item.sakuratinker.gutter_red_sand_cast": "装订线红沙铸模",
   "item.sakuratinker.gutter_sand_cast": "装订线沙子铸模",
-
   "tool_stat.sakuratinker.spell_slot": "法术槽位：",
   "tool_stat.sakuratinker.spell_slot.description": "能够提高多少个法术槽位。",
   "tool_stat.sakuratinker.percent_bonus": "法术增幅：",
@@ -386,7 +352,6 @@
   "tool_stat.sakuratinker.mana_value": "魔力值：",
   "tool_stat.sakuratinker.mana_value.description": "能够提供多少魔力值。",
   "tool_stat.sakuratinker.school_bonus": "流派：增幅值",
-
   "gui.sakuratinker.level": "等级：%d / %d",
   "gui.sakuratinker.rarity": "稀有度：%s",
   "gui.sakuratinker.mana": "魔力消耗：%d",
@@ -397,6 +362,21 @@
   "key.categories.sakuratinker": "法术卡堆 UI",
   "key.sakuratinker.toggle_expanded": "切换常驻展开卡堆",
   "key.sakuratinker.previous_spell": "选择上一个法术",
-  "key.sakuratinker.next_spell": "选择下一个法术"
+  "key.sakuratinker.next_spell": "选择下一个法术",
+  "item.sakuratinker.wizardry_wand": "魔杖",
+  "item.sakuratinker.wizardry_wand.description": "模块化的巫术魔杖，使用可以获取熟练度，累计到一定程度可以对法杖进行升阶。",
+  "tool_stat.sakuratinker.mana_capacity": "魔力上限：",
+  "tool_stat.sakuratinker.mana_capacity.description": "决定这把法杖能够容纳的魔力总量。",
+  "tooltip.sakuratinker.wand_tier": "法杖阶位：%s  熟练度 %s/%s",
+  "wand_tier.sakuratinker.tinker_novice": "初匠",
+  "wand_tier.sakuratinker.tinker_apprentice": "学徒",
+  "wand_tier.sakuratinker.tinker_artisan": "匠人",
+  "wand_tier.sakuratinker.tinker_craftsman": "巧匠",
+  "wand_tier.sakuratinker.tinker_renowned": "名匠",
+  "wand_tier.sakuratinker.tinker_grandmaster": "宗匠",
+  "wand_tier.sakuratinker.tinker_heavenly": "天工",
+  "wand_tier.sakuratinker.tinker_divine": "神匠",
+  "element.sakuratinker.forge": "匠魂",
+  "element.sakuratinker.forge.wizard": "匠魂巫师",
+  "element.sakuratinker.forge.desc": "以炉与砧为本源的元素，代表锻造与器物之魂。"
 }
-

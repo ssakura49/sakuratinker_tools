@@ -1,6 +1,18 @@
 {
   "values": [
+    "sakuratinker:swift_sword",
     "sakuratinker:great_sword",
-    "sakuratinker:scythe"
+    "sakuratinker:vampire_knife",
+    "sakuratinker:blade_convergence",
+    "sakuratinker:scythe",
+    "sakuratinker:tinker_bullet",
+    "sakuratinker:tinker_arrow",
+    "sakuratinker:yoyo",
+    "sakuratinker:grappling_hook",
+    "sakuratinker:shuriken",
+    {
+      "id": "sakuratinker:first_fractal",
+      "required": false
+    }
   ]
 }

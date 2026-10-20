@@ -1,5 +1,9 @@
 {
   "stats": {
+    "sakuratinker:mana_crystal": {
+      "durability": 400,
+      "mana_capacity": 280.0
+    },
     "sakuratinker:manu_script": {
       "cast_time_reduce": -0.1,
       "mana_reduce": 2.0,

@@ -29,7 +29,7 @@ import slimeknights.tconstruct.library.utils.Util;
 public class TinkerSpellBook extends ModifiableSpellBookItem {
 
    public TinkerSpellBook(Item.Properties properties) {
-      super(1, properties, ISSToolDefinitions.TINKER_SPELL_BOOK);
+       super(1, properties, ISSToolDefinitions.TINKER_SPELL_BOOK);
    }
 
     public @NotNull List<Component> getStatInformation(@NotNull IToolStackView tool, @Nullable Player player, @NotNull List<Component> tooltips, @NotNull TooltipKey key, @NotNull TooltipFlag tooltipFlag) {

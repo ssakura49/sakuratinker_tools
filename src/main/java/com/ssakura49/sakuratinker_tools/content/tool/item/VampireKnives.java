@@ -14,6 +14,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -49,12 +51,12 @@ public class VampireKnives extends ModifiableItem {
    }
 
    @Override
-   public UseAnim getUseAnimation(ItemStack stack) {
+   public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
       return UseAnim.NONE;
    }
 
    @Override
-   public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+   public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
       ItemStack stack = player.getItemInHand(hand);
       ToolStack tool = ToolStack.from(stack);
 
@@ -68,10 +70,11 @@ public class VampireKnives extends ModifiableItem {
               STToolStats.COOLDOWN,
               tool.getStats().get(STToolStats.COOLDOWN) * 30.0F / speed
       );
-      float baseDamage = ToolAttackUtil.getAttributeAttackDamage(
+      float baseDamage = ToolAttackUtil.getToolAttribute(
               tool,
               player,
-              hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND
+              Attributes.ATTACK_DAMAGE,
+              1
       );
 
       GhostKnife mainKnife = createKnife(level, player, hand, baseDamage, 0f);

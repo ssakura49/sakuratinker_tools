@@ -5,7 +5,7 @@ import com.Polarice3.Goety.api.magic.SpellType;
 import com.ssakura49.sakuratinker.core.utils.TooltipUtil;
 import com.ssakura49.sakuratinker_tools.compat.goety.library.tool.stat.GoetyToolStats;
 import com.ssakura49.sakuratinker_tools.compat.goety.tool.definition.GoetyToolDefinitions;
-import com.ssakura49.sakuratinker_tools.compat.goety.tool.item.base.ModifiableWandItem;
+import com.ssakura49.sakuratinker_tools.compat.goety.tool.item.base.ModifiableDarkWandItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -24,7 +24,7 @@ import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import java.util.List;
 
 
-public class TinkerWandItem extends ModifiableWandItem implements ISoulRepair {
+public class TinkerWandItem extends ModifiableDarkWandItem implements ISoulRepair {
 
     public TinkerWandItem(Item.Properties properties, SpellType spellType) {
         super(properties, spellType, GoetyToolDefinitions.TINKER_WAND, 1);

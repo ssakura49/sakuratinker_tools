@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:table_casting_material",
+  "cast": {
+    "tag": "tconstruct:casts/single_use/mana_crystal"
+  },
+  "cast_consumed": true,
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ebwizardry"
+    }
+  ],
+  "item_cost": 6,
+  "result": "sakuratinker:mana_crystal"
+}

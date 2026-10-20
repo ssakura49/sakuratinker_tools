@@ -1,18 +1,18 @@
-// 1.20.1	2026-09-26T22:55:56.8798736	Sakura Tinker-Tools Material Stats Data Provider
+// 1.20.1	2026-10-20T11:26:50.0741016	Sakura Tinker-Tools Material Stats Data Provider
 54b2a5c4c44d97d8deaa557923c8b79f436ac4a4 data/tconstruct/tinkering/materials/stats/bamboo.json
 4131bac1206d808c60be0ec52edabe0fc9399d2b data/tconstruct/tinkering/materials/stats/blazewood.json
 0a286534d759434e1c8bb43993056bb14045bf6b data/tconstruct/tinkering/materials/stats/blazing_bone.json
-97b65fe4ec3f8e38f0c1aa78bf7e1eb89298154b data/tconstruct/tinkering/materials/stats/bone.json
-4d3834c04ce2d547b66db1acf2a68d3c47c5207a data/tconstruct/tinkering/materials/stats/cobalt.json
-addce29da02bc055dee35202305d82f4ff6e71aa data/tconstruct/tinkering/materials/stats/copper.json
+e87e4ae495180fc3628c47809354367603862470 data/tconstruct/tinkering/materials/stats/bone.json
+6ff69c6500ba1b66cad77721f96780e356a0bf42 data/tconstruct/tinkering/materials/stats/cobalt.json
+86900289ab57552fbd7d2cfdc455c24b56de0990 data/tconstruct/tinkering/materials/stats/copper.json
 d48e796756e27bd476b5a63ba562f698c752432a data/tconstruct/tinkering/materials/stats/gold.json
-d6d6fcd1b48134ecc242a36bf1c3715f3f1c0776 data/tconstruct/tinkering/materials/stats/ice.json
-9a3d20f18227d64ef4c750765e2142dc7740dc7a data/tconstruct/tinkering/materials/stats/iron.json
-2aea66522a1c6e63500fd1e5c39b6b154f812e0b data/tconstruct/tinkering/materials/stats/manyullyn.json
-427a6af7ad79a813df54ae5c293c5a327b53349a data/tconstruct/tinkering/materials/stats/nahuatl.json
-096e912c9dad76fe0dc2f0880f52581c3af8ce45 data/tconstruct/tinkering/materials/stats/necrotic_bone.json
-b2626b5bfe9eb645df218be39a274152719b01c0 data/tconstruct/tinkering/materials/stats/obsidian.json
+a764f812f0172daefe25acbe5cac6fa31e150229 data/tconstruct/tinkering/materials/stats/ice.json
+481bd50b83eef50ce3746abaae9f1e3c3ed49cf0 data/tconstruct/tinkering/materials/stats/iron.json
+ff4f7146d8d23ad1f9ca97d87b3e7ef5fb7fa158 data/tconstruct/tinkering/materials/stats/manyullyn.json
+be60cb94108b64ae1013e2cec57620827346bbcd data/tconstruct/tinkering/materials/stats/nahuatl.json
+3c93c4d1cce050977c9b98aba48d779235b312b2 data/tconstruct/tinkering/materials/stats/necrotic_bone.json
+e60229d95e9456bcae9e60a4996b664f3cdc2179 data/tconstruct/tinkering/materials/stats/obsidian.json
 2f4ed00e9c8e6182a3d9051b3de1e1c995acfad6 data/tconstruct/tinkering/materials/stats/skyslime_vine.json
 29aa3ff1f03d9f709732e651a1ad69cdbba38260 data/tconstruct/tinkering/materials/stats/string.json
 b69643be16a4a9e7482487affe02bbec156f7bd8 data/tconstruct/tinkering/materials/stats/venombone.json
-a0ed2f7f6a9381f8c6da9573db3985d894d954bb data/tconstruct/tinkering/materials/stats/wood.json
+bb48c0dc01db09976484bbe4ed8d5e00e7e36fc5 data/tconstruct/tinkering/materials/stats/wood.json

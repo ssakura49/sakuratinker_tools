@@ -1,4 +1,4 @@
-// 1.20.1	2026-09-26T22:55:56.866805	Item Models: sakuratinker
+// 1.20.1	2026-10-20T09:16:58.8261099	Item Models: sakuratinker
 15fbb2c5aa8d5f97585eea27d98efca333f93db0 assets/sakuratinker/models/item/arrow_head.json
 e28182900ccbd9cb9630aff419f177925f0b9cfd assets/sakuratinker/models/item/arrow_head_cast.json
 7e930fbfb644d1b92172ba622a428814f7de1c86 assets/sakuratinker/models/item/arrow_head_red_sand_cast.json
@@ -69,6 +69,10 @@ b5103c8c4bfcfd01291859e69f5dfde79bb4f57c assets/sakuratinker/models/item/great_b
 8f8624b64107c75195167a8f937cff9f1364e3aa assets/sakuratinker/models/item/laser_medium_red_sand_cast.json
 b5327cf626b69e30e62ef941d45634f55fe150a2 assets/sakuratinker/models/item/laser_medium_sand_cast.json
 12d37bd0e4a3028980bee10485d9cc6d988b4e22 assets/sakuratinker/models/item/lightning_bullet_ammo.json
+8d3327841e34668b32b81b93467d922887d80ecf assets/sakuratinker/models/item/mana_crystal.json
+b312d8a614b47eeb06d7b46143c7c92e87e688cb assets/sakuratinker/models/item/mana_crystal_cast.json
+2ad83ed2eaed001a2807067b4758eff328f147f7 assets/sakuratinker/models/item/mana_crystal_red_sand_cast.json
+ee4d2a2bc92a98dc89043b09398b38895e274087 assets/sakuratinker/models/item/mana_crystal_sand_cast.json
 b23368415e4990f1391506057a2d93fe312d15c8 assets/sakuratinker/models/item/manu_script.json
 eb021f5022ca3daedb3fbb1c38e4149e87de57f9 assets/sakuratinker/models/item/manu_script_cast.json
 46c6b477f8bfce4cc634ab428792154fbe61d860 assets/sakuratinker/models/item/manu_script_red_sand_cast.json

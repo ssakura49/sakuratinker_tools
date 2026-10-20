@@ -2,6 +2,14 @@
   "values": [
     "sakuratinker:swift_sword",
     "sakuratinker:great_sword",
-    "sakuratinker:blade_convergence"
+    "sakuratinker:vampire_knife",
+    "sakuratinker:blade_convergence",
+    "sakuratinker:laser_gun",
+    "sakuratinker:revolver",
+    "sakuratinker:battle_flag",
+    {
+      "id": "sakuratinker:first_fractal",
+      "required": false
+    }
   ]
 }

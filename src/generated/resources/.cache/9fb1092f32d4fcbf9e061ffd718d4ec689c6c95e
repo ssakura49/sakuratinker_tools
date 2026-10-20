@@ -1,4 +1,4 @@
-// 1.20.1	2026-09-23T00:12:58.3782389	Recipes
+// 1.20.1	2026-10-20T09:16:58.842065	Recipes
 8a071ae56ef585f23320fa0a0f7bb4ee58b9463b data/sakuratinker/recipes/casts/gold/arrow_head.json
 684f303486537726e71ac1e3dbb1a87354370bde data/sakuratinker/recipes/casts/gold/arrow_shaft.json
 6bfcc01e6c16dd9b411c788f8f37e7ffecb762ab data/sakuratinker/recipes/casts/gold/axle.json
@@ -15,6 +15,7 @@ fd8d8f2b22f3731fdf6cd5855f74a78403e67c9d data/sakuratinker/recipes/casts/gold/fl
 2462e07442f3087765b9e8b20232f5cafe8fcb26 data/sakuratinker/recipes/casts/gold/great_blade.json
 4c682d0932f2d932a9c9edbe2746b252833fffb0 data/sakuratinker/recipes/casts/gold/gutter.json
 cb0fb97494f08ecab7d8075a39c4aa19bebc5514 data/sakuratinker/recipes/casts/gold/laser_medium.json
+1a049ac4d7509313261069bec20e481c83aef431 data/sakuratinker/recipes/casts/gold/mana_crystal.json
 8f19da0c879fdcc55dbde81a4e87b94c76ce56d7 data/sakuratinker/recipes/casts/gold/manu_script.json
 5f741909e33b132b64453552b1f1718f3db41b74 data/sakuratinker/recipes/casts/gold/range_core.json
 fc970abff07abf1694bdabe93d99a017fcd8d3d0 data/sakuratinker/recipes/casts/gold/scythe_blade.json
@@ -40,6 +41,7 @@ cd0bcc94f25ea42832805d9e7d36c4b65737c82a data/sakuratinker/recipes/casts/red_san
 ec32756b77b41f87e5363c889c50a24c0aeb597c data/sakuratinker/recipes/casts/red_sand/builder_block/great_blade.json
 4327b862f3846a9cdf72ad123f2c7a8abebfec2d data/sakuratinker/recipes/casts/red_sand/builder_block/gutter.json
 7adb15e358374f2932165b235ff47a8784a9909f data/sakuratinker/recipes/casts/red_sand/builder_block/laser_medium.json
+1234e1a25c1dad58776bd7ab12c6f18d0d054dbe data/sakuratinker/recipes/casts/red_sand/builder_block/mana_crystal.json
 ef637b0428dcc1551c63caa3c2bda6c6e37900b1 data/sakuratinker/recipes/casts/red_sand/builder_block/manu_script.json
 bab0af9c8ad67a3c6a36538bf3c283baec4cef31 data/sakuratinker/recipes/casts/red_sand/builder_block/range_core.json
 1def8a9518d74dfd7df4b60bffb2b1afb80cba98 data/sakuratinker/recipes/casts/red_sand/builder_block/scythe_blade.json
@@ -65,6 +67,7 @@ f1eb1c063b8d48955c2dcee8c588b6e5de384caf data/sakuratinker/recipes/casts/red_san
 24e90261d323788a91145c21ec37485220251c5e data/sakuratinker/recipes/casts/red_sand/builder_cast/great_blade.json
 de5e8654c9c90290ebbc0de28fee1762edf6d97d data/sakuratinker/recipes/casts/red_sand/builder_cast/gutter.json
 a83489d49942fe3288e4b4cf1f12cdc472ffbe85 data/sakuratinker/recipes/casts/red_sand/builder_cast/laser_medium.json
+901e398c899a3cde0a405b6ed2036f2159612f82 data/sakuratinker/recipes/casts/red_sand/builder_cast/mana_crystal.json
 f2092a0225e5057f879e0c7833f6bd0cc7eb483e data/sakuratinker/recipes/casts/red_sand/builder_cast/manu_script.json
 1d06722e5afb29c487b5457bdfaed290a51d7525 data/sakuratinker/recipes/casts/red_sand/builder_cast/range_core.json
 65a1090d3a83a4dc6440c47ba56fd83c6cef0033 data/sakuratinker/recipes/casts/red_sand/builder_cast/scythe_blade.json
@@ -90,6 +93,7 @@ cfefeea9dc1b28a7d62d1cfe159111e8b278657c data/sakuratinker/recipes/casts/red_san
 4b830d765dd2f2a76bc286448d844a5d447ae01b data/sakuratinker/recipes/casts/red_sand/molding/great_blade.json
 6809b00890fa5c34722b7dc13115f0109581a0eb data/sakuratinker/recipes/casts/red_sand/molding/gutter.json
 2f0b1cabf7f54a0fb815214fad4c0b5580f1ccc9 data/sakuratinker/recipes/casts/red_sand/molding/laser_medium.json
+d90f697e4a8e4092c739a7bd87c18a9ea8fb789f data/sakuratinker/recipes/casts/red_sand/molding/mana_crystal.json
 4a53aef8a060c54a692558fed6ff10f94b9b3ba0 data/sakuratinker/recipes/casts/red_sand/molding/manu_script.json
 aae967f08d1b2018472e441ad8ef92312d237a8a data/sakuratinker/recipes/casts/red_sand/molding/range_core.json
 a15b1034b56042d1a418ef14aa9871a75247056d data/sakuratinker/recipes/casts/red_sand/molding/scythe_blade.json
@@ -115,6 +119,7 @@ cb05957d8bfdc602377af02c5589a73a4a712e4f data/sakuratinker/recipes/casts/sand/bu
 8705b26c65dd345ebab9b22e26db2333825086e7 data/sakuratinker/recipes/casts/sand/builder_block/great_blade.json
 575f4c7908d7c7da1234a8f4d96712d47bc2c896 data/sakuratinker/recipes/casts/sand/builder_block/gutter.json
 4ee924d5b0290498a9395d68786813d5293724a5 data/sakuratinker/recipes/casts/sand/builder_block/laser_medium.json
+ea63313144144189711e8dcaa219d9480999113a data/sakuratinker/recipes/casts/sand/builder_block/mana_crystal.json
 83ece221d58a145ae12b80ed17c21095bf712a00 data/sakuratinker/recipes/casts/sand/builder_block/manu_script.json
 858b86e407063e1b27bfb0cd0ac3ed71cf37d12d data/sakuratinker/recipes/casts/sand/builder_block/range_core.json
 a60a50281a0144d5e99343291bdbedbdf493c6c2 data/sakuratinker/recipes/casts/sand/builder_block/scythe_blade.json
@@ -140,6 +145,7 @@ fb21b27ce64d9da2451c3d5a7d27c5d231e853d3 data/sakuratinker/recipes/casts/sand/bu
 f40f1b7e8236bf5839f2c1d41acacae1d4e5d92b data/sakuratinker/recipes/casts/sand/builder_cast/great_blade.json
 a53ab95c4f9e77631ad6f1cc2278557a69aea5d5 data/sakuratinker/recipes/casts/sand/builder_cast/gutter.json
 bdd032c75687b9ac2ec76915af1e2c0e971fb23c data/sakuratinker/recipes/casts/sand/builder_cast/laser_medium.json
+fec9cadf49ce39553caebfb69e6cbd16bca92f08 data/sakuratinker/recipes/casts/sand/builder_cast/mana_crystal.json
 deae5020070dda95a05f0d8758f51c2951b68016 data/sakuratinker/recipes/casts/sand/builder_cast/manu_script.json
 58a5e86575288dd3fbebc6bf5773450add0ad63c data/sakuratinker/recipes/casts/sand/builder_cast/range_core.json
 f36bb17ae86588a216dfe39b2e4f31f19f0ee936 data/sakuratinker/recipes/casts/sand/builder_cast/scythe_blade.json
@@ -165,6 +171,7 @@ e87fd0ee66f160393ba2837763fa1f10fd13d001 data/sakuratinker/recipes/casts/sand/mo
 a0860334d2409071dee6d8883c5fe3fb4a7cd728 data/sakuratinker/recipes/casts/sand/molding/great_blade.json
 c2c8ab54e182ca3f51548c750af5f7b2340d9f4b data/sakuratinker/recipes/casts/sand/molding/gutter.json
 dbf7b07952c5b51ca8393591d671f6d1e0bde280 data/sakuratinker/recipes/casts/sand/molding/laser_medium.json
+af31ac13ef2cb8c16b9ecf2de1b9d7216df4f868 data/sakuratinker/recipes/casts/sand/molding/mana_crystal.json
 c2083584de9b29eaddb48f0814a0ee97b587e1f7 data/sakuratinker/recipes/casts/sand/molding/manu_script.json
 26f9f9f0d1cf01ab2a9f88b335afc244828d5923 data/sakuratinker/recipes/casts/sand/molding/range_core.json
 37f8a0e3c3440a6c4cf029ff63a57072da219d5c data/sakuratinker/recipes/casts/sand/molding/scythe_blade.json
@@ -191,6 +198,7 @@ a3b911b7b676ae6f151b8967885c14fe70a82b88 data/sakuratinker/recipes/parts/builder
 ab4447bef3482f93c384a49853787b7b4ccebb97 data/sakuratinker/recipes/parts/builder/great_blade.json
 ba3f182c450301da39a8b365758f6426b68e7699 data/sakuratinker/recipes/parts/builder/gutter.json
 7ae4a9a0e4f619ae264e61bbc05e3316b8a9bbdd data/sakuratinker/recipes/parts/builder/laser_medium.json
+2d3535cc77e3f12830a19bd804aa25cbda54ddcf data/sakuratinker/recipes/parts/builder/mana_crystal.json
 07c870273e595fc0e58cc1461b2c89882e6994ba data/sakuratinker/recipes/parts/builder/manu_script.json
 68788430b456c1f960dc5c53bfa8f56b9ed991d8 data/sakuratinker/recipes/parts/builder/range_core.json
 cbe7bde928ffafca5fc27d991ba0c2da20e2e43f data/sakuratinker/recipes/parts/builder/scythe_blade.json
@@ -249,6 +257,9 @@ a7828e817a880bdd294820af357259fc311cc452 data/sakuratinker/recipes/parts/casting
 8045f63379d628e046c26e9cc47962daac660703 data/sakuratinker/recipes/parts/casting/laser_medium_composite.json
 cd51bc96d860351e3e85fae40a86efdd4d763f06 data/sakuratinker/recipes/parts/casting/laser_medium_gold_cast.json
 8238c7dec0be39657a419b07a34a098d01fc5538 data/sakuratinker/recipes/parts/casting/laser_medium_sand_cast.json
+03bd4f4cf8e622d543354b0781c9572be3f436ae data/sakuratinker/recipes/parts/casting/mana_crystal_composite.json
+7927716d1ed8a1746dafd10b180b53202ec2ac38 data/sakuratinker/recipes/parts/casting/mana_crystal_gold_cast.json
+bf80d8a5beefeb47e081b5c3c29375b246de2a6c data/sakuratinker/recipes/parts/casting/mana_crystal_sand_cast.json
 d5c331f30ff057c79c55816b54c754e8b13e488c data/sakuratinker/recipes/parts/casting/manu_script_composite.json
 0200d0e29a9374b4ce106bf50f027435c337b4c4 data/sakuratinker/recipes/parts/casting/manu_script_gold_cast.json
 2b37ea8529e9b02c737be191d89f6897d6d3a5e2 data/sakuratinker/recipes/parts/casting/manu_script_sand_cast.json
@@ -301,5 +312,6 @@ dacca2df5375ce4ee72ea65f8394697d1ec30353 data/sakuratinker/recipes/tools/build/p
 cd791ad9a521844124efbd4867eb0d386bda3ef5 data/sakuratinker/recipes/tools/build/tinker_spell_book.json
 62f09d6fa5fd11d6a4c3b49e5f5c7e345451dd8d data/sakuratinker/recipes/tools/build/tinker_wand.json
 64f6e141e803186e4118b44071076be72e1b7ed8 data/sakuratinker/recipes/tools/build/vampire_knife.json
+25171b8dc7b6a802c7c2c93453afc3cc10a2eb8d data/sakuratinker/recipes/tools/build/wizardry_wand.json
 b483730b428e3e7a1f8d7f15db0cee51eea03783 data/sakuratinker/recipes/tools/build/yoyo.json
 cfaf7bc962e1385733afbeb17ce75d4079b42ce3 data/sakuratinker/recipes/tools/casting/phantom_core_from_hero_medal.json

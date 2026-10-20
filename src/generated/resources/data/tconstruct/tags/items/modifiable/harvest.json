@@ -1,5 +1,28 @@
 {
   "values": [
-    "sakuratinker:scythe"
+    "sakuratinker:swift_sword",
+    "sakuratinker:great_sword",
+    "sakuratinker:vampire_knife",
+    "sakuratinker:blade_convergence",
+    "sakuratinker:laser_gun",
+    "sakuratinker:revolver",
+    "sakuratinker:tinker_bullet",
+    "sakuratinker:tinker_arrow",
+    "sakuratinker:battle_flag",
+    "sakuratinker:yoyo",
+    "sakuratinker:grappling_hook",
+    "sakuratinker:shuriken",
+    {
+      "id": "sakuratinker:first_fractal",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:tinker_wand",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:wizardry_wand",
+      "required": false
+    }
   ]
 }

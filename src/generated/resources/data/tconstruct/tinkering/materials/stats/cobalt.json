@@ -31,6 +31,10 @@
       "penetration": 8,
       "range": 15.0
     },
+    "sakuratinker:mana_crystal": {
+      "durability": 1200,
+      "mana_capacity": 800.0
+    },
     "sakuratinker:manu_script": {
       "cast_time_reduce": 0.15,
       "mana_reduce": 2.5,

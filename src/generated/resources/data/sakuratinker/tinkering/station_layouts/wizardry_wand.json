@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ebwizardry"
+    }
+  ],
+  "icon": {
+    "item": "sakuratinker:wizardry_wand",
+    "nbt": "{Damage:0,tic_broken:0b,tic_display:1b,tic_materials:[\"tconstruct:ui_render#head\",\"tconstruct:ui_render#handle\",\"tconstruct:ui_render#extra\",\"tconstruct:ui_render#large\",\"tconstruct:ui_render#extra_large\"]}"
+  },
+  "input_slots": [
+    {
+      "filter": {
+        "item": "sakuratinker:mana_crystal"
+      },
+      "icon": "sakuratinker:mana_crystal",
+      "translation_key": "item.sakuratinker.mana_crystal",
+      "x": 55,
+      "y": 20
+    },
+    {
+      "filter": {
+        "item": "tconstruct:tool_handle"
+      },
+      "icon": "tconstruct:tool_handle",
+      "translation_key": "item.tconstruct.tool_handle",
+      "x": 35,
+      "y": 40
+    },
+    {
+      "filter": {
+        "item": "tconstruct:tool_binding"
+      },
+      "icon": "tconstruct:tool_binding",
+      "translation_key": "item.tconstruct.tool_binding",
+      "x": 15,
+      "y": 60
+    }
+  ],
+  "sortIndex": 15,
+  "translation_key": "item.sakuratinker.wizardry_wand"
+}

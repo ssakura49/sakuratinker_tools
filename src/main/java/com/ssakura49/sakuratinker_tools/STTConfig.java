@@ -48,6 +48,16 @@ public class STTConfig {
       public final ConfigProperty<Boolean> ENABLE_ISS_COMPAT_UI;
       public final ConfigProperty<Boolean> ENABLE_GOETY_COMPAT;
       public final ConfigProperty<Boolean> ENABLE_EXTRABOTANY_COMPAT;
+      public final ConfigProperty<Boolean> ENABLE_WIZARDRY_COMPAT;
+      public final ConfigProperty<Double> WIZARDRY_MANA_STORAGE_INCREMENT;
+      public final ConfigProperty<Boolean> WIZARDRY_MANA_BAR;
+      public final ConfigProperty<Double> WIZARDRY_TIER_MANA_BASE;
+      public final ConfigProperty<Double> WIZARDRY_TIER_MANA_PEAK;
+      public final ConfigProperty<Double> WIZARDRY_TIER_MANA_CURVE;
+      public final ConfigProperty<Integer> WIZARDRY_TIER_PROGRESSION_TOTAL;
+      public final ConfigProperty<Double> WIZARDRY_TIER_PROGRESSION_CURVE;
+      public final ConfigProperty<Integer> WIZARDRY_TIER_UPGRADE_BASE;
+      public final ConfigProperty<Integer> WIZARDRY_TIER_UPGRADE_STEP;
 
       public Compat(TomlBuilder builder) {
          builder.pushCategory("compat");
@@ -66,6 +76,44 @@ public class STTConfig {
          ENABLE_EXTRABOTANY_COMPAT = builder
                  .comment("是否启用 ExtraBotany 额外植物学联动")
                  .getBoolean("enable_extrabotany", true);
+
+         ENABLE_WIZARDRY_COMPAT = builder
+                 .comment("是否启用 Electroblob's Wizardry Redux 联动")
+                 .getBoolean("enable_wizardry", true);
+
+         WIZARDRY_MANA_STORAGE_INCREMENT = builder
+                 .comment("法杖每级魔力存储强化提供的魔力上限加成（0.25 = 每级 +25%）")
+                 .getDouble("wizardry_mana_storage_increment", 0.25D, 0.0D, 100.0D);
+
+         WIZARDRY_MANA_BAR = builder
+                 .comment("是否显示法杖的魔力条")
+                 .getBoolean("wizardry_mana_bar", true);
+
+         builder.comment("法杖阶位曲线：八阶（初匠/学徒/匠人/巧匠/名匠/宗匠/天工/神匠）",
+                         "魔力与熟练度按幂曲线计算，改下面的数值即可整体调整")
+                 .pushCategory("wizardry_tiers");
+         WIZARDRY_TIER_MANA_BASE = builder
+                 .comment("第一阶（初匠）的基础魔力")
+                 .getDouble("mana_base", 400.0D, 1.0D, 1000000.0D);
+         WIZARDRY_TIER_MANA_PEAK = builder
+                 .comment("最后一阶（天工）的基础魔力")
+                 .getDouble("mana_peak", 4000.0D, 1.0D, 1000000.0D);
+         WIZARDRY_TIER_MANA_CURVE = builder
+                 .comment("魔力曲线幂次：1 为线性，越大则低阶越平、高阶越陡")
+                 .getDouble("mana_curve", 1.6D, 0.1D, 10.0D);
+         WIZARDRY_TIER_PROGRESSION_TOTAL = builder
+                 .comment("晋升到最后一阶所需的累计熟练度")
+                 .getInt("progression_total", 24000, 0, 100000000);
+         WIZARDRY_TIER_PROGRESSION_CURVE = builder
+                 .comment("熟练度曲线幂次，控制每阶门槛的递增速度")
+                 .getDouble("progression_curve", 1.35D, 0.1D, 10.0D);
+         WIZARDRY_TIER_UPGRADE_BASE = builder
+                 .comment("第一阶（初匠）的强化上限")
+                 .getInt("upgrade_base", 2, 0, 64);
+         WIZARDRY_TIER_UPGRADE_STEP = builder
+                 .comment("每提升一阶增加的强化上限")
+                 .getInt("upgrade_step", 1, 0, 64);
+         builder.popCategory();
 
          builder.popCategory();
       }

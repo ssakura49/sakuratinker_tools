@@ -7,6 +7,7 @@ import com.ssakura49.sakuratinker.SakuraTinker;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.init.WizardryItem;
 import com.ssakura49.sakuratinker_tools.init.STTItems;
 import com.ssakura49.sakuratinker_tools.util.SafeClass;
 import io.github.lounode.extrabotany.common.item.ExtraBotanyItems;
@@ -129,6 +130,10 @@ public class STTRecipeProvider extends RecipeProvider implements ISmelteryRecipe
               .setItemCost(6)
               .save(extraBotany, ResourceLocation.fromNamespaceAndPath(getModId(), "tools/casting/phantom_core_from_hero_medal"));
       toolBuilding(extraBotany, EBItem.first_fractal,toolsFolder);
+
+      Consumer<FinishedRecipe> ebwizardry = withCondition(consumer,modLoaded(SafeClass.Wizardry));
+      registerPart(ebwizardry, WizardryItem.manaCrystal,WizardryItem.manaCrystalCast,6,partsFolder,castsFolder);
+      toolBuilding(ebwizardry,WizardryItem.wizardryWand,toolsFolder);
    }
 
 

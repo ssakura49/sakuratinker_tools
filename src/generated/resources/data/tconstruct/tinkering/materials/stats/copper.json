@@ -27,6 +27,10 @@
       "penetration": 2,
       "range": 8.0
     },
+    "sakuratinker:mana_crystal": {
+      "durability": 300,
+      "mana_capacity": 400.0
+    },
     "sakuratinker:phantom_core": {
       "move_speed": 0.8,
       "phantom_amount": 1.0,

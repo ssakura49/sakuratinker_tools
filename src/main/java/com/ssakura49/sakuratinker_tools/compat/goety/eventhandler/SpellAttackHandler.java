@@ -4,7 +4,7 @@ import com.Polarice3.Goety.utils.WandUtil;
 import com.ssakura49.sakuratinker_tools.STTConfig;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyModifier;
 import com.ssakura49.sakuratinker_tools.compat.goety.library.tool.stat.GoetyToolStats;
-import com.ssakura49.sakuratinker_tools.compat.goety.tool.item.base.ModifiableWandItem;
+import com.ssakura49.sakuratinker_tools.compat.goety.tool.item.base.ModifiableDarkWandItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,8 +17,6 @@ import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
-
-import java.util.function.Supplier;
 
 public class SpellAttackHandler {
     public static void init() {
@@ -34,7 +32,7 @@ public class SpellAttackHandler {
         if (target.level().isClientSide) return;
         if (source.getEntity() instanceof Player player) {
             ItemStack wandStack = WandUtil.findWand(player);
-            if (!wandStack.isEmpty() && wandStack.getItem() instanceof ModifiableWandItem) {
+            if (!wandStack.isEmpty() && wandStack.getItem() instanceof ModifiableDarkWandItem) {
                 ToolStack tool = ToolStack.from(wandStack);
                 if (tool.getModifierLevel(GoetyModifier.G_SOUL_INFUSION.get())>0) {
                     boolean a = bonus;

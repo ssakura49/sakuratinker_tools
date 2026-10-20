@@ -3,18 +3,15 @@ package com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.stats;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.ssakura49.sakuratinker.SakuraTinker;
-import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.helper.ISSReflectionHelper;
-import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.tool.loadable.SchoolTypeLoadable;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.tool.stat.ISSToolStats;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.SchoolType;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lombok.Getter;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -29,8 +26,8 @@ import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.tools.stat.FloatToolStat;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 import slimeknights.tconstruct.library.utils.Util;
-@Getter
-public class EnvelopeMaterialStats implements IMaterialStats {
+
+public record EnvelopeMaterialStats(Map<ResourceLocation, Float> schoolIds) implements IMaterialStats {
    public static final MaterialStatsId ID = new MaterialStatsId(SakuraTinker.MODID, "envelope");
    private static final MapLoadable<ResourceLocation, Float> RL_MAP_LOADER = new MapLoadable<>(
            Loadables.RESOURCE_LOCATION,
@@ -44,7 +41,7 @@ public class EnvelopeMaterialStats implements IMaterialStats {
                            RL_MAP_LOADER.defaultField(
                                    "school_bonus",
                                    Map.of(),
-                                   EnvelopeMaterialStats::getSchoolIds
+                                   EnvelopeMaterialStats::schoolIds
                            ),
                            EnvelopeMaterialStats::new
                    )
@@ -55,53 +52,47 @@ public class EnvelopeMaterialStats implements IMaterialStats {
            IMaterialStats.makeTooltip(SakuraTinker.getResource("school_bonus"))
    );
 
-   private final Map<ResourceLocation, Float> schoolIds;
-
-   public EnvelopeMaterialStats(Map<ResourceLocation, Float> schoolIds) {
-      this.schoolIds = schoolIds;
-   }
-
-    @Override
+   @Override
    public @NotNull MaterialStatType<?> getType() {
       return TYPE;
    }
+
    @Override
    public @NotNull List<Component> getLocalizedInfo() {
       List<Component> info = Lists.newArrayList();
       for (Map.Entry<ResourceLocation, Float> entry : schoolIds.entrySet()) {
-         ResourceLocation id = entry.getKey();
          float bonus = entry.getValue();
-         String displayName = id.toString();
-         if (ISSReflectionHelper.isLoaded()) {
-            Object school = ISSReflectionHelper.getSchoolType(id);
-            if (school != null) {
-               displayName = ISSReflectionHelper.getDisplayName(school).getString();
-            }
-         }
+         SchoolType school = SchoolRegistry.getSchool(entry.getKey());
+         MutableComponent schoolName = school != null
+                 ? school.getDisplayName().copy()
+                 : Component.literal(entry.getKey().toString());
          float hue = Mth.positiveModulo(0.5F + bonus, 2.0F);
          TextColor color = TextColor.fromRgb(Mth.hsvToRgb(hue / 1.5F, 1.0F, 0.75F));
-         Component formattedValue = Component.literal(Util.BONUS_FORMAT.format(bonus))
+         MutableComponent formattedValue = Component.literal(Util.BONUS_FORMAT.format(bonus))
                  .withStyle(style -> style.withColor(color));
+         info.add(schoolName.append(Component.literal(": ")).append(formattedValue));
 
-         info.add(Component.literal(displayName + ": ").append(formattedValue));
       }
       return info;
    }
+
    @Override
    public @NotNull List<Component> getLocalizedDescriptions() {
       return DESCRIPTION;
    }
+
    @Override
    public void apply(@NotNull ModifierStatsBuilder builder, float scale) {
-      if (!ISSReflectionHelper.isLoaded()) return;
       for (Map.Entry<ResourceLocation, Float> entry : schoolIds.entrySet()) {
-         ResourceLocation id = entry.getKey();
-         float val = entry.getValue() * scale;
-         Object schoolType = ISSReflectionHelper.getSchoolType(id);
-         if (schoolType == null) continue;
-         Object stat = ISSReflectionHelper.getStatObject(schoolType);
-         if (stat == null) continue;
-         ISSReflectionHelper.applyStat(stat, builder, val);
+         SchoolType school = SchoolRegistry.getSchool(entry.getKey());
+         if (school == null) {
+            continue;
+         }
+         FloatToolStat stat = ISSToolStats.getSchoolStat(school);
+         if (stat == null) {
+            continue;
+         }
+         stat.update(builder, entry.getValue() * scale);
       }
    }
 }

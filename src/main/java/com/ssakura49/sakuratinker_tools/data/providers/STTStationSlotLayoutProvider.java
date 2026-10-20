@@ -4,6 +4,7 @@ import com.ssakura49.sakuratinker.SakuraTinker;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.init.WizardryItem;
 import com.ssakura49.sakuratinker_tools.init.STTItems;
 import com.ssakura49.sakuratinker_tools.library.tools.layout.STPatterns;
 import net.minecraft.data.PackOutput;
@@ -162,6 +163,13 @@ public class STTStationSlotLayoutProvider extends AbstractStationSlotLayoutProvi
               .addInputItem(EBItem.phantom_core,25,25)
               .addInputItem(TinkerToolParts.toughBinding,25,45)
               .addInputItem(TinkerToolParts.toughHandle, 5,65)
+              .build();
+
+      this.defineModifiable(WizardryItem.wizardryWand, modLoaded("ebwizardry"))
+              .sortIndex(15)
+              .addInputItem(WizardryItem.manaCrystal,55,20)
+              .addInputItem(TinkerToolParts.toolHandle,35,40)
+              .addInputItem(TinkerToolParts.toolBinding, 15,60)
               .build();
    }
 

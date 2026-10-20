@@ -2,6 +2,7 @@ package com.ssakura49.sakuratinker_tools.init;
 
 import com.ssakura49.sakuratinker.SakuraTinker;
 import com.ssakura49.sakuratinker_tools.compat.goety.tool.stats.SoulGathererMaterialStats;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.tool.stats.ManaCrystalMaterialStats;
 import com.ssakura49.sakuratinker_tools.library.tools.stats.*;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.tool.stats.PhantomCoreMaterialStats;
 import slimeknights.tconstruct.library.materials.IMaterialRegistry;
@@ -39,5 +40,6 @@ public class STTMaterialRegistry {
       registry.registerStatType(RevolverChamberMaterialStats.TYPE, REVOLVER);
       registry.registerStatType(PhantomCoreMaterialStats.TYPE, new MaterialStatsId(SakuraTinker.getResource("first_fractal")));
       registry.registerStatType(SoulGathererMaterialStats.TYPE, new MaterialStatsId(SakuraTinker.getResource("tinker_dark_wand")));
+      registry.registerStatType(ManaCrystalMaterialStats.TYPE, new MaterialStatsId(SakuraTinker.getResource("wizardry_wand")));
    }
 }

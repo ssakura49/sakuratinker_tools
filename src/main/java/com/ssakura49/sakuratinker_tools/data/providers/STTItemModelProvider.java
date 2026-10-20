@@ -4,6 +4,7 @@ import com.ssakura49.sakuratinker.SakuraTinker;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.init.WizardryItem;
 import com.ssakura49.sakuratinker_tools.init.STTItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -45,6 +46,9 @@ public class STTItemModelProvider extends ItemModelProvider {
 
       EBItem.getListParts().forEach(this::part);
       EBItem.getListCasts().forEach(this::cast);
+
+      WizardryItem.getListParts().forEach(this::part);
+      WizardryItem.getListCasts().forEach(this::cast);
 
 
       generateItemModel(STTItems.bulletItem,"bullet");

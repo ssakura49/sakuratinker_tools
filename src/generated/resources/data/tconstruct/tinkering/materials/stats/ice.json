@@ -4,6 +4,10 @@
       "school_bonus": {
         "irons_spellbooks:ice": 0.05
       }
+    },
+    "sakuratinker:mana_crystal": {
+      "durability": 80,
+      "mana_capacity": 150.0
     }
   }
 }

@@ -8,15 +8,14 @@ import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.tool.sta
 import com.ssakura49.tinkercuriolib.hook.TCLibHooks;
 import com.ssakura49.tinkercuriolib.hook.behavior.CurioAttributeModifierHook;
 import com.ssakura49.tinkercuriolib.hook.interation.CurioInventoryTickModifierHook;
+import io.redspace.ironsspellbooks.api.item.ISpellbook;
 import io.redspace.ironsspellbooks.api.magic.SpellSelectionManager;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
-import io.redspace.ironsspellbooks.api.spells.CastSource;
-import io.redspace.ironsspellbooks.api.spells.ISpellContainer;
-import io.redspace.ironsspellbooks.api.spells.SchoolType;
-import io.redspace.ironsspellbooks.api.spells.SpellSlot;
+import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.compat.Curios;
+import io.redspace.ironsspellbooks.item.ILecternPlaceable;
 import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
 import io.redspace.ironsspellbooks.util.MinecraftInstanceHelper;
@@ -70,7 +69,7 @@ import slimeknights.tconstruct.library.tools.stat.FloatToolStat;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class ModifiableSpellBookItem extends SpellBook implements IModifiableDisplay, ICurioItem {
+public class ModifiableSpellBookItem extends SpellBook implements IModifiableDisplay, ICurioItem, ISpellbook, IPresetSpellContainer, ILecternPlaceable {
    private final ToolDefinition toolDefinition;
    private ItemStack toolForRendering;
    private final int maxStackSize;
@@ -285,16 +284,49 @@ public class ModifiableSpellBookItem extends SpellBook implements IModifiableDis
       return this.toolForRendering;
    }
 
+   @Override
    public void initializeSpellContainer(ItemStack itemStack) {
-      if (itemStack != null) {
-         if (!ISpellContainer.isSpellContainer(itemStack)) {
-            ToolStack tool = ToolStack.from(itemStack);
-            tool.rebuildStats();
-            int extraSlots = tool.getStats().getInt(ISSToolStats.SPELL_SLOT);
-            ISpellContainer.set(itemStack, ISpellContainer.create(extraSlots, true, true));
-         }
+      this.syncSpellContainer(itemStack);
+   }
 
+   /**
+    * Keeps the stored spell container size in sync with the SPELL_SLOT tool stat.
+    * Iron's Spellbooks calls this from the ItemStack constructor, so existing books pick up stat changes too.
+    */
+   public void syncSpellContainer(ItemStack itemStack) {
+      if (itemStack == null || itemStack.isEmpty()) {
+         return;
       }
+      boolean hasContainer = ISpellContainer.isSpellContainer(itemStack);
+      ToolStack tool = ToolStack.from(itemStack);
+      if (!ToolStack.isInitialized(itemStack)) {
+         tool.rebuildStats();
+         // stats could not be built yet (datapack/registry not loaded): keep the existing container
+         if (!ToolStack.isInitialized(itemStack) && hasContainer) {
+            return;
+         }
+      }
+      int targetSlots = Math.max(1, tool.getStats().getInt(ISSToolStats.SPELL_SLOT));
+      if (!hasContainer) {
+         ISpellContainer.set(itemStack, ISpellContainer.create(targetSlots, true, true));
+         return;
+      }
+      ISpellContainer container = ISpellContainer.get(itemStack);
+      if (container == null) {
+         ISpellContainer.set(itemStack, ISpellContainer.create(targetSlots, true, true));
+         return;
+      }
+      if (container.getMaxSpellCount() == targetSlots) {
+         return;
+      }
+      // never shrink below the highest inscribed slot, otherwise spells would be silently dropped
+      int highestUsed = 0;
+      for (SpellSlot slot : container.getActiveSpells()) {
+         highestUsed = Math.max(highestUsed, slot.index() + 1);
+      }
+      ISpellContainerMutable mutable = container.mutableCopy();
+      mutable.setMaxSpellCount(Math.max(targetSlots, highestUsed));
+      ISpellContainer.set(itemStack, mutable.toImmutable());
    }
 
    public @NotNull ToolDefinition getToolDefinition() {

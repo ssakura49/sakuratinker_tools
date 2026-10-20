@@ -1,0 +1,26 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "forge:item/default-tool",
+  "textures": {
+    "mana_crystal": "sakuratinker:item/tool/wizardry_wand/mana_crystal",
+    "handle": "sakuratinker:item/tool/wizardry_wand/handle",
+    "binding": "sakuratinker:item/tool/wizardry_wand/binding"
+  },
+  "modifier_roots": [
+    "sakuratinker:item/tool/wizardry_wand/modifiers/"
+  ],
+  "parts": [
+    {
+      "name": "mana_crystal",
+      "index": 2
+    },
+    {
+      "name": "handle",
+      "index": 1
+    },
+    {
+      "name": "binding",
+      "index": 0
+    }
+  ]
+}

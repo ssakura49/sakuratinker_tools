@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "sakuratinker:mana_crystal_sand_cast",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:mana_crystal_red_sand_cast",
+      "required": false
+    }
+  ]
+}

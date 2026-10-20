@@ -24,6 +24,10 @@
       "accuracy": 0.2,
       "velocity": 0.2
     },
+    "sakuratinker:mana_crystal": {
+      "durability": 240,
+      "mana_capacity": 200.0
+    },
     "sakuratinker:phantom_core": {
       "move_speed": 1.1,
       "phantom_amount": 1.0,

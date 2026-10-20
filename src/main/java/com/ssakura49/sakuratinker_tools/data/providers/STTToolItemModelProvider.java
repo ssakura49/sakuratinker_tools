@@ -3,6 +3,7 @@ package com.ssakura49.sakuratinker_tools.data.providers;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.init.WizardryItem;
 import com.ssakura49.sakuratinker_tools.data.base.ToolModelProvider;
 import com.ssakura49.sakuratinker_tools.init.STTItems;
 import java.io.IOException;
@@ -80,6 +81,18 @@ public class STTToolItemModelProvider extends ToolModelProvider {
                       this.modId + ":item/tool/tinker_charm/charm_chain",
                       this.modId + ":item/tool/tinker_charm/charm_core",
                       this.modId + ":item/tool/tinker_charm/charm_setting"},
+              new int[]{2, 1, 0}, (String[])null, (String[])null, (double[])null);
+
+      this.generateCustomToolJson(
+              WizardryItem.wizardryWand.asItem(),
+              defTool,
+              false,
+              "wizardry_wand",
+              new String[]{"mana_crystal", "handle","binding"},
+              new String[]{
+                      this.modId + ":item/tool/wizardry_wand/mana_crystal",
+                      this.modId + ":item/tool/wizardry_wand/handle",
+                      this.modId + ":item/tool/wizardry_wand/binding"},
               new int[]{2, 1, 0}, (String[])null, (String[])null, (double[])null);
    }
 

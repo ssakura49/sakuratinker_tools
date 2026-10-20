@@ -47,6 +47,10 @@
     {
       "id": "sakuratinker:phantom_core",
       "required": false
+    },
+    {
+      "id": "sakuratinker:mana_crystal",
+      "required": false
     }
   ]
 }

@@ -11,7 +11,8 @@
     "iron_spell_book.SpellScrollInputMixin",
     "iron_spell_book.SpellWheelSelectionMixin",
     "tinker.BulkQuiverModuleMixin",
-    "tinker.TrickQuiverModuleMixin"
+    "tinker.TrickQuiverModuleMixin",
+    "wizardry.CastItemDataHelperMixin"
   ],
   "client": [
     "iron_spell_book.InscriptionScreenPaginationMixin",
@@ -19,8 +20,5 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "overwrites": {
-    "requireAnnotations": true
   }
 }

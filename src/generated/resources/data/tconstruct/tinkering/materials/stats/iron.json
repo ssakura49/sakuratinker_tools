@@ -7,6 +7,10 @@
     "sakuratinker:fox_mask_part": {
       "invulnerable_time": 8
     },
+    "sakuratinker:mana_crystal": {
+      "durability": 260,
+      "mana_capacity": 250.0
+    },
     "sakuratinker:phantom_core": {
       "move_speed": 1.1,
       "phantom_amount": 1.0,

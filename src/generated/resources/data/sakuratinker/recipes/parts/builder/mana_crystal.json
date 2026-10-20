@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:part_builder",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ebwizardry"
+    }
+  ],
+  "cost": 6,
+  "pattern": "sakuratinker:mana_crystal",
+  "pattern_item": [
+    {
+      "tag": "tconstruct:patterns/default"
+    },
+    {
+      "item": "sakuratinker:mana_crystal_cast"
+    }
+  ],
+  "result": {
+    "item": "sakuratinker:mana_crystal"
+  }
+}

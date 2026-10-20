@@ -113,6 +113,10 @@
       "stat_type": "sakuratinker:revolver_chamber"
     },
     {
+      "path": "sakuratinker:item/tool/part/mana_crystal/mana_crystal",
+      "stat_type": "sakuratinker:mana_crystal"
+    },
+    {
       "allow_animated": false,
       "path": "sakuratinker:tinker_armor/embedded/upper_armor",
       "stat_type": "tconstruct:armor_plating"
@@ -466,6 +470,18 @@
     {
       "path": "sakuratinker:item/tool/first_fractal/handle",
       "stat_type": "tconstruct:handle"
+    },
+    {
+      "path": "sakuratinker:item/tool/wizardry_wand/mana_crystal",
+      "stat_type": "sakuratinker:mana_crystal"
+    },
+    {
+      "path": "sakuratinker:item/tool/wizardry_wand/handle",
+      "stat_type": "tconstruct:handle"
+    },
+    {
+      "path": "sakuratinker:item/tool/wizardry_wand/binding",
+      "stat_type": "tconstruct:binding"
     },
     {
       "allow_animated": false,

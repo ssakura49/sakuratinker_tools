@@ -6,6 +6,9 @@ import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.tool.definition.GoetyToolDefinitions;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.definitions.ISSToolDefinitions;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.init.WizardryItem;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.library.tool.stats.WizardryToolStats;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.tool.definition.WizardryToolDefinitions;
 import com.ssakura49.sakuratinker_tools.content.tool.STArmorDefinitions;
 import com.ssakura49.sakuratinker_tools.content.tool.STToolDefinitions;
 import com.ssakura49.sakuratinker_tools.data.STTModifierIds;
@@ -143,6 +146,18 @@ public class STTToolDefinitionDataProvider extends AbstractToolDefinitionDataPro
               .module(ToolSlotsModule.builder().slots(SlotType.UPGRADE, 3).build())
               .module(ToolSlotsModule.builder().slots(SlotType.ABILITY, 2).build())
               .module(ToolTraitsModule.builder().trait(STTModifierIds.FIRST_FRACTAL,1).build())
+              .module(MaterialToolNameModule.ALL);
+
+
+      this.define(WizardryToolDefinitions.TINKER_WIZARDRY_WAND)
+              .module(PartStatsModule.parts()
+                      .part(WizardryItem.manaCrystal)
+                      .part(TinkerToolParts.toolHandle)
+                      .part(TinkerToolParts.toolBinding).build())
+              .module(defaultThreeParts)
+              .module(new SetStatsModule(StatsNBT.builder().set(ToolStats.ATTACK_DAMAGE, 1.5F).set(ToolStats.ATTACK_SPEED, 0.8F).build()))
+              .module(ToolSlotsModule.builder().slots(SlotType.UPGRADE, 3).slots(SlotType.ABILITY,2).build())
+              .module(ToolTraitsModule.builder().trait(STTModifierIds.WAND_MANA_BAR, 1).build())
               .module(MaterialToolNameModule.ALL);
    }
 

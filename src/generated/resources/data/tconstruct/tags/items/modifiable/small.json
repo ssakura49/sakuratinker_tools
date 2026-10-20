@@ -1,6 +1,14 @@
 {
   "values": [
     "sakuratinker:swift_sword",
-    "sakuratinker:vampire_knife"
+    "sakuratinker:vampire_knife",
+    "sakuratinker:laser_gun",
+    "sakuratinker:revolver",
+    "sakuratinker:tinker_bullet",
+    "sakuratinker:tinker_arrow",
+    "sakuratinker:battle_flag",
+    "sakuratinker:yoyo",
+    "sakuratinker:grappling_hook",
+    "sakuratinker:shuriken"
   ]
 }

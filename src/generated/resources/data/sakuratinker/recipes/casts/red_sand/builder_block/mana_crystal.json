@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ebwizardry"
+    }
+  ],
+  "pattern": "sakuratinker:mana_crystal",
+  "pattern_item": {
+    "tag": "forge:sand/red"
+  },
+  "result": {
+    "count": 4,
+    "item": "sakuratinker:mana_crystal_red_sand_cast"
+  }
+}

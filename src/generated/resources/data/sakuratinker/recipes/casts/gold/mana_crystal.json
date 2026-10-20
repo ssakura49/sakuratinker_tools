@@ -1,0 +1,21 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "type": "tconstruct:material",
+    "item": "sakuratinker:mana_crystal"
+  },
+  "cast_consumed": true,
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ebwizardry"
+    }
+  ],
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 90,
+    "tag": "forge:molten_gold"
+  },
+  "result": "sakuratinker:mana_crystal_cast",
+  "switch_slots": true
+}

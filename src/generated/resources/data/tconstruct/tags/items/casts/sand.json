@@ -43,6 +43,10 @@
     {
       "id": "sakuratinker:phantom_core_sand_cast",
       "required": false
+    },
+    {
+      "id": "sakuratinker:mana_crystal_sand_cast",
+      "required": false
     }
   ]
 }

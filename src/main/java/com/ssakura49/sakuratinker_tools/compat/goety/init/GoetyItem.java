@@ -2,7 +2,7 @@ package com.ssakura49.sakuratinker_tools.compat.goety.init;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.ssakura49.sakuratinker_tools.compat.goety.tool.item.TinkerWandItem;
-import com.ssakura49.sakuratinker_tools.compat.goety.tool.item.base.ModifiableWandItem;
+import com.ssakura49.sakuratinker_tools.compat.goety.tool.item.base.ModifiableDarkWandItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.tool.stats.SoulGathererMaterialStats;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -60,7 +60,7 @@ public class GoetyItem {
 
 
     public static final ItemObject<ToolPartItem> soul_gatherer = registerPart("soul_gatherer", () -> new ToolPartItem(PartItem, SoulGathererMaterialStats.ID));
-    public static final ItemObject<ModifiableWandItem> tinker_wand = registerTool("tinker_wand", () -> new TinkerWandItem(ToolItem, SpellType.NONE));
+    public static final ItemObject<ModifiableDarkWandItem> tinker_wand = registerTool("tinker_wand", () -> new TinkerWandItem(ToolItem, SpellType.NONE));
     public static final CastItemObject soulGathererCast = registerCast("soul_gatherer", CastItem);
 
 }

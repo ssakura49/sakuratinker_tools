@@ -15,7 +15,9 @@ public class CompatManager {
       GOETY(SafeClass.GOETY, "com.ssakura49.sakuratinker_tools.compat.goety.GoetyModule",
               STTConfig.COMPAT.ENABLE_GOETY_COMPAT::get),
       EXTRABOTANY(SafeClass.ExtraBotany, "com.ssakura49.sakuratinker_tools.compat.extrabotany.ExtraBotanyModule",
-              STTConfig.COMPAT.ENABLE_EXTRABOTANY_COMPAT::get)
+              STTConfig.COMPAT.ENABLE_EXTRABOTANY_COMPAT::get),
+      WIZARDRY(SafeClass.Wizardry, "com.ssakura49.sakuratinker_tools.compat.wizardry.WizardryModule",
+              STTConfig.COMPAT.ENABLE_WIZARDRY_COMPAT::get)
       ;
 
       @Getter

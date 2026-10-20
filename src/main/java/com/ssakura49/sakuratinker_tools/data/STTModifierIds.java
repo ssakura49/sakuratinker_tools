@@ -1,5 +1,6 @@
 package com.ssakura49.sakuratinker_tools.data;
 
+import com.ssakura49.sakuratinker.SakuraTinker;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBModifier;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyModifier;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSModifier;
@@ -18,4 +19,5 @@ public class STTModifierIds {
    public static final ModifierId G_SOUL_GETTER = new ModifierId(GoetyModifier.G_SOUL_INFUSION.getId());
    public static final ModifierId FIRST_FRACTAL = new ModifierId(EBModifier.FIRST_FRACTAL.getId());
    public static final ModifierId ARROW_AMMO = new ModifierId(STTModifiers.arrowAmmo.getId());
+   public static final ModifierId WAND_MANA_BAR = new ModifierId(SakuraTinker.getResource("wand_mana_bar"));
 }

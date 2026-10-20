@@ -1,6 +1,23 @@
 {
   "values": [
     "sakuratinker:great_sword",
-    "sakuratinker:scythe"
+    "sakuratinker:blade_convergence",
+    "sakuratinker:scythe",
+    {
+      "id": "sakuratinker:first_fractal",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:tinker_wand",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:tinker_spell_book",
+      "required": false
+    },
+    {
+      "id": "sakuratinker:wizardry_wand",
+      "required": false
+    }
   ]
 }

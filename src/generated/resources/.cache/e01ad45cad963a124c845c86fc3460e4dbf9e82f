@@ -1,4 +1,4 @@
-// 1.20.1	2026-09-26T22:55:56.8717914	Sakura Tinker-Tools Station Layout Provider
+// 1.20.1	2026-10-20T09:16:58.8310943	Sakura Tinker-Tools Station Layout Provider
 5fe1e585d0a36ff56f4f9aabd8e11f7c63fa34ba data/sakuratinker/tinkering/station_layouts/battle_flag.json
 cd77df12a1bc856ff1fa366e4a18bfb27c108428 data/sakuratinker/tinkering/station_layouts/blade_convergence.json
 1f3da566604eae36f194fed50d605905d5ff0ce6 data/sakuratinker/tinkering/station_layouts/embedded_armor.json
@@ -17,4 +17,5 @@ ca03cb7b3362fec2d289f749c7829c2ffe2de202 data/sakuratinker/tinkering/station_lay
 fe09fe5161202e4086c9095ed70372989406abe8 data/sakuratinker/tinkering/station_layouts/tinker_spell_book.json
 26d5e5ce66b549c981bbceb82532cef27e6abb91 data/sakuratinker/tinkering/station_layouts/tinker_wand.json
 5fccbdcb9ed8efe670640f35273e21802c65d03e data/sakuratinker/tinkering/station_layouts/vampire_knife.json
+3b611182be488bbf974d5b406bdec029b42b677b data/sakuratinker/tinkering/station_layouts/wizardry_wand.json
 f3d54ff5db1efe4dae925206bfb2c0d17ff16b67 data/sakuratinker/tinkering/station_layouts/yoyo.json

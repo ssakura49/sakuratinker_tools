@@ -1,4 +1,4 @@
-// 1.20.1	2026-09-26T22:55:56.8697977	Sakura Tinker-Tools Tool Model Data Provider
+// 1.20.1	2026-10-20T09:16:58.8290997	Sakura Tinker-Tools Tool Model Data Provider
 afb9399aae425019d3fbe96da4d893739a65f781 assets/sakuratinker/models/item/battle_flag.json
 9f9545564aa6c63fba7dad7a5cddb6bf289b2a51 assets/sakuratinker/models/item/blade_convergence.json
 a5744f2629ca342c62e7f9714b6c1a84fa6dc820 assets/sakuratinker/models/item/embedded_boots.json
@@ -29,4 +29,5 @@ ad55c660ffa3c25a34b51251da2c20df9e18cde4 assets/sakuratinker/models/item/tool/gr
 9a0c3dddc519b35797f0b4917237d96da1b7c578 assets/sakuratinker/models/item/tool/shuriken/broken.json
 35f077482df1dccf8e85eb8459b4a1f19ded2692 assets/sakuratinker/models/item/tool/swift_sword/broken.json
 fe961cb0fa0804ef1f26cb6d1ecd433a90de082f assets/sakuratinker/models/item/vampire_knife.json
+5fb30098d24ee819ba134b88808f8162918c2f2e assets/sakuratinker/models/item/wizardry_wand.json
 3e037f5e3896e35545e6da4436bb6684ef503445 assets/sakuratinker/models/item/yoyo.json

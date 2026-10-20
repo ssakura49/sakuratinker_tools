@@ -4,6 +4,7 @@ import com.ssakura49.sakura_library.api.client.creativetab.SideBarCategory;
 import com.ssakura49.sakuratinker_tools.compat.extrabotany.init.EBItem;
 import com.ssakura49.sakuratinker_tools.compat.goety.init.GoetyItem;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSItem;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.init.WizardryItem;
 import com.ssakura49.sakuratinker_tools.util.SafeClass;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -60,6 +61,11 @@ public class STTTabs {
             accept(output,getter,castItemObject);
          }
       }
+      if (SafeClass.isWizardryLoaded()) {
+         for (CastItemObject castItemObject: WizardryItem.getListCasts()){
+            accept(output,getter,castItemObject);
+         }
+      }
 
    }
 
@@ -83,6 +89,11 @@ public class STTTabs {
       }
       if (SafeClass.isExtraBotanyLoaded()){
          for (ItemObject<ToolPartItem> part:EBItem.getListParts()){
+            acceptPart(outputPart,part);
+         }
+      }
+      if (SafeClass.isWizardryLoaded()) {
+         for (ItemObject<ToolPartItem> part:WizardryItem.getListParts()){
             acceptPart(outputPart,part);
          }
       }
@@ -134,8 +145,17 @@ public class STTTabs {
                acceptTool(outputTool, () -> modifiable);
             }
          }
-      }if (SafeClass.isExtraBotanyLoaded()) {
+      }
+      if (SafeClass.isExtraBotanyLoaded()) {
          for(ItemObject<? extends Item> tool : EBItem.getListTools()) {
+            ItemLike var10 = tool.get();
+            if (var10 instanceof IModifiable modifiable) {
+               acceptTool(outputTool, () -> modifiable);
+            }
+         }
+      }
+      if (SafeClass.isWizardryLoaded()) {
+         for(ItemObject<? extends Item> tool : WizardryItem.getListTools()) {
             ItemLike var10 = tool.get();
             if (var10 instanceof IModifiable modifiable) {
                acceptTool(outputTool, () -> modifiable);

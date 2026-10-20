@@ -10,6 +10,10 @@
     },
     "sakuratinker:charm_core": {},
     "sakuratinker:charm_setting": {},
+    "sakuratinker:mana_crystal": {
+      "durability": 360,
+      "mana_capacity": 500.0
+    },
     "sakuratinker:phantom_core": {
       "move_speed": 1.25,
       "phantom_amount": 2.0,

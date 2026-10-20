@@ -13,6 +13,9 @@ public class SafeClass {
    private static int ExtraBotanyLoaded = -1;
    public static String ExtraBotany = "extrabotany";
 
+   private static int WizardryLoaded = -1;
+   public static String Wizardry = "ebwizardry";
+
    public static boolean isISSLoaded() {
       if (ISSLoaded == -1) {
          ISSLoaded = !EarlyConfig.modIds.contains(ISS) && !ModList.get().isLoaded(ISS) ? 2 : 1;
@@ -33,5 +36,13 @@ public class SafeClass {
       }
 
       return ExtraBotanyLoaded == 1;
+   }
+
+   public static boolean isWizardryLoaded() {
+      if (WizardryLoaded == -1) {
+         WizardryLoaded = !EarlyConfig.modIds.contains(Wizardry) && !ModList.get().isLoaded(Wizardry) ? 2 : 1;
+      }
+
+      return WizardryLoaded == 1;
    }
 }
