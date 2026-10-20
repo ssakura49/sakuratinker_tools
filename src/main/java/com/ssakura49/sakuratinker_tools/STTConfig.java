@@ -96,7 +96,7 @@ public class STTConfig {
                  .comment("第一阶（初匠）的基础魔力")
                  .getDouble("mana_base", 400.0D, 1.0D, 1000000.0D);
          WIZARDRY_TIER_MANA_PEAK = builder
-                 .comment("最后一阶（天工）的基础魔力")
+                 .comment("最后一阶（神匠）的基础魔力")
                  .getDouble("mana_peak", 4000.0D, 1.0D, 1000000.0D);
          WIZARDRY_TIER_MANA_CURVE = builder
                  .comment("魔力曲线幂次：1 为线性，越大则低阶越平、高阶越陡")
