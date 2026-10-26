@@ -7,11 +7,15 @@ import com.ssakura49.sakuratinker_tools.STTConfig;
 import io.redspace.ironsspellbooks.api.magic.SpellSelectionManager;
 import io.redspace.ironsspellbooks.api.magic.SpellSelectionManager.SelectionOption;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
+import io.redspace.ironsspellbooks.api.spells.SchoolType;
 import io.redspace.ironsspellbooks.api.spells.SpellData;
 import io.redspace.ironsspellbooks.capabilities.magic.CooldownInstance;
 import io.redspace.ironsspellbooks.gui.overlays.SpellBarOverlay;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
+import lombok.Getter;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -22,12 +26,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.fml.ModList;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @OnlyIn(Dist.CLIENT)
 public final class SpellBookStackOverlay {
@@ -51,8 +52,17 @@ public final class SpellBookStackOverlay {
     private static SpellCardAnimation.SelectionSource transitionSource = SpellCardAnimation.SelectionSource.UNKNOWN;
     private static long transitionStartedAt = Long.MIN_VALUE;
     private static float verticalOffsetStart;
+
+    private static float anchorCenterY;
+    private static final Map<String, Long> READY_PULSE_AT = new HashMap<>();
+    private static final Map<String, Float> LAST_COOLDOWN = new HashMap<>();
+    private static final long READY_PULSE_MILLIS = 260L;
+
+    private static final float INFO_SCALE = 0.72F;
+    private static final float INFO_LINE = 10.0F;
     private static long spreadStartedAt = Long.MIN_VALUE;
     private static long lastScrollChangedAt = Long.MIN_VALUE;
+    @Getter
     private static boolean persistentExpanded;
 
     private SpellBookStackOverlay() {
@@ -62,7 +72,7 @@ public final class SpellBookStackOverlay {
         return ModList.get().isLoaded("irons_spellbooks");
     }
 
-    public static void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int screenWidth, int screenHeight) {
+    public static void renderAt(GuiGraphics graphics, float originX, float originY, float partialTick) {
         Minecraft minecraft = Minecraft.getInstance();
         LocalPlayer player = minecraft.player;
         if (minecraft.options.hideGui || player == null || player.isSpectator()) {
@@ -76,12 +86,16 @@ public final class SpellBookStackOverlay {
             reset();
             return;
         }
+        int screenWidth = minecraft.getWindow().getGuiScaledWidth();
+        int screenHeight = minecraft.getWindow().getGuiScaledHeight();
         int selectionIndex = Mth.clamp(manager.getGlobalSelectionIndex(), 0, spellCount - 1);
         long now = Util.getMillis();
         updateSelection(selectionIndex, spellCount, now);
+        updateCooldownPulse(options, now);
 
-        int x = 13;
-        float mainY = screenHeight * 0.5F - CARD_SIZE / 2.0F;
+        int x = Math.round(originX);
+        float mainY = originY;
+        anchorCenterY = originY + CARD_SIZE / 2.0F;
         float spread = persistentExpanded ? 1.0F : spreadProgress(now);
         SpellCardAnimation.CastingTransform castingTransform =
             SpellCardAnimation.castingTransform(ClientMagicData.isCasting());
@@ -181,13 +195,19 @@ public final class SpellBookStackOverlay {
         if (selected && emphasis > 0.001F) {
             drawSelectionBackdrop(graphics, x, y, emphasis, opacity);
         }
-        drawSpellCard(graphics, option, x, y, scale, opacity, selected, selected ? 42.0F : 20.0F);
+        float pulse = option.spellData == null || option.spellData == SpellData.EMPTY
+            ? 0.0F : readyPulse(option.spellData.getSpell(), Util.getMillis());
+        float pulseScale = 1.0F + 0.08F * Math.max(0.0F, pulse);
+        drawSpellCard(graphics, option, x, y, scale * pulseScale, opacity, selected, selected ? 42.0F : 20.0F);
+        drawCooldown(graphics, option, x, y, scale * pulseScale, opacity);
         if (selected) {
-            drawCooldown(graphics, option, x, y, scale, opacity);
             drawSelectedFrame(graphics, x, y, scale, opacity, castingTransform);
             if (transitionActive) {
                 drawDirectionArrow(graphics, x, y, transitionDirection, transitionProgress, opacity);
             }
+        }
+        if (pulse > 0.001F) {
+            drawReadyFlash(graphics, x, y, pulse, opacity);
         }
     }
 
@@ -254,6 +274,11 @@ public final class SpellBookStackOverlay {
         graphics.blit(SpellBarOverlay.TEXTURE, 0, 0, 66, 84, 22, 22);
         graphics.blit(spellData.getSpell().getSpellIconResource(), 3, 3, 0.0F, 0.0F, 16, 16, 16, 16);
         graphics.flush();
+        graphics.fill(1, 1, 3, 21, schoolColor(spellData.getSpell(), opacity));
+        if (lacksMana(spellData)) {
+            int shadeAlpha = Mth.clamp(Math.round(110.0F * opacity), 0, 255);
+            graphics.fill(3, 3, 19, 19, shadeAlpha << 24 | 0x1E3A8A);
+        }
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         pose.popPose();
     }
@@ -289,6 +314,18 @@ public final class SpellBookStackOverlay {
         pose.translate(-CARD_SIZE / 2.0F, -CARD_SIZE / 2.0F, 0.0F);
         int alpha = Mth.clamp(Math.round(217.0F * opacity), 0, 255);
         graphics.fill(3, 19 - cooldownHeight, 19, 19, alpha << 24 | 460050);
+        pose.popPose();
+    }
+
+    private static void drawReadyFlash(GuiGraphics graphics, float x, float y, float pulse, float opacity) {
+        int alpha = Mth.clamp(Math.round(pulse * 140.0F * opacity), 0, 255);
+        if (alpha <= 0) {
+            return;
+        }
+        PoseStack pose = graphics.pose();
+        pose.pushPose();
+        pose.translate(x, y, 70.0F);
+        graphics.fill(1, 1, 21, 21, alpha << 24 | 0x9FE8FF);
         pose.popPose();
     }
 
@@ -343,18 +380,30 @@ public final class SpellBookStackOverlay {
         lines.add(Component.literal((selectionIndex + 1) + " / " + spellCount));
         lines.add(Component.translatable("gui.sakuratinker.level", level, maximumLevel));
         lines.add(Component.translatable("gui.sakuratinker.rarity", spell.getRarity(level).getDisplayName()));
-        lines.add(Component.translatable("gui.sakuratinker.mana", manaCost));
+        boolean enoughMana = ClientMagicData.getPlayerMana() >= manaCost;
+        lines.add(Component.translatable("gui.sakuratinker.mana", manaCost)
+                .withStyle(enoughMana ? ChatFormatting.AQUA : ChatFormatting.RED));
         lines.add(Component.translatable("gui.sakuratinker.cooldown", seconds(remainingCooldown), seconds(totalCooldown)));
         lines.add(Component.translatable("gui.sakuratinker.cast_time", seconds(castTime)));
         lines.add(Component.translatable("gui.sakuratinker.spell_power", String.format(Locale.ROOT, "%.2f", spellPower)));
         lines.add(Component.translatable("gui.sakuratinker.recast", recastCount));
         lines.addAll(spell.getUniqueInfo(level, player));
+        lines.add(scrollHint());
 
         Font font = Minecraft.getInstance().font;
         PoseStack pose = graphics.pose();
         pose.pushPose();
-        pose.translate(x + CARD_SIZE / 2.0F + 13.0F, mainY - 4.0F, 55.0F);
-        pose.scale(0.72F, 0.72F, 1.0F);
+        int screenHeight = Minecraft.getInstance().getWindow().getGuiScaledHeight();
+        float blockHeight = lines.size() * INFO_LINE * INFO_SCALE;
+        float anchorY = mainY - 4.0F;
+        if (anchorY + blockHeight > screenHeight - 2.0F) {
+            anchorY = mainY + CARD_SIZE - blockHeight;
+            if (anchorY < 2.0F) {
+                anchorY = Math.max(2.0F, screenHeight - 2.0F - blockHeight);
+            }
+        }
+        pose.translate(x + CARD_SIZE / 2.0F + 13.0F, anchorY, 55.0F);
+        pose.scale(INFO_SCALE, INFO_SCALE, 1.0F);
         for (int i = 0; i < lines.size(); i++) {
             int color = i == 0 ? -723724 : -3618616;
             graphics.drawString(font, lines.get(i), 0, i * 10, color, true);
@@ -364,6 +413,77 @@ public final class SpellBookStackOverlay {
 
     private static String seconds(int ticks) {
         return String.format(Locale.ROOT, "%.2f", Math.max(0, ticks) / 20.0F);
+    }
+
+
+    private static Component scrollHint() {
+        KeyMapping mapping = SpellStackKeybinds.scrollModifierKey();
+        return Component.translatable("hud.sakuratinker_tools.spell_scroll_hint",
+                mapping.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GRAY);
+    }
+
+    private static int schoolColor(AbstractSpell spell, float opacity) {
+        int alpha = Mth.clamp(Math.round(255.0F * opacity), 0, 255);
+        try {
+            SchoolType school = spell.getSchoolType();
+            if (school == null) {
+                return alpha << 24 | 0xFFFFFF;
+            }
+            org.joml.Vector3f color = school.getTargetingColor();
+            if (color == null) {
+                return alpha << 24 | 0xFFFFFF;
+            }
+            int r = Mth.clamp(Math.round(color.x() * 255.0F), 0, 255);
+            int g = Mth.clamp(Math.round(color.y() * 255.0F), 0, 255);
+            int b = Mth.clamp(Math.round(color.z() * 255.0F), 0, 255);
+            return alpha << 24 | r << 16 | g << 8 | b;
+        } catch (Throwable ignored) {
+            return alpha << 24 | 0xFFFFFF;
+        }
+    }
+
+
+    private static boolean lacksMana(SpellData spellData) {
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (player == null || spellData == null || spellData == SpellData.EMPTY) {
+            return false;
+        }
+        AbstractSpell spell = spellData.getSpell();
+        int level = spell.getLevelFor(spellData.getLevel(), player);
+        return ClientMagicData.getPlayerMana() < spell.getManaCost(level);
+    }
+
+
+    private static void updateCooldownPulse(List<SelectionOption> options, long now) {
+        if (LAST_COOLDOWN.size() != options.size()) {
+            LAST_COOLDOWN.clear();
+        }
+        for (SelectionOption option : options) {
+            SpellData spellData = option.spellData;
+            if (spellData == null || spellData == SpellData.EMPTY) {
+                continue;
+            }
+            AbstractSpell spell = spellData.getSpell();
+            String id = spell.getSpellId();
+            float current = Mth.clamp(ClientMagicData.getCooldownPercent(spell), 0.0F, 1.0F);
+            Float previous = LAST_COOLDOWN.put(id, current);
+            if (previous != null && previous > 0.0F && current <= 0.0F) {
+                READY_PULSE_AT.put(id, now);
+            }
+        }
+        READY_PULSE_AT.entrySet().removeIf(entry -> now - entry.getValue() > READY_PULSE_MILLIS);
+    }
+
+    private static float readyPulse(AbstractSpell spell, long now) {
+        Long at = READY_PULSE_AT.get(spell.getSpellId());
+        if (at == null) {
+            return 0.0F;
+        }
+        float progress = (now - at) / (float) READY_PULSE_MILLIS;
+        if (progress < 0.0F || progress > 1.0F) {
+            return 0.0F;
+        }
+        return (1.0F - progress) * (float) Math.sin(progress * Math.PI * 2.0);
     }
 
     private static float cardY(float mainY, float relative, float expandedStep, float spread) {
@@ -381,7 +501,7 @@ public final class SpellBookStackOverlay {
     private static float verticalFade(float y, int screenHeight) {
         float centerY = y + CARD_SIZE / 2.0F;
         float halfHeight = Math.max(1.0F, screenHeight * 0.5F - CARD_SIZE / 2.0F);
-        float distance = Math.abs(centerY - screenHeight * 0.5F) / halfHeight;
+        float distance = Math.abs(centerY - anchorCenterY) / halfHeight;
         return 1.0F - smootherStep(distance);
     }
 
@@ -445,10 +565,6 @@ public final class SpellBookStackOverlay {
 
     public static void toggleExpandedMode() {
         persistentExpanded = !persistentExpanded;
-    }
-
-    public static boolean isPersistentExpanded() {
-        return persistentExpanded;
     }
 
     private static float smootherStep(float value) {

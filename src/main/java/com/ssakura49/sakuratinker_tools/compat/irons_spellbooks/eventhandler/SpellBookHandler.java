@@ -1,5 +1,6 @@
 package com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.eventhandler;
 
+import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.api.ITinkerSpell;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.init.ISSModifier;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.hook.ISSHooks;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.hook.spellbook.CooldownModifierHook;
@@ -10,6 +11,7 @@ import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.hook.spe
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.hook.spellbook.SpellHealModifierHook;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.hook.spellbook.SpellHitModifierHook;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.hook.spellbook.SpellLevelModifierHook;
+import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.school.SchoolOverrideContext;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.tool.stat.ISSToolStats;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.context.SpellAttackContext;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.item.base.ModifiableSpellBookItem;
@@ -20,7 +22,9 @@ import io.redspace.ironsspellbooks.api.events.SpellDamageEvent;
 import io.redspace.ironsspellbooks.api.events.SpellHealEvent;
 import io.redspace.ironsspellbooks.api.events.SpellOnCastEvent;
 import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
+import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
+import io.redspace.ironsspellbooks.api.spells.SchoolType;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.damage.SpellDamageSource;
 import net.minecraft.server.level.ServerPlayer;
@@ -50,7 +54,7 @@ public class SpellBookHandler {
          LivingEntity livingTarget = event.getEntity();
          Entity target = event.getEntity();
          ItemStack itemStack = Utils.getPlayerSpellbookStack(player);
-         if (itemStack != null && !itemStack.isEmpty() && itemStack.getItem() instanceof ModifiableSpellBookItem) {
+         if (itemStack != null && !itemStack.isEmpty() && itemStack.getItem() instanceof ITinkerSpell) {
             ToolStack toolStack = ToolStack.from(itemStack);
             if (toolStack.getModifierLevel(ISSModifier.ArcaneTinkering.get()) > 0) {
                float baseDamage = event.getAmount();
@@ -113,7 +117,7 @@ public class SpellBookHandler {
 
    public static void onInscribeSpell(InscribeSpellEvent event) {
       ItemStack bookStack = Utils.getPlayerSpellbookStack(event.getEntity());
-      if (bookStack != null && !bookStack.isEmpty() && bookStack.getItem() instanceof ModifiableSpellBookItem) {
+      if (bookStack != null && !bookStack.isEmpty() && bookStack.getItem() instanceof ITinkerSpell) {
          ToolStack toolStack = ToolStack.from(bookStack);
          for (ModifierEntry entry : toolStack.getModifierList()) {
             InscribeSpellModifierHook hook = entry.getHook(ISSHooks.INSCRIBE_SPELL);
@@ -128,7 +132,7 @@ public class SpellBookHandler {
    public static void onPreCast(SpellPreCastEvent event) {
       Player player = event.getEntity();
       ItemStack itemStack = Utils.getPlayerSpellbookStack(player);
-      if (itemStack != null && !itemStack.isEmpty() && itemStack.getItem() instanceof ModifiableSpellBookItem) {
+      if (itemStack != null && !itemStack.isEmpty() && itemStack.getItem() instanceof ITinkerSpell) {
          IToolStackView toolStack = ToolStack.from(itemStack);
          SpellAttackContext context = new SpellAttackContext.Builder()
                  .caster(player)
@@ -143,12 +147,17 @@ public class SpellBookHandler {
 
    public static void onSpellCast(SpellOnCastEvent event) {
       ItemStack itemStack = Utils.getPlayerSpellbookStack(event.getEntity());
-      if (itemStack != null && !itemStack.isEmpty() && itemStack.getItem() instanceof ModifiableSpellBookItem) {
+      if (itemStack != null && !itemStack.isEmpty() && itemStack.getItem() instanceof ITinkerSpell) {
          IToolStackView toolStack = ToolStack.from(itemStack);
          SpellAttackContext context = new  SpellAttackContext.Builder()
                  .caster(event.getEntity())
                  .spell(event.getSpellId(), event.getSchoolType(), event.getSpellLevel())
                  .build();
+         SchoolType overrideSchool = resolveCastSchool(toolStack, event.getSpellId(), event.getSchoolType());
+         if (overrideSchool != null) {
+            SchoolOverrideContext.clear();
+            SchoolOverrideContext.push(overrideSchool);
+         }
          int baseMana = event.getManaCost();
          int originalMana = event.getOriginalManaCost();
          int currentMana = baseMana;
@@ -170,10 +179,22 @@ public class SpellBookHandler {
       }
    }
 
+   private static SchoolType resolveCastSchool(IToolStackView tool, String spellId, SchoolType current) {
+      AbstractSpell spell = SpellRegistry.getSpell(spellId);
+      if (spell == null || current == null) {
+         return null;
+      }
+      SchoolType school = current;
+      for (ModifierEntry entry : tool.getModifierList()) {
+         school = entry.getHook(ISSHooks.SPELL_SCHOOL).modifySchool(tool, entry, spell, school);
+      }
+      return school == current ? null : school;
+   }
+
    public static void onSpellCooldownPre(SpellCooldownAddedEvent.Pre event) {
       if (!(event.getEntity() instanceof ServerPlayer player)) return;
       ItemStack stack = Utils.getPlayerSpellbookStack(player);
-      if (stack != null && !stack.isEmpty() && stack.getItem() instanceof ModifiableSpellBookItem) {
+      if (stack != null && !stack.isEmpty() && stack.getItem() instanceof ITinkerSpell) {
          ToolStack tool = ToolStack.from(stack);
          int original = event.getEffectiveCooldown();
          int current = original;
@@ -193,7 +214,7 @@ public class SpellBookHandler {
       LivingEntity caster = event.getEntity();
       if (caster instanceof Player player) {
          ItemStack bookStack = Utils.getPlayerSpellbookStack(player);
-         if (bookStack != null && bookStack.getItem() instanceof ModifiableSpellBookItem) {
+         if (bookStack != null && bookStack.getItem() instanceof ITinkerSpell) {
             ToolStack toolStack = ToolStack.from(bookStack);
             SpellAttackContext context = new SpellAttackContext.Builder().caster(player).build();
             for (ModifierEntry entry : toolStack.getModifierList()) {

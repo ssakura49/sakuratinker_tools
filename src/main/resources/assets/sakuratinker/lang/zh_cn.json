@@ -378,5 +378,7 @@
   "wand_tier.sakuratinker.tinker_divine": "神匠",
   "element.sakuratinker.forge": "匠魂",
   "element.sakuratinker.forge.wizard": "匠魂巫师",
-  "element.sakuratinker.forge.desc": "以炉与砧为本源的元素，代表锻造与器物之魂。"
+  "element.sakuratinker.forge.desc": "以炉与砧为本源的元素，代表锻造与器物之魂。",
+  "hud.sakuratinker_tools.spell_scroll_hint": "按住 %s 并用滚轮切换法术",
+  "key.sakuratinker.scroll_modifier": "滚轮切换法术（修饰键）"
 }

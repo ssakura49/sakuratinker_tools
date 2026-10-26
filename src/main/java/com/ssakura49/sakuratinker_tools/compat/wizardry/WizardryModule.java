@@ -2,6 +2,7 @@ package com.ssakura49.sakuratinker_tools.compat.wizardry;
 
 import com.ssakura49.sakuratinker_tools.compat.CompatManager;
 import com.ssakura49.sakuratinker_tools.compat.wizardry.eventhandler.ElementAffinityEventHandler;
+import com.ssakura49.sakuratinker_tools.compat.wizardry.eventhandler.WandManaTooltipHandler;
 import com.ssakura49.sakuratinker_tools.compat.wizardry.init.WizardryItem;
 import com.ssakura49.sakuratinker_tools.compat.wizardry.init.WizardryModifier;
 import com.ssakura49.sakuratinker_tools.compat.wizardry.library.tool.stats.WizardryToolStats;
@@ -17,6 +18,7 @@ public class WizardryModule implements CompatManager.ICompatModule {
         WizardryModifier.MODIFIERS.register(modBus);
         ElementAffinityEventHandler.init();
         modBus.addListener(this::onRegister);
+        MinecraftForge.EVENT_BUS.addListener(WandManaTooltipHandler::onItemTooltip);
     }
 
     public void onRegister(RegisterEvent event) {

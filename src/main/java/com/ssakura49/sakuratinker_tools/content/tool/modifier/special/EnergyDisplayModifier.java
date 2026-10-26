@@ -78,7 +78,8 @@ public class EnergyDisplayModifier extends BaseModifier implements ValidateModif
    @Override
    @OnlyIn(Dist.CLIENT)
    public boolean shouldShowBar(IToolStackView tool, ModifierEntry entry, int barsHadBeenShown) {
-      return tool.getStats().getInt(MAX_STAT) + tool.getStats().getInt(STToolStats.ENERGY_STORAGE) > 0;
+      return barsHadBeenShown == 0
+              && tool.getStats().getInt(MAX_STAT) + tool.getStats().getInt(STToolStats.ENERGY_STORAGE) > 0;
    }
 
    @Override

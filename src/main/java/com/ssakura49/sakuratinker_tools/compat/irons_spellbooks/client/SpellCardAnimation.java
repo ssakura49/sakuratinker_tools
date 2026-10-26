@@ -5,28 +5,16 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-/**
- * Client-side animation state machine for the spell-card stack UI.
- * Mixin hooks push selection/casting signals here; the overlay consumes them
- * each frame. Kept deliberately free of rendering concerns.
- */
+
 @OnlyIn(Dist.CLIENT)
 public final class SpellCardAnimation {
-    /** How long a selection signal remains consumable before it expires. */
     private static final long SELECTION_TTL_MS = 1000L;
-    /** Minimum duration the cast animation is held after casting starts. */
     private static final long MIN_CAST_ANIMATION_MS = 420L;
-    /** Full spin period for the casting frame (1400ms = 360 degrees). */
     private static final long CAST_ROTATION_PERIOD_MS = 1400L;
-    /** Entrance ramp in ms for the casting scale pulse. */
     private static final float CAST_ENTRANCE_MS = 150.0F;
-    /** Pulse angular speed (rad-ish factor on elapsed ms). */
     private static final float CAST_PULSE_SPEED = 0.012F;
-    /** Scale contribution added by the entrance ramp. */
     private static final float CAST_ENTRANCE_SCALE = 0.085F;
-    /** Scale contribution modulated by the breathing pulse. */
     private static final float CAST_PULSE_SCALE = 0.032F;
-    /** Degrees advanced per millisecond, for a full turn every period. */
     private static final float ROTATION_DEGREES_PER_MS = 360.0F / CAST_ROTATION_PERIOD_MS;
 
     private static SelectionSource pendingSource = SelectionSource.UNKNOWN;
@@ -64,10 +52,7 @@ public final class SpellCardAnimation {
         castingSignaled = false;
     }
 
-    /**
-     * Consumes a pending selection transition if one matches the given indices
-     * and has not expired. Always clears the pending state.
-     */
+
     public static SelectionTransition consumeSelectionTransition(int previousIndex, int selectedIndex, int spellCount) {
         long now = Util.getMillis();
         boolean matchingIndices = pendingPreviousIndex == Integer.MIN_VALUE
@@ -86,10 +71,7 @@ public final class SpellCardAnimation {
         return new SelectionTransition(source, direction, startedAt);
     }
 
-    /**
-     * Casting transform for the selected card frame; scale breathes and spins
-     * while the player is casting (or just stopped, up to the minimum duration).
-     */
+
     public static CastingTransform castingTransform(boolean castingHint) {
         long now = Util.getMillis();
         boolean active = castingHint || castingSignaled || now < castingMinimumEndAt;
@@ -140,7 +122,6 @@ public final class SpellCardAnimation {
         pendingExpiresAt = Long.MIN_VALUE;
     }
 
-    /** Shortest circular distance from center to index (wraps at count/2). */
     private static int signedDistance(int index, int center, int count) {
         if (count <= 0) {
             return 0;
@@ -155,7 +136,7 @@ public final class SpellCardAnimation {
         return distance;
     }
 
-    /** Classic smoothstep 6x^5-15x^4+10x^3 on [0,1]. */
+    /** smoothstep 6x^5-15x^4+10x^3 on [0,1]. */
     private static float smootherStep(float value) {
         float clamped = Mth.clamp(value, 0.0F, 1.0F);
         return clamped * clamped * clamped * (clamped * (clamped * 6.0F - 15.0F) + 10.0F);

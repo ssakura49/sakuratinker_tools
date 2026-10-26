@@ -3,6 +3,7 @@ package com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import io.redspace.ironsspellbooks.api.magic.SpellSelectionManager;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
+import io.redspace.ironsspellbooks.player.KeyMappings;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -11,28 +12,27 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.glfw.GLFW;
 
-/**
- * Key bindings for the Spell Stack UI:
- *  - toggle between the default collapsed stack and a permanently expanded left column;
- *  - quick-select the previous/next spell with dedicated keys (reuses the exact
- *    scroll-selection animation and dial sound path).
- */
+
 @OnlyIn(Dist.CLIENT)
 public final class SpellStackKeybinds {
     public static final String CATEGORY = "key.categories.sakuratinker";
 
     private static final KeyMapping TOGGLE_EXPANDED = new KeyMapping(
         "key.sakuratinker.toggle_expanded", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_N, CATEGORY);
-    private static final KeyMapping SELECT_PREVIOUS = new KeyMapping(
-        "key.sakuratinker.previous_spell", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_COMMA, CATEGORY);
-    private static final KeyMapping SELECT_NEXT = new KeyMapping(
-        "key.sakuratinker.next_spell", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PERIOD, CATEGORY);
+
+    private static final KeyMapping SCROLL_MODIFIER = new KeyMapping(
+        "key.sakuratinker.scroll_modifier", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL, CATEGORY);
 
     private SpellStackKeybinds() {
     }
 
     public static KeyMapping[] all() {
-        return new KeyMapping[]{TOGGLE_EXPANDED, SELECT_PREVIOUS, SELECT_NEXT};
+        return new KeyMapping[]{TOGGLE_EXPANDED, SCROLL_MODIFIER};
+    }
+
+
+    public static KeyMapping scrollModifierKey() {
+        return SCROLL_MODIFIER;
     }
 
     public static void handleInput(int action) {
@@ -45,23 +45,32 @@ public final class SpellStackKeybinds {
         }
         if (TOGGLE_EXPANDED.consumeClick()) {
             SpellBookStackOverlay.toggleExpandedMode();
-            return;
         }
-        if (SELECT_PREVIOUS.consumeClick()) {
-            quickSelect(-1);
-            return;
+    }
+
+    public static boolean handleScroll(double delta) {
+        if (!SCROLL_MODIFIER.isDown()) {
+            return false;
         }
-        if (SELECT_NEXT.consumeClick()) {
-            quickSelect(1);
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.screen != null || minecraft.player == null) {
+            return false;
         }
+        if (KeyMappings.SPELLBAR_SCROLL_MODIFIER_KEYMAP.isDown()) {
+            return false;
+        }
+        if (delta == 0.0D) {
+            return false;
+        }
+        quickSelect(delta > 0.0D ? -1 : 1);
+        return true;
     }
 
     private static void quickSelect(int direction) {
         if (!SpellBookStackOverlay.isModLoaded()) {
             return;
         }
-        Minecraft minecraft = Minecraft.getInstance();
-        LocalPlayer player = minecraft.player;
+        LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) {
             return;
         }
@@ -71,7 +80,6 @@ public final class SpellStackKeybinds {
             return;
         }
         int current = Mth.clamp(manager.getGlobalSelectionIndex(), 0, spellCount - 1);
-        // circular selection: last -> first, first -> last (Math.floorMod handles negatives)
         int next = Math.floorMod(current + direction, spellCount);
         if (next != current) {
             SpellCardAnimation.signalScrollSelection(current, next, spellCount);

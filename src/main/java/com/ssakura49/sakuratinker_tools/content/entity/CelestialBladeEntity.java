@@ -9,10 +9,9 @@ import com.ssakura49.sakuratinker.core.utils.AttackUtil;
 import com.ssakura49.sakuratinker_tools.content.entity.part.CelestialBladePart;
 import com.ssakura49.sakuratinker_tools.init.STTEntities;
 import com.ssakura49.sakuratinker_tools.init.STTEntityDataSerializers;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+
+import java.util.*;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
@@ -45,6 +44,9 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 public class CelestialBladeEntity extends Entity implements TraceableEntity {
    private static final Logger LOGGER = LogUtils.getLogger();
+
+   //加个这个，不然反伤太强
+   private final Map<UUID, Long> hitCooldown = new HashMap<>();
 
    private static final String TAG_ZENITH_PART = "zenith_part";
    private static final String TAG_OWNER = "owner";
@@ -154,8 +156,6 @@ public class CelestialBladeEntity extends Entity implements TraceableEntity {
    private InteractionHand hand;
    private EquipmentSlot slot;
    private float baseDamage = 5.0f;
-
-   private final List<Entity> damagedEntities = new ArrayList<>();
 
    @Override
    @Nullable
@@ -300,8 +300,12 @@ public class CelestialBladeEntity extends Entity implements TraceableEntity {
                  if (!targetBox.contains(startPos) && targetBox.clip(startPos, endPos).isEmpty()) {
                     return;
                  }
-                 //可能过强
-                 //if (damagedEntities.contains(target)) return;
+
+                 long now = level().getGameTime();
+                 Long last = hitCooldown.get(target.getUUID());
+                 if (last != null && now - last < 4L) return;
+                 hitCooldown.put(target.getUUID(), now);
+
                  if (target instanceof Player targetPlayer) {
                     if (owner instanceof Player attackerPlayer) {
                        if (!attackerPlayer.canHarmPlayer(targetPlayer)) {
@@ -317,7 +321,7 @@ public class CelestialBladeEntity extends Entity implements TraceableEntity {
                             damageSources().playerAttack(p) :
                             damageSources().mobAttack(owner);
 
-                    AttackUtil.attackEntity(toolStack, owner, hand, target, () -> 1.0f, false, slot, false, baseDamage,1, false);
+                    AttackUtil.attackEntity(toolStack, owner, hand, target, () -> 1.0f, false, slot, false, baseDamage,1, false,false);
                  } else {
                     DamageSource fallbackSource = owner instanceof Player p
                             ? damageSources().playerAttack(p)
@@ -329,9 +333,7 @@ public class CelestialBladeEntity extends Entity implements TraceableEntity {
 
    private DamageSource withAdvancementBypass(LivingEntity owner, DamageSource base) {
       if (owner instanceof ServerPlayer player) {
-         int total = PlayerAdvDataHelper.AdvancementCache.getTotal(player);
-         int completed = PlayerAdvDataHelper.get(player);
-         float percent = (float)completed / (float)total;
+         float percent = PlayerAdvDataHelper.getPercent(player);
          if (percent > 0.0F) {
             return PercentageBypassInvulnerableTimeSource.any(base.typeHolder(), player, player, percent);
          }

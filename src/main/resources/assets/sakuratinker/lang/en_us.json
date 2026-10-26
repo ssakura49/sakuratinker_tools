@@ -350,5 +350,17 @@
   "wand_tier.sakuratinker.tinker_heavenly": "Heavenly Artificer",
   "element.sakuratinker.forge": "Forge",
   "element.sakuratinker.forge.wizard": "Forge Wizard",
-  "element.sakuratinker.forge.desc": "The element of hearth, anvil and everything shaped by hand."
+  "element.sakuratinker.forge.desc": "The element of hearth, anvil and everything shaped by hand.",
+  "hud.sakuratinker_tools.spell_scroll_hint": "Hold %s and scroll to switch spells",
+  "key.sakuratinker.scroll_modifier": "Spell Scroll Switch Modifier",
+  "gui.sakuratinker.level": "Level：%d / %d",
+  "gui.sakuratinker.rarity": "Rarity：%s",
+  "gui.sakuratinker.mana": "Mana：%d",
+  "gui.sakuratinker.cooldown": "Cooldown：%s / %s",
+  "gui.sakuratinker.cast_time": "CastTime：%s",
+  "gui.sakuratinker.spell_power": "SpellPower：%s",
+  "gui.sakuratinker.recast": "Recast：%d",
+  "key.sakuratinker.toggle_expanded": "Toggle expanded spell stack",
+  "item.sakuratinker.wizardry_wand": "Wizardry Wand",
+  "item.sakuratinker.wizardry_wand.description": "A modular magic wand that lets you gain proficiency when used, and once you reach a certain level, you can upgrade the wand."
 }

@@ -3,6 +3,7 @@ package com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.tool.item.base;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
+import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.api.ITinkerSpell;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.helper.SchoolAttributeManager;
 import com.ssakura49.sakuratinker_tools.compat.irons_spellbooks.library.tool.stat.ISSToolStats;
 import com.ssakura49.tinkercuriolib.hook.TCLibHooks;
@@ -69,7 +70,7 @@ import slimeknights.tconstruct.library.tools.stat.FloatToolStat;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class ModifiableSpellBookItem extends SpellBook implements IModifiableDisplay, ICurioItem, ISpellbook, IPresetSpellContainer, ILecternPlaceable {
+public class ModifiableSpellBookItem extends SpellBook implements IModifiableDisplay, ICurioItem, ISpellbook, IPresetSpellContainer, ILecternPlaceable, ITinkerSpell {
    private final ToolDefinition toolDefinition;
    private ItemStack toolForRendering;
    private final int maxStackSize;

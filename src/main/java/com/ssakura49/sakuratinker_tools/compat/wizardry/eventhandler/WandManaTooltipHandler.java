@@ -15,11 +15,9 @@ import slimeknights.tconstruct.library.tools.item.IModifiable;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = SakuraTinkerTools.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public final class WandManaTooltipHandler {
     private static final String MANA_KEY = "item.ebwizardry.wand.damage_desc";
 
-    @SubscribeEvent(priority = EventPriority.LOW)
     public static void onItemTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
         if (!(stack.getItem() instanceof IManaItem manaItem)) {

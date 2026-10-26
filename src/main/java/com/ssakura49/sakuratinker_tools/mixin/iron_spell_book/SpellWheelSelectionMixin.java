@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-/** Signals wheel-based spell selection to the card animation API. */
 @Mixin(value = SpellWheelOverlay.class, remap = false)
 @ModDependsMixin("irons_spellbooks")
 public abstract class SpellWheelSelectionMixin {
